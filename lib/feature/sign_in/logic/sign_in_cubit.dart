@@ -6,7 +6,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import '../../../core/helpers/cash_helper.dart';
 import '../data/models/log_in_respone.dart';
 import '../data/models/login_model.dart';
-
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -47,7 +46,7 @@ class SignInCubit extends Cubit<SignInState> {
     if (!connectivityResult.contains(ConnectivityResult.none)) {
       final response = await authService.login(loginModel);
       response.fold(
-            (r) => emit(SignInFailed(message: r.errMessage)),
+            (r) => emit(SignInFailed(message: r.message)),
             (r) {
           // Save sign-in response securely
           CashHelper.setStringSecured(

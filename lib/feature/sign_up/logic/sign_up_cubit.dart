@@ -48,7 +48,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   if (!connectivityResult.contains(ConnectivityResult.none)) {
     final response = await authService.register(signUpModel);
     response.fold(
-            (l) => emit(SignUpFailed(message: l.errMessage)),
+            (l) => emit(SignUpFailed(message: l.errors)),
             (r)  {
           // Save sign-in response securely
           CashHelper.setStringSecured(

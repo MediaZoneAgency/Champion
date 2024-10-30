@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:education/core/network/network_constant.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -13,7 +14,7 @@ class DioFactory {
     if (dio == null) {
       dio = Dio(
         BaseOptions(
-          baseUrl: 'https://roleapp.ghaytiapp.com/api/',
+          baseUrl: NetworkConstant.baseUrl,
         ),
       );
       dio!

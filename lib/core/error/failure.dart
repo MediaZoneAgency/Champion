@@ -1,58 +1,68 @@
 import 'package:dio/dio.dart';
-abstract class Failure {
-  final String errMessage;
+import 'package:education/main.dart';
 
-  const Failure(this.errMessage);
-}
-class ServerFailure extends Failure {
-  ServerFailure(super.errMessage);
-  factory ServerFailure.fromDioError(DioException dioError) {
-    switch (dioError.type) {
-      case DioExceptionType.connectionTimeout:
-        return ServerFailure('Connection timeout with ApiServer');
+import '../../generated/l10n.dart';
+import 'error_model.dart';
 
-      case DioExceptionType.sendTimeout:
-        return ServerFailure('Send timeout with ApiServer');
-
-      case DioExceptionType.receiveTimeout:
-        return ServerFailure('Receive timeout with ApiServer');
-
-      case DioExceptionType.badResponse:
-      // Check if dioError.response is not null before accessing it
-        if (dioError.response != null) {
-          return ServerFailure.fromResponse(
-              dioError.response!.statusCode, dioError.response!.data);
-        } else {
-          return ServerFailure('Received invalid response from ApiServer');
-        }
-
-      case DioExceptionType.cancel:
-        return ServerFailure('Request to ApiServer was canceled');
-
-      case DioExceptionType.unknown:
-      // Check if dioError.message is not null
-        if (dioError.message != null && dioError.message!.contains('SocketException')) {
-          return ServerFailure('No Internet Connection');
-        }
-        return ServerFailure('Unexpected Error, Please try again!');
-
-      default:
-        return ServerFailure('Oops, There was an Error, Please try again');
+class ApiErrorHandler {
+  static ApiErrorModel handle(dynamic error) {
+    if (error is DioException) {
+      switch (error.type) {
+        case DioExceptionType.connectionError:
+          return ApiErrorModel(
+              message: S
+                  .of(NavigationService.navigatorKey.currentContext!)
+                  .connectionToServerFailed, );
+        case DioExceptionType.cancel:
+          return ApiErrorModel(
+              message: S
+                  .of(NavigationService.navigatorKey.currentContext!)
+                  .requestToTheServerWasCancelled);
+        case DioExceptionType.connectionTimeout:
+          return ApiErrorModel(
+              message: S
+                  .of(NavigationService.navigatorKey.currentContext!)
+                  .connectionTimeoutWithTheServer);
+        case DioExceptionType.unknown:
+          return ApiErrorModel(
+              message: S
+                  .of(NavigationService.navigatorKey.currentContext!)
+                  .connectionToTheServerFailedDueToInternetConnection);
+        case DioExceptionType.receiveTimeout:
+          return ApiErrorModel(
+              message: S
+                  .of(NavigationService.navigatorKey.currentContext!)
+                  .receiveTimeOutInConnectionWithTheServer);
+        case DioExceptionType.badResponse:
+          return handleError(error.response?.statusCode, error.response?.data);
+        case DioExceptionType.sendTimeout:
+          return ApiErrorModel(
+              message: S
+                  .of(NavigationService.navigatorKey.currentContext!)
+                  .sendTimeoutInConnectionWithTheServer);
+        default:
+          return ApiErrorModel(
+              message: S
+                  .of(NavigationService.navigatorKey.currentContext!)
+                  .somethingWentWrong);
+      }
+    } else {
+      return ApiErrorModel(
+          message: S
+              .of(NavigationService.navigatorKey.currentContext!)
+              .UnexpectedErrorOccurred);
     }
   }
 
-  factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response != null && response['message'] != null
-          ? response['message']
-          : 'email or password is not correct');
-    } else if (statusCode == 404) {
-      return ServerFailure('Your request not found, Please try later!');
-    } else if (statusCode == 500) {
-      return ServerFailure('Internal Server error, Please try later');
-    } else {
-      return ServerFailure('Oops, There was an Error, Please try againn');
-    }
+  static ApiErrorModel handleError(int? statusCode, dynamic error) {
+    return ApiErrorModel(
+      message: error['message'] ??
+          S
+              .of(NavigationService.navigatorKey.currentContext!)
+              .UnexpectedErrorOccurred,
+      code: statusCode?.toString(),  // Convert int? to String?
+      errors: error['data'],
+    );
   }
 
 }
