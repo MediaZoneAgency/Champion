@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/custom_text.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/utils/routes.dart';
+
 import '../../../../generated/l10n.dart';
 import '../../logic/sign_up_cubit.dart';
 
@@ -49,7 +50,7 @@ class _VerifyCodeState extends State<VerifyCode> {
           //mainAxisAlignment: MainAxisAlignment.center,
           children: [
             verticalSpace(50),
-            AppText(title: S.of(context).VerifyCode,description: "Enter the code we just sent to email carinosama24@gmail.com",),
+            AppText(title: S.of(context).VerifyCode,description:S.of(context).Enterthecode,),
 
             verticalSpace(30),
             Row(
@@ -80,7 +81,7 @@ class _VerifyCodeState extends State<VerifyCode> {
               borderRadius: 10,
 
               horizontalPadding: 0,
-              buttonText: 'Verify', //S.of(context).Login,
+              buttonText: S.of(context).Verify, //S.of(context).Login,
               textStyle: TextStyles.poppinsMedium20white,
               verticalPadding: 3,
               buttonWidth: 327.w,

@@ -10,10 +10,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/utils/routes.dart';
+
 import '../../../../generated/l10n.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -59,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   verticalSpace(64),
-                  AppText(title: S.of(context).sign_in,description: "Hello, Welcome back You’ve been missed",),
+                  AppText(title: S.of(context).sign_in,description: S.of(context).HelloWelcome,),
                   verticalSpace(16),
                   Form(
                     key: formKey,
@@ -71,7 +72,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                           EnterYour(text: S.of(context).Email),
                           verticalSpace(7),
-                          AppTextFormField(hintText: "Your Email",controller: _emailController,),
+                          AppTextFormField(hintText: S.of(context).Email,controller: _emailController,),
                           verticalSpace(12),
                           EnterYour(
                             text: S.of(context).Password,
@@ -127,7 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               Expanded(child: Divider(color:ColorsManager.Blackmeduim)),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text("Or sign in with",
+                                child: Text(S.of(context).Orsigninwith,
                                     style: TextStyles.poppinsMedium16BlackMeduim),
                               ),
                               Expanded(child: Divider(color: ColorsManager.Blackmeduim)),

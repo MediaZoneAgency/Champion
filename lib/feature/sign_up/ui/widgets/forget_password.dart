@@ -7,7 +7,6 @@ import '../../../../core/helpers/spacing.dart';
 
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/utils/routes.dart';
 
 import '../../../../generated/l10n.dart';
 

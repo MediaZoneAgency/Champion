@@ -10,12 +10,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/utils/routes.dart';
 import '../../../../generated/l10n.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../sign_up/ui/widgets/enter_your.dart';
 import '../../logic/sign_in_cubit.dart';
 import '../widget/sign_in_state.dart';
@@ -54,7 +53,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   verticalSpace(50),
-                  AppText(title: S.of(context).ForgotPassword,description: "Enter Your Email",),
+                  AppText(title: S.of(context).ForgotPassword,description: S.of(context).EnterEmail,),
                   verticalSpace(16),
                   Form(
                     key: formKey,
@@ -66,7 +65,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
                           EnterYour(text: S.of(context).Email),
                           verticalSpace(7),
-                          AppTextFormField(hintText: "Your Email",controller: _emailController,),
+                          AppTextFormField(hintText:S.of(context).EnterEmail,controller: _emailController,),
                           verticalSpace(227),
 
                           AppTextButton(

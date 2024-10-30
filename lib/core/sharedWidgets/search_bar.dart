@@ -14,7 +14,7 @@ class CustomSearchBar extends StatelessWidget {
       padding: const EdgeInsets.only(left: 14,right: 14,),
       child: Container(
         height: 44.h,
-        width: 327.w,
+        width: 330.w,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(
               Radius.circular(10),

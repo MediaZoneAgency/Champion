@@ -39,6 +39,14 @@
   "receiveTimeOutInConnectionWithTheServer":"Receive timeout in connection with the server",
   "sendTimeoutInConnectionWithTheServer":"Send timeout in connection with the server",
   "somethingWentWrong":"Something went wrong",
-  "UnexpectedErrorOccurred":"Unexpected error occurred"
+  "UnexpectedErrorOccurred":"Unexpected error occurred",
+  "HelloWelcome":"Hello, Welcome back You’ve been missed",
+  "Orsigninwith":"Or sign in with",
+  "Fillaccount":  "Fill your information below or register with your social account",
+  "Agreewith": "Agree with ",
+  "TermsConditions":  "Terms & Conditions",
+  "Orsignup": "Or sign up with",
+  "Enterthecode": "Enter the code we just sent to email carinosama24@gmail.com",
+  "Verify": "Verify"
 }
 

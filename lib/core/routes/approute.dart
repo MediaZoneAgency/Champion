@@ -1,4 +1,5 @@
 
+import 'package:education/core/routes/routes.dart';
 import 'package:education/feature/category/ui/screen/popular_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ import '../../feature/sign_up/ui/screen/otp_screen.dart';
 import '../../feature/sign_up/ui/screen/sign_up.dart';
 import '../../feature/splash/view/splashview.dart';
 import '../di/dependency_inj.dart';
-import 'routes.dart';
+
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {

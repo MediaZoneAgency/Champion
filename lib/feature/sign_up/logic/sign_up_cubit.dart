@@ -6,7 +6,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import '../../../core/helpers/cash_helper.dart';
 import '../data/models/register_model.dart';
 import '../data/models/register_response.dart';
-import '../data/repo/auth_repo.dart';
+import '../data/repo/sign_up_repo.dart';
 
 part 'sign_up_state.dart';
 

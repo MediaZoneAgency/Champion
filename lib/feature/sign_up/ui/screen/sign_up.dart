@@ -9,10 +9,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/utils/routes.dart';
 import '../../../../generated/l10n.dart';
 import '../widgets/enter_your.dart';
 import '../widgets/sign_up_state.dart';
@@ -59,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   verticalSpace(64),
-                  AppText(title:S.of(context).createAccount,description: "Fill your information below or register with your social account"),
+                  AppText(title:S.of(context).createAccount,description:S.of(context).Fillaccount),
                   verticalSpace(16),
                   Form(
                     key: formKey,
@@ -70,12 +70,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         children: [
                           EnterYour(text: S.of(context).Name),
                           verticalSpace(7),
-                          AppTextFormField(hintText: "Your Name",controller: _nameController,),
+                          AppTextFormField(hintText: S.of(context).Name,controller: _nameController,),
                           verticalSpace(12),
 
                           EnterYour(text: S.of(context).Email),
                           verticalSpace(7),
-                          AppTextFormField(hintText: "Your Email",controller: _emailController,),
+                          AppTextFormField(hintText: S.of(context).Email,controller: _emailController,),
                           verticalSpace(12),
                           EnterYour(
                             text: S.of(context).Password,
@@ -107,8 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   });
                                 },
                               ),
-                              Text("Agree with ",
-
+                              Text(S.of(context).Agreewith,
 
                               style: TextStyles.poppinsRegular12LightGray),
                               GestureDetector(
@@ -116,7 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   // Handle Terms & Conditions tap
                                 },
                                 child: Text(
-                                  "Terms & Conditions",
+                                 S.of(context).TermsConditions,
                                   style: TextStyles.poppinsRegular12Blue
                                 ),
                               ),
@@ -141,7 +140,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Expanded(child: Divider(color:ColorsManager.Blackmeduim)),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text("Or sign up with",
+                                child: Text(S.of(context).Orsignup,
                                     style: TextStyles.poppinsMedium16BlackMeduim),
                               ),
                               Expanded(child: Divider(color: ColorsManager.Blackmeduim)),

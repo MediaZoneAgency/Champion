@@ -3,7 +3,8 @@ import 'package:education/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/helpers/cash_helper.dart';
-import '../../../core/utils/routes.dart';
+import '../../../core/routes/routes.dart';
+
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Agreewith": MessageLookupByLibrary.simpleMessage("Agree with "),
         "Alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "ChangePassword":
@@ -45,8 +46,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your password"),
         "EnterPhone":
             MessageLookupByLibrary.simpleMessage("Enter your mobile number"),
+        "Enterthecode": MessageLookupByLibrary.simpleMessage(
+            "Enter the code we just sent to email carinosama24@gmail.com"),
+        "Fillaccount": MessageLookupByLibrary.simpleMessage(
+            "Fill your information below or register with your social account"),
         "ForgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "HelloWelcome": MessageLookupByLibrary.simpleMessage(
+            "Hello, Welcome back You’ve been missed"),
         "Login": MessageLookupByLibrary.simpleMessage("Login"),
         "MobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "Name": MessageLookupByLibrary.simpleMessage("Name"),
@@ -55,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "NoAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "OTP": MessageLookupByLibrary.simpleMessage("OTP"),
+        "Orsigninwith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
+        "Orsignup": MessageLookupByLibrary.simpleMessage("Or sign up with"),
         "Password": MessageLookupByLibrary.simpleMessage("Password"),
         "Phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "RecoverySent": MessageLookupByLibrary.simpleMessage(
@@ -62,8 +71,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "Resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "ResendOTP": MessageLookupByLibrary.simpleMessage("Resend OTP"),
         "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "TermsConditions":
+            MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "UnexpectedErrorOccurred":
             MessageLookupByLibrary.simpleMessage("Unexpected error occurred"),
+        "Verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "VerifyCode": MessageLookupByLibrary.simpleMessage("Verify Code"),
         "connectionTimeoutWithTheServer": MessageLookupByLibrary.simpleMessage(
             "Connection timeout with the server"),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../widget/field_widget.dart';
 
@@ -12,25 +13,34 @@ import '../widget/field_widget.dart';
 class FieldsScreen extends StatelessWidget {
    FieldsScreen({super.key});
 
-
-
-  final formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
    return Scaffold(
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+            padding: EdgeInsets.fromLTRB(24, 24, 24, 0),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  verticalSpace(64),
+                  verticalSpace(45),
                   AppText(title:"What profession are you learning for ?",description: "",),
-                  verticalSpace(16),
+                  //verticalSpace(16),
                CustomSearchBar(),
-
-              FieldWidget(title: 'Design',),
+                  verticalSpace(16),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, ),
+                    child: Text(
+                      "Popular fields",
+                      style: TextStyles.poppinsMedium20Blue,
+                    ),
+                  ),
+                  verticalSpace(20),
+                  FieldWidget(title: 'Design',),
+                  FieldWidget(title: 'Data & Analytics',),
+                  FieldWidget(title: 'Finance & Accounting',),
+                  FieldWidget(title: 'Information Technology',),
+                  FieldWidget(title: 'Software Development',),
+                  FieldWidget(title: 'Marketing',),
 
                         ],
                       ),

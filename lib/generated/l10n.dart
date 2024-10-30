@@ -439,6 +439,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Hello, Welcome back You’ve been missed`
+  String get HelloWelcome {
+    return Intl.message(
+      'Hello, Welcome back You’ve been missed',
+      name: 'HelloWelcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or sign in with`
+  String get Orsigninwith {
+    return Intl.message(
+      'Or sign in with',
+      name: 'Orsigninwith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill your information below or register with your social account`
+  String get Fillaccount {
+    return Intl.message(
+      'Fill your information below or register with your social account',
+      name: 'Fillaccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agree with `
+  String get Agreewith {
+    return Intl.message(
+      'Agree with ',
+      name: 'Agreewith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get TermsConditions {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'TermsConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or sign up with`
+  String get Orsignup {
+    return Intl.message(
+      'Or sign up with',
+      name: 'Orsignup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the code we just sent to email carinosama24@gmail.com`
+  String get Enterthecode {
+    return Intl.message(
+      'Enter the code we just sent to email carinosama24@gmail.com',
+      name: 'Enterthecode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify`
+  String get Verify {
+    return Intl.message(
+      'Verify',
+      name: 'Verify',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

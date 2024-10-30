@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/utils/routes.dart';
 import '../../../../generated/l10n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../sign_up/ui/widgets/enter_your.dart';
@@ -54,7 +54,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   verticalSpace(50),
-                  AppText(title: S.of(context).NewPassword,description: "Enter Your new password",),
+                  AppText(title: S.of(context).NewPassword,description: S.of(context).EnterNewPassword,),
                   verticalSpace(16),
                   Form(
                     key: formKey,
@@ -66,7 +66,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
                           EnterYour(text: S.of(context).NewPassword),
                           verticalSpace(7),
-                          AppTextFormField(hintText: "New Password",controller: _passwordController,
+                          AppTextFormField(hintText: S.of(context).NewPassword,controller: _passwordController,
                             isObscureText:SignInCubit.get(context).isObscureText1,
                             suffixIcon:  GestureDetector(
                               onTap: () {
@@ -85,7 +85,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             ),
                           EnterYour(text: S.of(context).ConfirmPassword),
                           verticalSpace(7),
-                          AppTextFormField(hintText: "Confirm Password",controller: _confirmPasswordController,
+                          AppTextFormField(hintText: S.of(context).ConfirmPassword,controller: _confirmPasswordController,
                             isObscureText:SignInCubit.get(context).isObscureText2,
                             suffixIcon: GestureDetector(
                               onTap: () {

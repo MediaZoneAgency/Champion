@@ -4,8 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sizer/sizer.dart';
 import 'core/di/dependency_inj.dart';
-import 'core/utils/approute.dart';
-import 'core/utils/routes.dart';
+import 'core/routes/approute.dart';
+import 'core/routes/routes.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'generated/l10n.dart';  // Import the AuthRepository

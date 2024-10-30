@@ -14,7 +14,7 @@ final String title ;
     return  GestureDetector(
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 20, right: 20,bottom: 24),
         child: Row(
           children: [
             Text(
