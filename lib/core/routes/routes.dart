@@ -13,4 +13,5 @@ class Routes {
 static const String unitDetailsScreen = '/unitDetailsScreen';
   static const String OTPScreen = '/OTPScreen';
   static const String fieldScreen = '/fieldScreen';
+  static const String typeFieldsScreen = '/typeFieldsScreen';
 }

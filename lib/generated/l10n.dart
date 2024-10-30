@@ -510,11 +510,41 @@ class S {
     );
   }
 
+  /// `Todays special`
+  String get Todaysspecial {
+    return Intl.message(
+      'Todays special',
+      name: 'Todaysspecial',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Verify`
   String get Verify {
     return Intl.message(
       'Verify',
       name: 'Verify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `best features with courses as low as EGP 399.99`
+  String get bestfeatures {
+    return Intl.message(
+      'best features with courses as low as EGP 399.99',
+      name: 'bestfeatures',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ends in`
+  String get Endsin {
+    return Intl.message(
+      'Ends in',
+      name: 'Endsin',
       desc: '',
       args: [],
     );

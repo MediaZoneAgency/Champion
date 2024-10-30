@@ -1,9 +1,12 @@
 
 import 'package:education/core/routes/routes.dart';
+import 'package:education/feature/category/ui/screen/field_type_screen.dart';
 import 'package:education/feature/category/ui/screen/popular_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../feature/home/logic/home_cubit.dart';
+import '../../feature/home/ui/screen/home_screen.dart';
 import '../../feature/sign_in/logic/sign_in_cubit.dart';
 import '../../feature/sign_in/ui/screen/forgot_password_screen.dart';
 import '../../feature/sign_in/ui/screen/reset_password.dart';
@@ -34,14 +37,14 @@ class AppRouter {
              child: SignUpScreen(),
            ),
         );
-      // case Routes.homeScreen:
-      //   return MaterialPageRoute(
-      //     builder: (_) =>
-      //         BlocProvider<HomeCubit>.value(
-      //           value: getIt<HomeCubit>(),
-      //           child: HomeScreen(),
-      //         ),
-      //   );
+      case Routes.homeScreen:
+        return MaterialPageRoute(
+    builder: (_) =>
+              BlocProvider<HomeCubit>.value(
+    value: getIt<HomeCubit>(),
+              child: HomeScreen(),
+           ),
+         );
       // case Routes.navBarScreen:
       //   return MaterialPageRoute(
       //     builder: (_) =>
@@ -87,6 +90,10 @@ class AppRouter {
          return MaterialPageRoute(
          builder: (_) =>  FieldsScreen(),
        );
+      case Routes.typeFieldsScreen:
+        return MaterialPageRoute(
+          builder: (_) => TypeFieldsScreen(type: '',),
+        );
       //
       // case Routes.resetPasswordScreen:
       //   return MaterialPageRoute(

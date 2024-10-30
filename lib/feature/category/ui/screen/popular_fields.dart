@@ -1,3 +1,4 @@
+import 'package:education/core/helpers/extensions.dart';
 import 'package:education/core/sharedWidgets/custom_text.dart';
 import 'package:education/core/sharedWidgets/search_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../widget/field_widget.dart';
@@ -35,12 +37,12 @@ class FieldsScreen extends StatelessWidget {
                     ),
                   ),
                   verticalSpace(20),
-                  FieldWidget(title: 'Design',),
-                  FieldWidget(title: 'Data & Analytics',),
-                  FieldWidget(title: 'Finance & Accounting',),
-                  FieldWidget(title: 'Information Technology',),
-                  FieldWidget(title: 'Software Development',),
-                  FieldWidget(title: 'Marketing',),
+                  FieldWidget(title: 'Design', onPressed: () {  context.pushNamed(Routes.homeScreen);  },),
+                  FieldWidget(title: 'Data & Analytics', onPressed: () {   context.pushNamed(Routes.homeScreen); },),
+                  FieldWidget(title: 'Finance & Accounting', onPressed: () {   context.pushNamed(Routes.homeScreen); },),
+                  FieldWidget(title: 'Information Technology', onPressed: () {    context.pushNamed(Routes.homeScreen);},),
+                  FieldWidget(title: 'Software Development', onPressed: () {   context.pushNamed(Routes.homeScreen); },),
+                  FieldWidget(title: 'Marketing', onPressed: () {   context.pushNamed(Routes.homeScreen); },),
 
                         ],
                       ),

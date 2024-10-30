@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "DontreceiveOTPcode":
             MessageLookupByLibrary.simpleMessage("Don’t receive OTP code?"),
         "Email": MessageLookupByLibrary.simpleMessage("E_mail"),
+        "Endsin": MessageLookupByLibrary.simpleMessage("Ends in"),
         "EnterCurrentPassword":
             MessageLookupByLibrary.simpleMessage("Enter your current password"),
         "EnterEmail": MessageLookupByLibrary.simpleMessage("Enter your Email"),
@@ -73,10 +74,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "TermsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "Todaysspecial": MessageLookupByLibrary.simpleMessage("Todays special"),
         "UnexpectedErrorOccurred":
             MessageLookupByLibrary.simpleMessage("Unexpected error occurred"),
         "Verify": MessageLookupByLibrary.simpleMessage("Verify"),
         "VerifyCode": MessageLookupByLibrary.simpleMessage("Verify Code"),
+        "bestfeatures": MessageLookupByLibrary.simpleMessage(
+            "best features with courses as low as EGP 399.99"),
         "connectionTimeoutWithTheServer": MessageLookupByLibrary.simpleMessage(
             "Connection timeout with the server"),
         "connectionToServerFailed":
