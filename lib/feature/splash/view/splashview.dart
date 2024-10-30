@@ -1,0 +1,75 @@
+import 'package:education/core/helpers/extensions.dart';
+import 'package:education/core/theming/colors.dart';
+import 'package:flutter/material.dart';
+
+import '../../../core/helpers/cash_helper.dart';
+import '../../../core/utils/routes.dart';
+
+class SplashView extends StatefulWidget {
+  const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> slidingAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Initialize the animation controller and the sliding animation
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),  // Adjust the duration as needed
+    );
+
+    slidingAnimation = Tween<Offset>(begin: const Offset(0, 4), end: Offset.zero).animate(animationController);
+
+    // Start the animation
+    animationController.forward();
+
+    // Navigate to home screen after animation
+    _navigateToHome();
+  }
+
+  _navigateToHome() async {
+    await Future.delayed(const Duration(seconds: 3), () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      String token = await CashHelper.getStringSecured(key: Keys.token);
+      token == '' ? context.pushReplacementNamed(Routes.signUpScreen) : context
+          .pushReplacementNamed(Routes.navBarScreen);
+    });
+
+  }
+
+  @override
+  void dispose() {
+    // Dispose the animation controller to free up resources
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: ColorsManager.primaryColorLight,
+      body: Center(
+        // Apply the SlideTransition to the image
+        child: SlideTransition(
+          position: slidingAnimation,
+          child:Center(
+            child: Image.asset(
+              'assets/img/Logo.png', // مسار الصورة الخاصة بك
+              fit: BoxFit.cover,
+            ),
+          ),
+
+
+        ),
+      ),
+    );
+  }
+}
