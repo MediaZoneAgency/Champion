@@ -1,84 +1,38 @@
-class RegisterModel {
-  final String name;
+import 'dart:convert';
+
+class RegisterRequestModel {
+  final String username;
   final String email;
   final String password;
-  final String phone_number;
-  final String passwordConfirmation;
+  final String phoneNumber;
 
-//<editor-fold desc="Data Methods">
-  const RegisterModel({
-    required this.name,
+  RegisterRequestModel({
+    required this.username,
     required this.email,
     required this.password,
-    required this.phone_number,
-    required this.passwordConfirmation,
+    required this.phoneNumber,
   });
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is RegisterModel &&
-          runtimeType == other.runtimeType &&
-          name == other.name &&
-          email == other.email &&
-          password == other.password &&
-          phone_number == other.phone_number &&
-          passwordConfirmation == other.passwordConfirmation);
-
-  @override
-  int get hashCode =>
-      name.hashCode ^
-      email.hashCode ^
-      password.hashCode ^
-      phone_number.hashCode ^
-      passwordConfirmation.hashCode;
-
-  @override
-  String toString() {
-    return 'RegisterModel{' +
-        ' name: $name,' +
-        ' email: $email,' +
-        ' password: $password,' +
-        ' phone_number: $phone_number,' +
-        ' passwordConfirmation: $passwordConfirmation,' +
-        '}';
-  }
-
-  RegisterModel copyWith({
-    String? name,
-    String? email,
-    String? password,
-    String? phone_number,
-    String? passwordConfirmation,
-  }) {
-    return RegisterModel(
-      name: name ?? this.name,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      phone_number: phone_number ?? this.phone_number,
-      passwordConfirmation: passwordConfirmation ?? this.passwordConfirmation,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return {
-      'name': this.name,
-      'email': this.email,
-      'password': this.password,
-      'phone_number': this.phone_number,
-      'password_confirmation': this.passwordConfirmation,
+      'username': username,
+      'email': email,
+      'password': password,
+      'phone_number': phoneNumber,
     };
   }
 
-  factory RegisterModel.fromMap(Map<String, dynamic> map) {
-    return RegisterModel(
-      name: map['name'] as String,
+  factory RegisterRequestModel.fromMap(Map<String, dynamic> map) {
+    return RegisterRequestModel(
+      username: map['username'] as String,
       email: map['email'] as String,
       password: map['password'] as String,
-      phone_number: map['phone_number'] as String,
-      passwordConfirmation: map['password_confirmation'] as String,
+      phoneNumber: map['phone_number'] as String,
     );
   }
 
-//</editor-fold>
+  String toJson() => json.encode(toMap());
+
+  factory RegisterRequestModel.fromJson(String source) =>
+      RegisterRequestModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -1,9 +1,7 @@
 import 'package:education/core/helpers/extensions.dart';
 import 'package:education/core/theming/colors.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:icon_checkbox/icon_checkbox.dart';
 import 'package:education/core/sharedWidgets/custom_text.dart';
-import 'package:education/feature/sign_up/logic/sign_up_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,12 +12,9 @@ import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/styles.dart';
-
 import '../../../../generated/l10n.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../sign_up/ui/widgets/enter_your.dart';
+import '../../data/models/login_model.dart';
 import '../../logic/sign_in_cubit.dart';
 import '../widget/sign_in_state.dart';
 
@@ -115,9 +110,16 @@ class _SignInScreenState extends State<SignInScreen> {
                             buttonWidth: 327.w,
                             buttonText: S.of(context).sign_in,
                             textStyle: TextStyles.poppinsMedium20white,
-                            onPressed: ()  async {
+                            onPressed: () async {
+                              // Check if the form is valid before proceeding
                               if (formKey.currentState!.validate()) {
-                                context.pushNamed(Routes.fieldScreen);
+                                // Perform login
+                                await SignInCubit.get(context).login(
+                                  LoginModel(
+                                    username: _emailController.text,
+                                    password: _passwordController.text,
+                                  ),
+                                );
                               }
                             },
                           ),

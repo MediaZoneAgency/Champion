@@ -1,10 +1,11 @@
+import 'package:education/core/sharedWidgets/network_image.dart';
 import 'package:education/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/styles.dart';
 
 class CategoryItem extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String label;
 
   const CategoryItem({Key? key, required this.icon, required this.label}) : super(key: key);
@@ -20,11 +21,11 @@ class CategoryItem extends StatelessWidget {
             color: ColorsManager.BabyBlue, // لون الخلفية الدائري
             shape: BoxShape.circle,
           ),
-          child: Icon(
-            icon,
-            size: 30,
-            color: Colors.blue,
-          ),
+          child:
+
+      AppCachedNetworkImage(image: icon, width: 24, height: 24, radius: 40,
+            
+          )
         ),
         SizedBox(height: 8),
         Text(

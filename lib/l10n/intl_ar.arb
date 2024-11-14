@@ -32,6 +32,22 @@
   "NewPassword":"كلمة المرور الجديدة",
   "ConfirmPassword":"تأكيد كلمة المرور",
   "sign_up":"سجل الدخول",
-  "Done": "تأكيد"
+  "Done": "تأكيد",
+  "Notifications": "الإشعارات",
+  "Orders": "الطلبات",
+  "WishList": "قائمة الرغبات",
+  "GetHelp": "الحصول على المساعدة",
+  "TermsConditions": "الشروط والأحكام",
+  "AboutApp": "حول التطبيق",
+  "Setting": "الإعدادات",
+  "Accountinfo": "معلومات الحساب",
+  "Editaccount": "تعديل الحساب",
+  "Editaccountinfo": "تعديل معلومات الحساب",
+  "SavedAddresses": "العناوين المحفوظة",
+  "ChangePassword": "تغيير كلمة المرور",
+  "PushNotifications": "الإشعارات الفورية",
+  "Language": "اللغة",
+  "Country": "البلد",
+  "Deleteaccount": "حذف الحساب"
 
 }

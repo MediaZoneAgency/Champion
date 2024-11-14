@@ -1,5 +1,6 @@
 import 'package:education/core/helpers/extensions.dart';
 import 'package:education/core/theming/colors.dart';
+import 'package:education/feature/sign_in/ui/widget/forget_password_stata_ui.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:icon_checkbox/icon_checkbox.dart';
 import 'package:education/core/sharedWidgets/custom_text.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/db/cash_helper.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
@@ -74,9 +76,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             buttonWidth: 327.w,
                             buttonText: S.of(context).Next,
                             textStyle: TextStyles.poppinsMedium20white,
-                            onPressed: ()  async {
+                            onPressed: ()  {
                               if (formKey.currentState!.validate()) {
-                                context.pushNamed(Routes.resetPasswordScreen);
+                                 CashHelper.putString(
+                                  key: Keys.email,
+                                  value: _emailController.text,
+                                );
+                                SignInCubit.get(context).forgetPaswword(_emailController.text);
+
                               }
                             },
                           ),
@@ -89,7 +96,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       ),
                     ),
                   ),
-                  SignInStateUi(),
+                  ForgetPasswordStateUi(),
                 ],
 
               ),

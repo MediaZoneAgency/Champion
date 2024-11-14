@@ -32,7 +32,7 @@ class SignInStateUi extends StatelessWidget {
           );
         } else if (state is SignInSuccess) {
           Navigator.pop(context);
-          context.pushNamedAndRemoveUntil(Routes.navBarScreen, predicate: (Route<dynamic> route) { return false; });
+          context.pushNamed(Routes.fieldScreen);
           
         } else if (state is SignInFailed) {
 

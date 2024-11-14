@@ -9,6 +9,8 @@ class ColorsManager {
   static const Color BlueLIght = Color(0xFF4291E5);
 static const Color unitcolor = Color(0xff141414);
   static const Color BabyBlue = Color(0xffEDF5FF);
+  static const Color NavyBlue = Color(0xff001F3F);
+  static const Color WhiteGray = Color(0xffE3E3E3);
 
 static const Color mainDarkGray = Color(0xFF282828);
   static const Color black = Color(0xFF000000);
@@ -33,6 +35,9 @@ static const Color mediumDarkGray = Color(0xFF262626);
   static const Color green = Color(0xFF1F8A15);
   static const Color mainGray = Color(0xFF1F2429);
   static const primaryColorLight = Color(0xFF0571E5);
+  static const primaryBlueLight = Color(0xFFEDF5FF);
 
+
+  static const primaryDarkGray = Color(0xFF131313);
 
 }

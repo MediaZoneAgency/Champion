@@ -2,7 +2,8 @@ import 'package:education/core/helpers/extensions.dart';
 import 'package:education/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/helpers/cash_helper.dart';
+import '../../../core/db/cash_helper.dart';
+import '../../../core/network/dio_factory.dart';
 import '../../../core/routes/routes.dart';
 
 
@@ -39,9 +40,14 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
   _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 3), () async {
       WidgetsFlutterBinding.ensureInitialized();
+
       String token = await CashHelper.getStringSecured(key: Keys.token);
-      token == '' ? context.pushReplacementNamed(Routes.signUpScreen) : context
-          .pushReplacementNamed(Routes.navBarScreen);
+
+     if( token == ''){context.pushReplacementNamed(Routes.signUpScreen);} else{
+        DioFactory.setTokenIntoHeaderAfterLogin(token);
+       context
+          .pushReplacementNamed(Routes.navBarScreen);}
+
     });
 
   }

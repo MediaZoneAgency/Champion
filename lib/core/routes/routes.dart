@@ -14,4 +14,17 @@ static const String unitDetailsScreen = '/unitDetailsScreen';
   static const String OTPScreen = '/OTPScreen';
   static const String fieldScreen = '/fieldScreen';
   static const String typeFieldsScreen = '/typeFieldsScreen';
+  static const String addFieldScreen = '/addFieldScreen';
+  static const String DetailsScreen = '/unitDetailsScreen';
+static const String cartScreen = '/CartScreen';
+static const String wishListScreen = '/wishListScreen';
+static const String accountInfoScreen = '/accountInfoScreen';
+static const String editAccountInfoScreen = '/editAccountInfoScreen';
+static const String settingsScreen = '/settingsScreen';
+static const String deleteAccountScreen = '/deleteAccountScreen';
+static const String checkoutScreen = '/checkoutScreen';
+static const String searchScreen='/searchScreen';
+static const String resultScreen='/resultScreen';
+
+
 }

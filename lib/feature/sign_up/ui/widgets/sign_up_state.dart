@@ -1,7 +1,9 @@
+import 'package:education/core/helpers/extensions.dart';
 import 'package:education/feature/sign_up/logic/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Utils/color_manager.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/show_dialog_error.dart';
 
 
@@ -25,9 +27,13 @@ class SignUpStateUi extends StatelessWidget {
               ),
             ),
           );
-        } else if (state is SignUpSuccess) {
+        } else if (state is SignUpSuccess &&
+           SignUpCubit.get(context).isChecked == true){
           Navigator.pop(context);
-
+          context.pushNamedAndRemoveUntil(
+            Routes.loginScreen,
+            predicate: (Route<dynamic> route) => false,
+          );
         } else if (state is SignUpFailed) {
           Navigator.pop(context);
           ShowDialogError.showErrorDialog(context, 'Error', state.message);

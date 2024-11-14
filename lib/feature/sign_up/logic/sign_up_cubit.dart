@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import '../../../core/helpers/cash_helper.dart';
+import '../../../core/db/cash_helper.dart';
+import '../../../core/network/dio_factory.dart';
 import '../data/models/register_model.dart';
 import '../data/models/register_response.dart';
 import '../data/repo/sign_up_repo.dart';
@@ -14,17 +15,14 @@ class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit(this.authService) : super(SignUpInitial());
   final SignUpRepo authService;
   static SignUpCubit get(context) => BlocProvider.of(context);
-
-  bool isObscureText1 = true;
-  bool isObscureText2 = true;
   bool? isChecked = false;
   String signUpPhone="" ;
   int index = 0;
 
-  void changeSignUpPhone(String newPhone) {
-    signUpPhone = newPhone;
-    // emit(ChangePhone());
-  }
+  bool isObscureText1 = true;
+  bool isObscureText2 = true;
+
+
   void obscureText1() {
     isObscureText1 = !isObscureText1;
     emit(ObscureText1());
@@ -34,7 +32,10 @@ class SignUpCubit extends Cubit<SignUpState> {
     isObscureText2 = !isObscureText2;
     emit(ObscureText2());
   }
-
+  void changeSignUpPhone(String newPhone) {
+    signUpPhone = newPhone;
+    // emit(ChangePhone());
+  }
   void changeCheckboxValue(bool newIsChecked) {
     isChecked = newIsChecked;
     emit(ChangeCheckboxValue());
@@ -42,14 +43,14 @@ class SignUpCubit extends Cubit<SignUpState> {
 
 
 
-  Future<void> signUp(RegisterModel signUpModel) async {
+  Future<void> signUp(RegisterRequestModel signUpModel) async {
   emit(SignUpLoading());
   final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
   if (!connectivityResult.contains(ConnectivityResult.none)) {
     final response = await authService.register(signUpModel);
     response.fold(
             (l) => emit(SignUpFailed(message: l.errors)),
-            (r)  {
+            (r)  async {
           // Save sign-in response securely
           CashHelper.setStringSecured(
             key: Keys.signUpResponse,
@@ -57,8 +58,9 @@ class SignUpCubit extends Cubit<SignUpState> {
           );
           CashHelper.setStringSecured(
             key: Keys.token,
-            value: r.token,
+            value: r.message,
           );
+
           emit(SignUpSuccess(signUpResponse: r));
           print('saved ${r.toJson()}');
         }

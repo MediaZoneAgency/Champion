@@ -17,7 +17,9 @@ enum Keys {
   lastTimeToLogin,
   counterOfLogin,
   signInResponse,
-  signUpResponse
+  signUpResponse,
+  email,
+  otp,
 }
 
 class CashHelper {

@@ -11,15 +11,15 @@ import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 
 import '../../../../generated/l10n.dart';
-import '../../logic/sign_up_cubit.dart';
+import '../../../sign_up/logic/sign_up_cubit.dart';
 
-class VerifyCode extends StatefulWidget {
-  const VerifyCode({super.key});
+class VerifyCodee extends StatefulWidget {
+  const VerifyCodee({super.key});
   @override
-  State<VerifyCode> createState() => _VerifyCodeState();
+  State<VerifyCodee> createState() => _VerifyCodeState();
 }
 
-class _VerifyCodeState extends State<VerifyCode> {
+class _VerifyCodeState extends State<VerifyCodee> {
   final formKey = GlobalKey<FormState>();
   List<TextEditingController> otpController =
   List.generate(4, (index) => TextEditingController());

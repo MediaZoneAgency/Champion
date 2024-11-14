@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:education/core/network/network_constant.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -16,10 +18,13 @@ class DioFactory {
         BaseOptions(
           baseUrl: NetworkConstant.baseUrl,
         ),
+
       );
       dio!
         ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut..options;
+        ..options.receiveTimeout = timeOut..options
+      ..options.headers['authorization'] =
+      'Basic ${base64Encode(utf8.encode('${NetworkConstant.consumerKey}:${NetworkConstant.secretKey}'))}';
       addDioInterceptor();
       return dio!;
     } else {
@@ -36,4 +41,11 @@ class DioFactory {
       ),
     );
   }
+
+  static void setTokenIntoHeaderAfterLogin(String token) {
+    dio?.options.headers = {
+      'Authorization': 'Bearer $token',
+    };
+  }
+
 }

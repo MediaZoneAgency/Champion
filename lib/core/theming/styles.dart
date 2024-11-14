@@ -231,7 +231,6 @@ static TextStyle font15LightBlackBold = TextStyle(
   static TextStyle latoMedium8lLightGray= GoogleFonts.lato(
     fontSize: 8.sp,
     fontWeight: FontWeightHelper.medium,
-
     color: ColorsManager.lightGray,
   );
   static TextStyle latoRegular10lLightGray= GoogleFonts.lato(
@@ -259,12 +258,22 @@ static TextStyle font15LightBlackBold = TextStyle(
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.contantGray,
   );
+  static TextStyle poppinsRegular16ContantGray= GoogleFonts.poppins(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.contantGray,
+  );
+
   static TextStyle poppinsRegular12babyGray= GoogleFonts.poppins(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.LigGthGray,
   );
-
+  static TextStyle poppinsLight12PrimaryColor= GoogleFonts.poppins(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.light,
+    color: ColorsManager.primaryColorLight,
+  );
 
   static TextStyle poppinsRegular16Gray= GoogleFonts.poppins(
     fontSize: 16.sp,
@@ -277,8 +286,18 @@ static TextStyle font15LightBlackBold = TextStyle(
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.LigGthGray,
   );
+  static TextStyle poppinsRegular20lightGray= GoogleFonts.poppins(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.LigGthGray,
 
+  );
 
+  static TextStyle poppinsRegular14babyblue= GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.primaryColorLight,
+  );
   static TextStyle poppinsRegular16Graymeduim= GoogleFonts.poppins(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
@@ -309,9 +328,25 @@ static TextStyle font15LightBlackBold = TextStyle(
     fontWeight: FontWeightHelper.medium,
     color: Colors.white,
   );
+  static TextStyle poppinsMedium18white= GoogleFonts.poppins(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: Colors.white,
+  );
+  static TextStyle poppinsMedium20NavyBlue= GoogleFonts.poppins(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.NavyBlue,
+  );
+
   static TextStyle poppinsMedium12white= GoogleFonts.poppins(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.medium,
+    color: Colors.white,
+  );
+  static TextStyle poppinsRegular12white= GoogleFonts.poppins(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
     color: Colors.white,
   );
   static TextStyle poppinsRegular14white= GoogleFonts.poppins(
@@ -324,15 +359,78 @@ static TextStyle font15LightBlackBold = TextStyle(
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Blackmeduim,
   );
-  static TextStyle poppinsMedium16contantGray= GoogleFonts.poppins(
+  static TextStyle poppinsMedium20BlackMeduim= GoogleFonts.poppins(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.Blackmeduim,
+  );
+
+  static TextStyle poppinsMedium16BlackDark= GoogleFonts.poppins(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.contantGray,
   );
+  static TextStyle poppinsRegular16contantGray= GoogleFonts.poppins(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.contantGray,
+  );
+  static TextStyle poppinsMedium16DarkGray= GoogleFonts.poppins(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.primaryDarkGray,
+  );
+
+  static TextStyle poppinsMedium24contantGray= GoogleFonts.poppins(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.contantGray,
+  );
+  static TextStyle poppinsMedium18contantGray= GoogleFonts.poppins(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.contantGray,
+  );
+  static TextStyle poppinsMedium18Blue= GoogleFonts.poppins(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.primaryColorLight,
+  );
+  static TextStyle poppinsMedium18LightGray= GoogleFonts.poppins(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.LigGthGray,
+  );
+  static TextStyle poppinsRegular14LightGray= GoogleFonts.poppins(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.LigGthGray,
+  );
+   static TextStyle poppinsRegular16LightGray= GoogleFonts.poppins(
+     fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.LigGthGray,
+   );
 
   static TextStyle poppinsMedium12contantGray= GoogleFonts.poppins(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.contantGray,
   );
+
+  static TextStyle poppinsRegular16blue= GoogleFonts.poppins(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.primaryColorLight,
+  );
+
+  static TextStyle poppinsRegular28blue= GoogleFonts.poppins(
+    fontSize: 28.sp,
+    fontWeight: FontWeightHelper.medium,
+    color: ColorsManager.primaryColorLight,
+  );
+
+
+
+
 }

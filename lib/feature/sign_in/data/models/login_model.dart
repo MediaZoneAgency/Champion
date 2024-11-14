@@ -1,75 +1,51 @@
-
-class LogInModel {
-
-  String? email;
+class LoginModel {
+  String? username;
   String? password;
-  String? phoneNumber;
+
   //<editor-fold desc="Data Methods">
-
-  LogInModel({
-    this.email,
+  LoginModel({
+    this.username,
     this.password,
-    this.phoneNumber,
   });
-
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          (other is LogInModel &&
+          (other is LoginModel &&
               runtimeType == other.runtimeType &&
-              email == other.email &&
-              password == other.password &&
-              phoneNumber == other.phoneNumber
-          );
-
+              username == other.username &&
+              password == other.password);
 
   @override
-  int get hashCode =>
-      email.hashCode ^
-      password.hashCode ^
-      phoneNumber.hashCode;
-
+  int get hashCode => username.hashCode ^ password.hashCode;
 
   @override
   String toString() {
-    return 'LogInModel{' +
-        ' email: $email,' +
-        ' password: $password,' +
-        ' phoneNumber: $phoneNumber,' +
-        '}';
+    return 'LoginModel{ username: $username, password: $password }';
   }
 
-
-  LogInModel copyWith({
-    String? email,
+  LoginModel copyWith({
+    String? username,
     String? password,
-    String? phoneNumber,
   }) {
-    return LogInModel(
-      email: email ?? this.email,
+    return LoginModel(
+      username: username ?? this.username,
       password: password ?? this.password,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
-
 
   Map<String, dynamic> toMap() {
     return {
-   //   'email': this.email,
-      'password': this.password,
-      'phone_number': this.phoneNumber,
+      'username': username,
+      'password': password,
     };
   }
 
-  factory LogInModel.fromMap(Map<String, dynamic> map) {
-    return LogInModel(
-      email: map['email'] as String,
-      password: map['password'] as String,
-      phoneNumber: map['phone_number'] as String,
+  factory LoginModel.fromMap(Map<String, dynamic> map) {
+    return LoginModel(
+      username: map['username'] as String?,
+      password: map['password'] as String?,
     );
   }
-
-
-  //</editor-fold>
-  }
+//</editor-fold>
+}

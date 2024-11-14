@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AboutApp": MessageLookupByLibrary.simpleMessage("حول التطبيق"),
+        "Accountinfo": MessageLookupByLibrary.simpleMessage("معلومات الحساب"),
         "Alreadyhaveanaccount":
             MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل؟"),
         "ChangePassword":
@@ -30,9 +32,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "اختر أين تريد أن نرسل لك رابط الاسترداد"),
         "ConfirmPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "Country": MessageLookupByLibrary.simpleMessage("البلد"),
+        "Deleteaccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
         "Done": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "DontreceiveOTPcode":
             MessageLookupByLibrary.simpleMessage("لم تستقبل الرمز؟"),
+        "Editaccount": MessageLookupByLibrary.simpleMessage("تعديل الحساب"),
+        "Editaccountinfo":
+            MessageLookupByLibrary.simpleMessage("تعديل معلومات الحساب"),
         "Email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "EnterCurrentPassword":
             MessageLookupByLibrary.simpleMessage("ادخل كلمة المرور الحالية"),
@@ -48,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك المحمول"),
         "ForgotPassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),
+        "GetHelp": MessageLookupByLibrary.simpleMessage("الحصول على المساعدة"),
+        "Language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "Login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "MobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
@@ -57,15 +66,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
         "NoAccount": MessageLookupByLibrary.simpleMessage("لا تملك حساباً؟"),
         "OTP": MessageLookupByLibrary.simpleMessage("رمز التحقق"),
+        "Orders": MessageLookupByLibrary.simpleMessage("الطلبات"),
         "Password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "Phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
+        "PushNotifications":
+            MessageLookupByLibrary.simpleMessage("الإشعارات الفورية"),
         "RecoverySent": MessageLookupByLibrary.simpleMessage(
             "لقد أرسلنا لك رابط استرداد\nلتغيير كلمة المرور الخاصة بك"),
         "Resend": MessageLookupByLibrary.simpleMessage("إعادة الإرسال"),
         "ResendOTP": MessageLookupByLibrary.simpleMessage("اعادة الارسال"),
+        "SavedAddresses":
+            MessageLookupByLibrary.simpleMessage("العناوين المحفوظة"),
+        "Setting": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "SignUp": MessageLookupByLibrary.simpleMessage("سجل الآن"),
+        "TermsConditions":
+            MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "VerifyCode":
             MessageLookupByLibrary.simpleMessage("تأكيد البريد الالكتروني"),
+        "WishList": MessageLookupByLibrary.simpleMessage("قائمة الرغبات"),
         "createAccount": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل الدخول")
       };

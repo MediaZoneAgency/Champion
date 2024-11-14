@@ -53,7 +53,7 @@ class _ChoiseItemState extends State<ChoiseItem> {
                 children: [
                   Text(
                     widget.text,
-                    style: TextStyles.poppinsMedium16contantGray,
+                    style: TextStyles.poppinsRegular16contantGray,
                   ),
                   Icon(
                     Icons.circle,

@@ -20,7 +20,7 @@ final String title ;
           children: [
             Text(
               title,
-              style: TextStyles.poppinsMedium16contantGray,
+              style: TextStyles.poppinsRegular16contantGray,
             ),
             const Spacer(),
             SvgPicture.asset(
