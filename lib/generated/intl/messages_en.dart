@@ -137,11 +137,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "Lastestsearch": MessageLookupByLibrary.simpleMessage("Lastest search"),
         "Login": MessageLookupByLibrary.simpleMessage("Login"),
+        "LoginSignup": MessageLookupByLibrary.simpleMessage("Login/Signup"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "MobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "Name": MessageLookupByLibrary.simpleMessage("Name"),
         "NewPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
+        "Nicetomeetyou":
+            MessageLookupByLibrary.simpleMessage("Nice to meet you"),
         "No": MessageLookupByLibrary.simpleMessage("No"),
         "NoAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
@@ -217,6 +220,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "connectionToTheServerFailedDueToInternetConnection":
             MessageLookupByLibrary.simpleMessage(
                 "Connection to the server failed due to internet connection"),
+        "continueasguest":
+            MessageLookupByLibrary.simpleMessage("Continue as guest"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Create Account"),
         "editaccount": MessageLookupByLibrary.simpleMessage("Edit Account"),
         "namecannotbeempty":

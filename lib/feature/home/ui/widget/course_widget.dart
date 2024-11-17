@@ -1,4 +1,5 @@
 import 'package:education/core/helpers/extensions.dart';
+import 'package:education/core/sharedWidgets/network_image.dart';
 import 'package:education/feature/coursedetails/data/models/product_model.dart';
 import 'package:education/feature/coursedetails/ui/screen/details_screen.dart';
 import 'package:education/feature/wishlist/logic/wish_list_cubit.dart';
@@ -39,46 +40,34 @@ class CourseWidget extends StatelessWidget {
           children: [
             // Add your content here
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                width: 155.w,
-                height: 111.h,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                      product.images![0].src!,
-                    ),
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(9),
-                    topRight: Radius.circular(9),
-                    bottomLeft: Radius.circular(9),
-                    bottomRight: Radius.circular(9),
-                  ),
+              Stack(children: [
+
+                AppCachedNetworkImage(
+                  width: 155.w,
+                  height: 111.h,
+                  image:  product.images![0].src!,
+                  radius: 9,
                 ),
-                child: Stack(children: [
+                     Positioned(
+                        top: 8,
+                        right: 8,
+                        child: GestureDetector(
+                            onTap: () {
+                              WishListCubit.get(context).addToWishList(productId: product.id!);
+                              WishListCubit.get(context).toggleFavoriteStatus();
+                            },
+                            child: SizedBox(
+                              width: 44,
+                              height: 44,
+                              child: isFavorite
+                                  ? SvgPicture.asset(
+                                      "assets/img/heart-circle (2).svg")
+                                  : SvgPicture.asset(
+                                      "assets/img/heart-circle (1).svg",
+                                    ),
+                            )))
 
-                       Positioned(
-                          top: 8,
-                          right: 8,
-                          child: GestureDetector(
-                              onTap: () {
-                                WishListCubit.get(context).addToWishList(productId: product.id!);
-
-                              },
-                              child: SizedBox(
-                                width: 44,
-                                height: 44,
-                                child: isFavorite
-                                    ? SvgPicture.asset(
-                                        "assets/img/heart-circle (2).svg")
-                                    : SvgPicture.asset(
-                                        "assets/img/heart-circle (1).svg",
-                                      ),
-                              )))
-
-                ]),
-              ),
+              ]),
             ]),
             GestureDetector(
               onTap: () {

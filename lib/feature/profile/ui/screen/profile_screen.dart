@@ -12,6 +12,7 @@ import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../logic/profile_cubit.dart';
+import '../widget/guest_profile.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -78,10 +79,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 );
               }
-              return Container();
+              return GuestProfile();
             },
           ),
-          verticalSpace(51.h),
+          verticalSpace(30.h),
           Expanded(
             child: ListView(
               children: [

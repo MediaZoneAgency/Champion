@@ -1,3 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'cash_helper.dart';
+
 enum CachedDataType { categories, profile ,productHome}
 
 class CachedKeys {
@@ -14,7 +19,7 @@ class CachedApp {
     cachedData[key] = CachedItem(data);
   }
 
-  void clearCache() {
+   static void clearCache() {
     cachedData.clear();
   }
 
@@ -36,6 +41,11 @@ class CachedApp {
       throw "Data not found in cache";
     }
   }
+
+
+
+
+
 }
 
 class CachedItem {

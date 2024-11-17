@@ -25,7 +25,7 @@ final String title;
             'assets/img/Vector 8.svg',
           ),
         ),
-        horizontalSpace(100.w),
+        horizontalSpace(120.w),
         Text(
           title,
           style: TextStyles.poppinsMedium18contantGray

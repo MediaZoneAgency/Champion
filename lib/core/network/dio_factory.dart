@@ -47,5 +47,10 @@ class DioFactory {
       'Authorization': 'Bearer $token',
     };
   }
+  static void removeTokenIntoHeaderAfterLogout() {
+    dio?.options.headers = {
+      'Authorization': '',
+    };
+  }
 
 }

@@ -21,6 +21,7 @@ final class GetWishListFailure extends WishListState {
   final ApiErrorModel error;
   GetWishListFailure( this.error);
 }
+final class WishListUpdated extends WishListState {}
 
 final class RemoveFromWishListLoading extends WishListState {}
 

@@ -21,7 +21,7 @@ class CartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return
         Padding(
-          padding: const EdgeInsets.only(left: 47,top:30),
+          padding: const EdgeInsets.only(left: 47,),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

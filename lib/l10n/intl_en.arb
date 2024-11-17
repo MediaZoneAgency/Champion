@@ -154,7 +154,10 @@
   "Enteravalidemailaddress":  "Enter a valid email address",
   "passwordcannotbeempty": "Password cannot be empty",
   "passwordmustbeatleast7characters"  :"Password must be at least 7 characters",
-  "Enteravalidpassword": "Enter a valid password"
+  "Enteravalidpassword": "Enter a valid password",
+  "continueasguest": "Continue as guest",
+  "Nicetomeetyou": "Nice to meet you",
+  "LoginSignup": "Login/Signup"
 
 
 }

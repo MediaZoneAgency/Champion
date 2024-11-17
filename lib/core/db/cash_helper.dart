@@ -91,4 +91,7 @@ class CashHelper {
     await sharedPreferences.setBool(Keys.darkMode.name, dark);
     await sharedPreferences.setString(Keys.language.name, language ?? "ar");
   }
+
+
+
 }

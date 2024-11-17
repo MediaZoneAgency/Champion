@@ -1509,6 +1509,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Continue as guest`
+  String get continueasguest {
+    return Intl.message(
+      'Continue as guest',
+      name: 'continueasguest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nice to meet you`
+  String get Nicetomeetyou {
+    return Intl.message(
+      'Nice to meet you',
+      name: 'Nicetomeetyou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login/Signup`
+  String get LoginSignup {
+    return Intl.message(
+      'Login/Signup',
+      name: 'LoginSignup',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

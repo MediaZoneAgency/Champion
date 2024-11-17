@@ -13,6 +13,7 @@ class WishListCubit extends Cubit<WishListState> {
   WishListCubit(this.wishListRepo) : super(WishListInitial());
   static WishListCubit get(context) => BlocProvider.of(context);
   List<int> favorite=[];
+  bool isFavorite= false;
   List<WishListModel> wishList = [];
   Future<void> addToWishList({required int productId}) async {
     emit(AddToWishListLoading());
@@ -28,6 +29,10 @@ class WishListCubit extends Cubit<WishListState> {
     } else {
       emit(AddToWishListFailure(ApiErrorModel(message: 'No internet connection')));
     }
+  }
+  void toggleFavoriteStatus() {
+    isFavorite = !isFavorite;
+    emit(WishListUpdated()); // Emit a state to update the UI
   }
   Future<void> getWishList() async {
     emit(GetWishListLoading());
@@ -67,5 +72,6 @@ class WishListCubit extends Cubit<WishListState> {
       emit(RemoveFromWishListFailure(ApiErrorModel(message: 'No internet connection')));
     }
   }
+
 
 }

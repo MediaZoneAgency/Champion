@@ -8,7 +8,6 @@ import '../../../core/network/dio_factory.dart';
 import '../data/models/register_model.dart';
 import '../data/models/register_response.dart';
 import '../data/repo/sign_up_repo.dart';
-
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -51,14 +50,15 @@ class SignUpCubit extends Cubit<SignUpState> {
     response.fold(
             (l) => emit(SignUpFailed(message: l.errors)),
             (r)  async {
-          // Save sign-in response securely
+
+              DioFactory.setTokenIntoHeaderAfterLogin(r.token!);
           CashHelper.setStringSecured(
             key: Keys.signUpResponse,
             value: r.toJson(),
           );
           CashHelper.setStringSecured(
             key: Keys.token,
-            value: r.message,
+            value: r.message!,
           );
 
           emit(SignUpSuccess(signUpResponse: r));

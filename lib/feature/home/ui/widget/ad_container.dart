@@ -82,7 +82,7 @@ class AdContainer extends StatelessWidget {
     return Container(
       width: 370.w,
       height: 135.h,
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
+      margin: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
         color: ColorsManager.BlueLIght,
         borderRadius: BorderRadius.circular(20),
@@ -91,7 +91,7 @@ class AdContainer extends StatelessWidget {
         children: [
           Expanded( // Use Expanded to ensure the Row can layout properly
             child: Padding(
-              padding: EdgeInsets.only(left: 17.w, right: 17.w, top: 20.h, bottom: 4.h),
+              padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 20.h, bottom: 4.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

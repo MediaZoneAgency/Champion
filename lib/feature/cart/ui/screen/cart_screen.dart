@@ -26,94 +26,96 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [SingleChildScrollView(
-          child: Column(
-            children: [
-              CartBar(username: 'Cart'),
-              BlocBuilder<CartCubit, CartState>(
-                builder: (context, state) {
-                  return Padding(
-                    padding: EdgeInsets.only(left: 10,right: 10),
-                    child: ListView.separated(
-                      // Remove the fixed height
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(), // Let SingleChildScrollView handle scrolling
-                      itemCount: CartCubit.get(context).cartList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CartWidget(
-                          CartCubit.get(context).cartList[index],
-                          onremove: () {
-                            CartCubit.get(context).removeFromCart(
-                                CartCubit.get(context).cartList[index]);
-                          },
-                        );
-                      }, separatorBuilder: (BuildContext context, int index)
-                    {  return Column(children: [
-                    SizedBox(height: 10.h,),
-                      Divider(
-                        color: ColorsManager.LigGthGray,
-                        indent: 10,
-                        endIndent: 10,
-                        thickness: 0.5,
-                      ),
+      body: SafeArea(
+        child: Stack(
+          children: [SingleChildScrollView(
+            child: Column(
+              children: [
+                CartBar(username: 'Cart'),
+                BlocBuilder<CartCubit, CartState>(
+                  builder: (context, state) {
+                    return Padding(
+                      padding: EdgeInsets.only(left: 5,right: 10),
+                      child: ListView.separated(
+                        // Remove the fixed height
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(), // Let SingleChildScrollView handle scrolling
+                        itemCount: CartCubit.get(context).cartList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return CartWidget(
+                            CartCubit.get(context).cartList[index],
+                            onremove: () {
+                              CartCubit.get(context).removeFromCart(
+                                  CartCubit.get(context).cartList[index]);
+                            },
+                          );
+                        }, separatorBuilder: (BuildContext context, int index)
+                      {  return Column(children: [
                       SizedBox(height: 10.h,),
-
-
-                    ]);},
-                    ),
-                  );
+                        Divider(
+                          color: ColorsManager.LigGthGray,
+                          indent: 10,
+                          endIndent: 10,
+                          thickness: 0.5,
+                        ),
+                        SizedBox(height: 10.h,),
+        
+        
+                      ]);},
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: 28.h),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Row(
+                    children: [
+                      Text(
+                        'More Like This',
+                        style: TextStyles.poppinsMedium18contantGray,
+                      ),
+          
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: CartListView(),
+                ),
+        
+                verticalSpace(90.h)
+          
+              ],
+            ),
+          ),
+          Column(
+            children: [
+              Spacer(),
+              Positioned(
+              bottom: 10,
+              left: 0,
+              right: 0,
+        
+              child: Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 40.0.h),
+              child: CustomTextButton(
+        
+                borderRadius: 10,
+                buttonHeight: 50.h,
+                buttonWidth: 260.w,
+                buttonText: S.of(context).ProceedTocheckout,
+                textStyle: TextStyles.poppinsMedium20white.copyWith(fontSize: 18.sp),
+                onPressed: () {
+                  context.pushNamed(Routes.checkoutScreen);
                 },
               ),
-              SizedBox(height: 28.h),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Row(
-                  children: [
-                    Text(
-                      'More Like This',
-                      style: TextStyles.poppinsMedium18contantGray,
-                    ),
-        
-                  ],
-                ),
-              ),
-              SizedBox(height: 20.h),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: CartListView(),
-              ),
-
-              verticalSpace(90.h)
-        
+                  ),),
             ],
-          ),
-        ),
-        Column(
-          children: [
-            Spacer(),
-            Positioned(
-            bottom: 10,
-            left: 0,
-            right: 0,
-
-            child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 40.0.h),
-            child: CustomTextButton(
-
-              borderRadius: 10,
-              buttonHeight: 50.h,
-              buttonWidth: 260.w,
-              buttonText: S.of(context).ProceedTocheckout,
-              textStyle: TextStyles.poppinsMedium20white.copyWith(fontSize: 18.sp),
-              onPressed: () {
-                context.pushNamed(Routes.checkoutScreen);
-              },
-            ),
-                ),),
-          ],
-        )
-     ] ),
+          )
+             ] ),
+      ),
 
     );
   }

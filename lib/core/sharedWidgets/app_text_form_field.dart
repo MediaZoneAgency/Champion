@@ -162,7 +162,7 @@ class AppTextFormField extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(borderRadius?? 10.0),
         ),
-        hintStyle: hintStyle ?? TextStyles.poppinsMedium12contantGray.copyWith(fontSize: 16),
+        hintStyle: hintStyle ?? TextStyles.poppinsRegular16LightGray,
         hintText: hintText,
         suffixIcon: suffixIcon,
         prefixIcon: prefexIcon,

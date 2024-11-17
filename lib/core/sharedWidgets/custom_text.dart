@@ -22,15 +22,12 @@ class AppText extends StatelessWidget {
             style: TextStyles.poppinsMedium24ContantGray,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0,left: 60,right: 60),
-          child: Center(
-            child: Text(
-              description,
-              style: TextStyles.poppinsRegular12ContantGray,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-            ),
+        Center(
+          child: Text(
+            description,
+            style: TextStyles.poppinsRegular12ContantGray,
+            textAlign: TextAlign.center,
+            maxLines: 1,
           ),
         ),
       ],

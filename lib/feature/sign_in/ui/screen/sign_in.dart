@@ -49,138 +49,140 @@ class _SignInScreenState extends State<SignInScreen> {
       builder: (BuildContext context,SignInState state) {
         return Scaffold(
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 15.h),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   verticalSpace(64),
-                  AppText(title: S.of(context).sign_in,description: S.of(context).HelloWelcome,),
-                  verticalSpace(16),
+                  Center(child: AppText(title: S.of(context).sign_in,description: S.of(context).HelloWelcome,)),
+                  verticalSpace(34),
                   Form(
                     key: formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 24, right: 24),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 
-                          EnterYour(text: S.of(context).Email),
-                          verticalSpace(7),
-                          AppTextFormField(hintText: S.of(context).Email,controller: _emailController,),
-                          verticalSpace(12),
-                          EnterYour(
-                            text: S.of(context).Password,
-                          ),
-                          verticalSpace(7),
-                          AppTextFormField(
-                            controller: _passwordController,
-                            hintText: S.of(context).Password,
-                            isObscureText:SignInCubit.get(context).isObscureText2,
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                SignInCubit.get(context).obscureText2();
-                              },
-                              child: Icon(
-                                SignInCubit.get(context).isObscureText2
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                              ),
+                        EnterYour(text: S.of(context).Email),
+                        verticalSpace(7),
+                        AppTextFormField(
+                          contentPadding: EdgeInsets.all(12.h),
+                          hintText: S.of(context).Email,
+                          controller: _emailController,),
+                        verticalSpace(12),
+                        EnterYour(
+                          text: S.of(context).Password,
+                        ),
+                        verticalSpace(7),
+                        AppTextFormField(
+                          contentPadding: EdgeInsets.all(12.h),
+                          controller: _passwordController,
+                          hintText: S.of(context).Password,
+                          isObscureText:SignInCubit.get(context).isObscureText2,
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              SignInCubit.get(context).obscureText2();
+                            },
+                            child: Icon(
+                              SignInCubit.get(context).isObscureText2
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                             ),
                           ),
-                          verticalSpace(12),
+                        ),
+                        verticalSpace(12),
 
 
-                          Align(
-                            alignment: AlignmentDirectional.centerEnd,
-                            child: GestureDetector(
+                        Align(
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: GestureDetector(
+                            onTap: () {
+                              context.pushNamed(Routes.forgetPasswordScreen);
+                            },
+                            child: Text(
+                              S.of(context).ForgotPassword,
+                              style: TextStyles.poppinsRegular12Blue,
+                            ),
+                          ),
+                        ),
+                        verticalSpace(20),
+                        AppTextButton(
+                          borderRadius: 10,
+                          buttonHeight: 58.h,
+                          buttonWidth: 327.w,
+                          buttonText: S.of(context).sign_in,
+                          textStyle: TextStyles.poppinsMedium20white,
+                          onPressed: () async {
+                            // Check if the form is valid before proceeding
+                            if (formKey.currentState!.validate()) {
+                              // Perform login
+                              await SignInCubit.get(context).login(
+                                LoginModel(
+                                  username: _emailController.text,
+                                  password: _passwordController.text,
+                                ),
+                              );
+                            }
+                          },
+                        ),
+
+                        verticalSpace(24),
+                        Row(
+                          children: [
+                            Expanded(child: Divider(color:ColorsManager.Blackmeduim)),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(S.of(context).Orsigninwith,
+                                  style: TextStyles.poppinsMedium16BlackMeduim),
+                            ),
+                            Expanded(child: Divider(color: ColorsManager.Blackmeduim)),
+                          ],
+                        ),
+                        verticalSpace(20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              icon: SvgPicture.asset(
+                                'assets/img/apple.svg',
+                              ), onPressed: () {  },
+                            ),
+                            SizedBox(width: 40),
+                            IconButton(
+                              icon: SvgPicture.asset(
+                                'assets/img/google.svg',
+                              ), onPressed: () {  },
+                            ),
+                            SizedBox(width: 40),
+                            IconButton(
+                              icon:SvgPicture.asset(
+                                'assets/img/facebook.svg',
+                              ), onPressed: () {  },
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(S.of(context).NoAccount,style: TextStyles.poppinsMedium16BlackMeduim),
+                            GestureDetector(
                               onTap: () {
-                                context.pushNamed(Routes.forgetPasswordScreen);
+                                Navigator.pushNamed(
+                                    context, Routes.signUpScreen);
                               },
                               child: Text(
-                                S.of(context).ForgotPassword,
-                                style: TextStyles.latoRegular15DarkGray,
+                                  S.of(context).SignUp,
+                                  style: TextStyles.poppinsRegular16Blue.copyWith(
+                                    decoration: TextDecoration.underline,
+                                  )
                               ),
                             ),
-                          ),
-                          verticalSpace(20),
-                          AppTextButton(
-                            borderRadius: 10,
-                            buttonHeight: 58.h,
-                            buttonWidth: 327.w,
-                            buttonText: S.of(context).sign_in,
-                            textStyle: TextStyles.poppinsMedium20white,
-                            onPressed: () async {
-                              // Check if the form is valid before proceeding
-                              if (formKey.currentState!.validate()) {
-                                // Perform login
-                                await SignInCubit.get(context).login(
-                                  LoginModel(
-                                    username: _emailController.text,
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-
-                          verticalSpace(24),
-                          Row(
-                            children: [
-                              Expanded(child: Divider(color:ColorsManager.Blackmeduim)),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(S.of(context).Orsigninwith,
-                                    style: TextStyles.poppinsMedium16BlackMeduim),
-                              ),
-                              Expanded(child: Divider(color: ColorsManager.Blackmeduim)),
-                            ],
-                          ),
-                          verticalSpace(20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: SvgPicture.asset(
-                                  'assets/img/apple.svg',
-                                ), onPressed: () {  },
-                              ),
-                              SizedBox(width: 40),
-                              IconButton(
-                                icon: SvgPicture.asset(
-                                  'assets/img/google.svg',
-                                ), onPressed: () {  },
-                              ),
-                              SizedBox(width: 40),
-                              IconButton(
-                                icon:SvgPicture.asset(
-                                  'assets/img/facebook.svg',
-                                ), onPressed: () {  },
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(S.of(context).NoAccount,style: TextStyles.poppinsMedium16BlackMeduim),
-                              GestureDetector(
-                                onTap: () {
-                                  // Handle Log in tap
-                                },
-                                child: Text(
-                                    S.of(context).SignUp,
-                                    style: TextStyles.poppinsRegular16Blue.copyWith(
-                                      decoration: TextDecoration.underline,
-                                    )
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
+                      ],
 
 
-                      ),
                     ),
                   ),
                   SignInStateUi(),

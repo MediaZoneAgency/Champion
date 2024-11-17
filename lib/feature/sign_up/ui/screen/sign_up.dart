@@ -18,7 +18,6 @@ import '../../../../generated/l10n.dart';
 import '../widgets/enter_your.dart';
 import '../widgets/sign_up_state.dart';
 
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -31,7 +30,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _PasswordConfirmController =TextEditingController();
+  final TextEditingController _PasswordConfirmController =
+      TextEditingController();
 
   bool _isChecked = false;
   @override
@@ -72,6 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           EnterYour(text: S.of(context).Name),
                           verticalSpace(7),
                           AppTextFormField(
+                            contentPadding: EdgeInsets.all(12.h),
                             hintText: S.of(context).Name,
                             controller: _nameController,
                             validator: (value) {
@@ -85,6 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           EnterYour(text: S.of(context).Email),
                           verticalSpace(7),
                           AppTextFormField(
+                            contentPadding: EdgeInsets.all(12.h),
                             hintText: S.of(context).Email,
                             controller: _emailController,
                             validator: (value) {
@@ -108,6 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           BlocBuilder<SignUpCubit, SignUpState>(
                             builder: (context, state) {
                               return AppTextFormField(
+                                contentPadding: EdgeInsets.all(12.h),
                                 controller: _passwordController,
                                 hintText: S.of(context).Password,
                                 isObscureText:
@@ -150,48 +153,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   return null;
                                 },
                               );
-
                             },
                           ),
-        verticalSpace(10),
-        EnterYour(
-        text: S.of(context).ConfirmPassword,
-        ),
-        verticalSpace(5),
-        AppTextFormField(
-        controller: _PasswordConfirmController,
-        hintText: S.of(context).ConfirmPassword,
-
-        borderRadius: 10.r,
-        backgroundColor: Colors.transparent,
-        contentPadding: EdgeInsets.all(12.h),
-        isObscureText:
-       SignUpCubit.get(context).isObscureText2,
-        suffixIcon: GestureDetector(
-        onTap: () {
-        SignUpCubit.get(context).obscureText2();
-        },
-        child: Icon(
-       SignUpCubit.get(context).isObscureText2
-        ? Icons.visibility_off
-            : Icons.visibility)),
-        validator: (value) {
-        if (value == null || value.isEmpty) {
-        return S.of(context).passwordcannotbeempty;
-        }else if (_passwordController.text != _PasswordConfirmController.text) {
-        return S.of(context).passwordcannotbeempty;
-        }
-        return null;
-        },
-        ),
-
-
+                          verticalSpace(10),
+                          EnterYour(
+                            text: S.of(context).ConfirmPassword,
+                          ),
+                          verticalSpace(5),
+                          AppTextFormField(
+                            controller: _PasswordConfirmController,
+                            hintText: S.of(context).ConfirmPassword,
+                            borderRadius: 10.r,
+                            backgroundColor: Colors.transparent,
+                            contentPadding: EdgeInsets.all(12.h),
+                            isObscureText:
+                                SignUpCubit.get(context).isObscureText2,
+                            suffixIcon: GestureDetector(
+                                onTap: () {
+                                  SignUpCubit.get(context).obscureText2();
+                                },
+                                child: Icon(
+                                    SignUpCubit.get(context).isObscureText2
+                                        ? Icons.visibility_off
+                                        : Icons.visibility)),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return S.of(context).passwordcannotbeempty;
+                              } else if (_passwordController.text !=
+                                  _PasswordConfirmController.text) {
+                                return S.of(context).passwordcannotbeempty;
+                              }
+                              return null;
+                            },
+                          ),
                           verticalSpace(12),
                           Row(
                             children: [
                               BlocBuilder<SignUpCubit, SignUpState>(
                                 builder: (context, state) {
                                   return Checkbox(
+                                    activeColor: ColorsManager.primaryColorLight,
+                                 //   checkColor: ColorsManager.primaryColorLight,
                                     value: SignUpCubit.get(context).isChecked,
                                     onChanged: (newValue) {
                                       SignUpCubit.get(context)
@@ -213,6 +215,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           verticalSpace(20),
                           AppTextButton(
+                            horizontalPadding: 10,
+                            verticalPadding: 10,
                             borderRadius: 10,
                             buttonHeight: 58.h,
                             buttonWidth: 327.w,
@@ -293,6 +297,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ],
                           ),
+                          verticalSpace(23),
+                          Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, Routes.navBarScreen);
+                              },
+                              child: Text(S.of(context).continueasguest,
+                                  style:
+                                      TextStyles.poppinsMedium20Blue.copyWith(
+                                    fontSize: 16.sp,
+                                    decoration: TextDecoration.underline,
+
+                                  )),
+                            ),
+                          ),
+                          verticalSpace(20),
                         ],
                       ),
                     ),

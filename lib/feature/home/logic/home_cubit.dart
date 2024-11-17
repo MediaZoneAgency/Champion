@@ -17,30 +17,28 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._homeRepo) : super(HomeInitial());
   final HomeRepo _homeRepo;
 
-
   List<CategoryModel> categoryModel = [];
   static HomeCubit get(context) => BlocProvider.of(context);
   Future<void> getCategory() async {
-    try{
-      categoryModel  = CachedApp.getCachedData(CachedDataType.categories.name);
+    try {
+      categoryModel = CachedApp.getCachedData(CachedDataType.categories.name);
       emit(FetchCategorySuccess(categoryModel));
-    }catch(e){
+    } catch (e) {
       emit(FetchCategoryLoading());
       final result = await _homeRepo.getCategories();
 
       result.fold(
-            (failure) {log("eeeeeeeeeeeeeeeeeeeeeee");
-        emit(FetchCategoryFailure(failure.message));
+        (failure) {
+          log("eeeeeeeeeeeeeeeeeeeeeee");
+          emit(FetchCategoryFailure(failure.message));
         },
-            (units) {
-          log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+        (units) {
+          categoryModel = units;
           CachedApp.saveData(categoryModel, CachedDataType.categories.name);
-          categoryModel =units;
+
           emit(FetchCategorySuccess(units));
         },
       );
-
     }
-    }
-
+  }
 }

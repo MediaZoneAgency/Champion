@@ -13,7 +13,7 @@ final ProductModel product;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(left: 20, right: 20),
+      padding:  EdgeInsets.only(left: 20.w, ),
       child: Container(
 
         child: Column(
@@ -46,7 +46,6 @@ final ProductModel product;
                   ),
                   child: Stack(
                     children: [
-
 
                       Positioned(
                       top: 10,

@@ -31,7 +31,7 @@ class SignUpStateUi extends StatelessWidget {
            SignUpCubit.get(context).isChecked == true){
           Navigator.pop(context);
           context.pushNamedAndRemoveUntil(
-            Routes.loginScreen,
+            Routes.navBarScreen,
             predicate: (Route<dynamic> route) => false,
           );
         } else if (state is SignUpFailed) {
