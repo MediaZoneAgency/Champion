@@ -25,15 +25,12 @@ class CourseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: 155.w,
-        height: 227.h,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(9),
-            topRight: Radius.circular(9),
-            bottomRight: Radius.circular(9),
-            bottomLeft: Radius.circular(9),
+        height: 220.h,
+        decoration:  BoxDecoration(
+          borderRadius:  BorderRadius.all(
+             Radius.circular(9),
           ),
-          //  border: Border.all(color: ColorsManager.mediumDarkGray),
+         // border: Border.all(color:   Colors.transparent),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,6 +84,9 @@ class CourseWidget extends StatelessWidget {
                       style: TextStyles.poppinsRegular16contantGray,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(
+                      height: 8.h,
                     ),
                     Row(children: [
                       SvgPicture.asset(

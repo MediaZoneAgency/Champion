@@ -51,21 +51,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return BlocBuilder<SignUpCubit, SignUpState>(
       builder: (BuildContext context, SignUpState state) {
         return Scaffold(
-          body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalSpace(64),
-                  AppText(
-                      title: S.of(context).createAccount,
-                      description: S.of(context).Fillaccount),
-                  verticalSpace(16),
-                  Form(
-                    key: formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 24, right: 24),
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24,vertical:24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpace(20.h),
+                     Center(
+                       child: SizedBox(
+                         height: 72.h,
+                         width: 280.w,
+                         child: Column(
+
+                           children: [
+                             Text(
+                              S.of(context).createAccount,
+                               style: TextStyles.poppinsMedium24ContantGray,
+                             ),
+                                                 Text(
+                                                   S.of(context).Fillaccount,
+                                                   style: TextStyles.poppinsRegular12ContantGray,
+                                                   textAlign: TextAlign.center,
+                                                   maxLines: 2,
+                                                 ),
+                           ],
+                         ),
+                       ),
+                     ),
+                    verticalSpace(16),
+                    Form(
+                      key: formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -84,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           verticalSpace(12),
                           EnterYour(text: S.of(context).Email),
-                          verticalSpace(7),
+                          verticalSpace(8),
                           AppTextFormField(
                             contentPadding: EdgeInsets.all(12.h),
                             hintText: S.of(context).Email,
@@ -106,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           EnterYour(
                             text: S.of(context).Password,
                           ),
-                          verticalSpace(7),
+                          verticalSpace(8),
                           BlocBuilder<SignUpCubit, SignUpState>(
                             builder: (context, state) {
                               return AppTextFormField(
@@ -114,13 +131,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 controller: _passwordController,
                                 hintText: S.of(context).Password,
                                 isObscureText:
-                                    SignUpCubit.get(context).isObscureText2,
+                                    SignUpCubit.get(context).isObscureText1,
                                 suffixIcon: GestureDetector(
                                   onTap: () {
-                                    SignUpCubit.get(context).obscureText2();
+                                    SignUpCubit.get(context).obscureText1();
                                   },
                                   child: Icon(
-                                    SignUpCubit.get(context).isObscureText2
+                                    SignUpCubit.get(context).isObscureText1
                                         ? Icons.visibility_off
                                         : Icons.visibility,
                                   ),
@@ -147,7 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   }
 
                                   if (!hasNumber || !hasCapitalLetter) {
-                                    return "not valid";
+                                    return "must have a CapitalLetter and Number";
                                   }
 
                                   return null;
@@ -165,7 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             hintText: S.of(context).ConfirmPassword,
                             borderRadius: 10.r,
                             backgroundColor: Colors.transparent,
-                            contentPadding: EdgeInsets.all(12.h),
+                            contentPadding: EdgeInsets.only(left: 12,top:12,right: 12),
                             isObscureText:
                                 SignUpCubit.get(context).isObscureText2,
                             suffixIcon: GestureDetector(
@@ -186,8 +203,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return null;
                             },
                           ),
-                          verticalSpace(12),
+
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+
                             children: [
                               BlocBuilder<SignUpCubit, SignUpState>(
                                 builder: (context, state) {
@@ -209,11 +228,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   // Handle Terms & Conditions tap
                                 },
                                 child: Text(S.of(context).TermsConditions,
-                                    style: TextStyles.poppinsRegular12Blue),
+                                    style: TextStyles.poppinsRegular12Blue.copyWith(
+
+                                        decoration: TextDecoration.underline,
+                                        decorationColor: TextStyles.poppinsRegular12Blue.color
+
+                                    )),
                               ),
                             ],
                           ),
-                          verticalSpace(20),
+                          verticalSpace(27),
                           AppTextButton(
                             horizontalPadding: 10,
                             verticalPadding: 10,
@@ -242,7 +266,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       color: ColorsManager.Blackmeduim)),
                               Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                    const EdgeInsets.symmetric(horizontal: 25.0),
                                 child: Text(S.of(context).Orsignup,
                                     style:
                                         TextStyles.poppinsMedium16BlackMeduim),
@@ -293,6 +317,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     style: TextStyles.poppinsRegular16Blue
                                         .copyWith(
                                       decoration: TextDecoration.underline,
+                                        decorationColor: TextStyles.poppinsRegular16Blue.color
                                     )),
                               ),
                             ],
@@ -309,6 +334,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       TextStyles.poppinsMedium20Blue.copyWith(
                                     fontSize: 16.sp,
                                     decoration: TextDecoration.underline,
+                                          decorationColor: TextStyles.poppinsMedium20Blue.color
 
                                   )),
                             ),
@@ -317,9 +343,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ],
                       ),
                     ),
-                  ),
-                  SignUpStateUi(),
-                ],
+                    SignUpStateUi(),
+                  ],
+                ),
               ),
             ),
           ),

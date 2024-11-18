@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     // backgroundColor: ColorsManager.primaryColorLight,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -112,71 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                               ],
                             ));
-                        // Padding(
-                        //   padding: EdgeInsets.only(top: 20.h,),
-                        //   child: BlocBuilder<ProfileCubit, ProfileState>(
-                        //     builder: (context, state) {
-                        //       return Column(
-                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                        //         children: [
-                        //           Row(
-                        //             children: [
-                        //
-                        //               CircleAvatar(
-                        //                 radius: 20,
-                        //                 child:   AppCachedNetworkImage(image:ProfileCubit.get(context).profileUser!.avatar, width: 24, height: 24, radius: 40,
-                        //
-                        //                 ),),
-                        //
-                        //               const SizedBox(width: 11),
-                        //               Column(
-                        //                 crossAxisAlignment: CrossAxisAlignment.start,
-                        //                 children: [
-                        //                   Text(
-                        //                       ProfileCubit.get(context).profileUser!.name!,
-                        //                       style: TextStyles.poppinsRegular16ContantGray
-                        //                   ),
-                        //                   Text(
-                        //                       'UX Designer',
-                        //                       style: TextStyles.poppinsRegular12babyGray
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //               Spacer(),
-                        //               //  SizedBox(width: 120.w),
-                        //               IconButton(
-                        //                 icon: SvgPicture.asset(
-                        //                   width: 30,
-                        //                   height: 30,
-                        //                   'assets/img/search-normal.svg',
-                        //                   fit: BoxFit.scaleDown,
-                        //                 ),
-                        //                 onPressed: () {
-                        //                   context.pushNamed(Routes.searchScreen);
-                        //                 },
-                        //               ),
-                        //               IconButton(
-                        //                 icon: SvgPicture.asset(
-                        //                   width: 30,
-                        //                   height: 30,
-                        //                   'assets/img/notification.svg',
-                        //                   fit: BoxFit.scaleDown,
-                        //                 ),
-                        //                 onPressed: () {
-                        //                   // Notification button tapped
-                        //                 },
-                        //               ),
-                        //
-                        //
-                        //             ],),
-                        //           SizedBox(height: 8.h,),
-                        //
-                        //         ],
-                        //       );
-                        //     },
-                        //   ),
-                        //
-                        // );
+
                       },
                     ),
                     const SizedBox(
@@ -235,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }),
 
                     Padding(
-                      padding: const EdgeInsets.only(left: 5,right:5),
+                      padding: const EdgeInsets.only(left: 5,right:6),
                       child: Row(
                         children: [
                           Text('For you',

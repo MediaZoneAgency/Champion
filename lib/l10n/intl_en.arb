@@ -5,11 +5,11 @@
   "MobileNumber": "Mobile Number",
   "EnterPassword": "Enter your password",
   "Password": "Password",
-  "ForgotPassword": "Forgot Password?",
+  "ForgotPassword": "Forgot Password ?",
   "NoAccount": "Don't have an account?",
   "SignUp": "Sign Up",
   "ChooseRecovery": "Choose where to send you\nRecover Link",
-  "Email": "E_mail",
+  "Email": "E-mail",
   "Phone": "Phone",
   "RecoverySent": "We have sent you a recover link to\nchange your password",
   "Resend": "Resend",
@@ -20,7 +20,7 @@
   "EnterEmail": "Enter your Email",
   "EnterNewPassword": "Enter your new password",
   "ConfirmPassword": "Confirm Password",
-  "Alreadyhaveanaccount": "Already have an account?",
+  "Alreadyhaveanaccount": "Already have an account ? ",
   "VerifyCode": "Verify Code",
   "DontreceiveOTPcode": "Don’t receive OTP code?",
   "ResendOTP": "Resend OTP",
@@ -103,7 +103,7 @@
   "Removeallyourdata":"Remove all your data.",
   "Deleteyourhistory":"Delete your history.",
   "DeleteYourAccount":"Delete Your Account",
-  "Cansel":"Cansel",
+  "Cansel":"Cancel",
   "ProccedToCheckout":"Procced To Checkout",
   "Youmightliketofititwith":"You might like to fit it with",
   "Search":"Search",
@@ -157,7 +157,8 @@
   "Enteravalidpassword": "Enter a valid password",
   "continueasguest": "Continue as guest",
   "Nicetomeetyou": "Nice to meet you",
-  "LoginSignup": "Login/Signup"
+  "LoginSignup": "Login/Signup",
+  "Promocode": "Promo code"
 
 
 }

@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `Forgot Password?`
+  /// `Forgot Password ?`
   String get ForgotPassword {
     return Intl.message(
-      'Forgot Password?',
+      'Forgot Password ?',
       name: 'ForgotPassword',
       desc: '',
       args: [],
@@ -150,10 +150,10 @@ class S {
     );
   }
 
-  /// `E_mail`
+  /// `E-mail`
   String get Email {
     return Intl.message(
-      'E_mail',
+      'E-mail',
       name: 'Email',
       desc: '',
       args: [],
@@ -260,10 +260,10 @@ class S {
     );
   }
 
-  /// `Already have an account?`
+  /// `Already have an account ? `
   String get Alreadyhaveanaccount {
     return Intl.message(
-      'Already have an account?',
+      'Already have an account ? ',
       name: 'Alreadyhaveanaccount',
       desc: '',
       args: [],
@@ -1000,10 +1000,10 @@ class S {
     );
   }
 
-  /// `Cansel`
+  /// `Cancel`
   String get Cansel {
     return Intl.message(
-      'Cansel',
+      'Cancel',
       name: 'Cansel',
       desc: '',
       args: [],
@@ -1535,6 +1535,16 @@ class S {
     return Intl.message(
       'Login/Signup',
       name: 'LoginSignup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promo code`
+  String get Promocode {
+    return Intl.message(
+      'Promo code',
+      name: 'Promocode',
       desc: '',
       args: [],
     );

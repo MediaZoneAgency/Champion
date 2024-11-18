@@ -264,6 +264,7 @@ static TextStyle font15LightBlackBold = TextStyle(
     color: ColorsManager.contantGray,
   );
 
+
   static TextStyle poppinsRegular12babyGray= GoogleFonts.poppins(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
@@ -305,6 +306,11 @@ static TextStyle font15LightBlackBold = TextStyle(
   );
   static TextStyle poppinsRegular12Blue= GoogleFonts.poppins(
     fontSize: 12.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.secondBlUE,
+  );
+  static TextStyle poppinsRegular14Blue= GoogleFonts.poppins(
+    fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.secondBlUE,
   );

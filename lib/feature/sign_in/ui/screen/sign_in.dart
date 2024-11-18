@@ -101,11 +101,11 @@ class _SignInScreenState extends State<SignInScreen> {
                             },
                             child: Text(
                               S.of(context).ForgotPassword,
-                              style: TextStyles.poppinsRegular12Blue,
+                              style: TextStyles.poppinsRegular14Blue,
                             ),
                           ),
                         ),
-                        verticalSpace(20),
+                        verticalSpace(34),
                         AppTextButton(
                           borderRadius: 10,
                           buttonHeight: 58.h,
@@ -175,6 +175,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                   S.of(context).SignUp,
                                   style: TextStyles.poppinsRegular16Blue.copyWith(
                                     decoration: TextDecoration.underline,
+                                      decorationColor: TextStyles.poppinsRegular16Blue.color
+
                                   )
                               ),
                             ),

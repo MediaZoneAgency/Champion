@@ -16,7 +16,7 @@ class CoursesListView extends StatelessWidget {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
         return SizedBox(
-          height: 227.h,
+          height: 220.h,
           child: Padding(
             padding: const EdgeInsets.only(left: 5),
             child: ListView.separated(

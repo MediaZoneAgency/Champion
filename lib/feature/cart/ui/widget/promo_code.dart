@@ -12,31 +12,32 @@ class PromoCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
-      height: 60.h,
-      width: 327.w,
-      child: TextField(
+    return TextField(
 
 
-          decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
-          //    borderSide: BorderSide(color: ColorsManager.primaryColorLight),
-              borderRadius: BorderRadius.circular(17.r),
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(12.h),
+         // contentPadding: EdgeInsets.all(12.h),
+          focusedBorder: OutlineInputBorder(
+        //    borderSide: BorderSide(color: ColorsManager.primaryColorLight),
+            borderRadius: BorderRadius.circular(10.r),
 
-            ),
-            suffixIcon: Padding(
-              padding: EdgeInsets.only(right: 8.0.w,top: 8.h,bottom: 8.h),
-              child: AppTextButton(buttonText: 'Apply', textStyle: TextStyles.poppinsRegular16blue, onPressed: (){},borderRadius: 15.r,buttonHeight: 44.h,buttonWidth: 97,backgroundColor:  Colors.white,),
-            ),
-            hintText: 'Promo code',
-            hintStyle: TextStyles.poppinsRegular16LightGray,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xffeeeeee)),
-              borderRadius: BorderRadius.circular(17.r),
+          ),
+          suffixIcon: Padding(
+            padding: EdgeInsets.only(right: 20.0.w,top: 10.h),
+            child: Text( 'Apply',
+             style:  TextStyles.poppinsRegular16blue,
 
-            ),
-          )),
-    );
+            )
+
+          ),
+          hintText: 'Promo code',
+          hintStyle: TextStyles.poppinsRegular16LightGray,
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xffeeeeee)),
+            borderRadius: BorderRadius.circular(10.r),
+
+          ),
+        ));
   }
 }

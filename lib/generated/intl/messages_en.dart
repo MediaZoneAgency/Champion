@@ -41,7 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "AlreadyAddedToWishList":
             MessageLookupByLibrary.simpleMessage("Already added to wish list"),
         "Alreadyhaveanaccount":
-            MessageLookupByLibrary.simpleMessage("Already have an account?"),
+            MessageLookupByLibrary.simpleMessage("Already have an account ? "),
         "ApartmentNum": MessageLookupByLibrary.simpleMessage("Apartment num"),
         "ApartmentNumDes":
             MessageLookupByLibrary.simpleMessage("Apartment num"),
@@ -51,7 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Building Number"),
         "BuildingNumberDes":
             MessageLookupByLibrary.simpleMessage("Enter Your Building name"),
-        "Cansel": MessageLookupByLibrary.simpleMessage("Cansel"),
+        "Cansel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "CardExpiryDate":
             MessageLookupByLibrary.simpleMessage("Card Expiry Date"),
         "CardHolderName":
@@ -94,7 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Editaccount": MessageLookupByLibrary.simpleMessage("Edit account"),
         "Editaccountinfo":
             MessageLookupByLibrary.simpleMessage("Edit account info"),
-        "Email": MessageLookupByLibrary.simpleMessage("E_mail"),
+        "Email": MessageLookupByLibrary.simpleMessage("E-mail"),
         "Emailcannotbeempty":
             MessageLookupByLibrary.simpleMessage("Email cannot be empty"),
         "Endsin": MessageLookupByLibrary.simpleMessage("Ends in"),
@@ -130,7 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "FloorNumber": MessageLookupByLibrary.simpleMessage("Floor Number"),
         "FloorNumberDes": MessageLookupByLibrary.simpleMessage("Floor Number"),
         "ForgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+            MessageLookupByLibrary.simpleMessage("Forgot Password ?"),
         "GetHelp": MessageLookupByLibrary.simpleMessage("Get Help"),
         "HelloWelcome": MessageLookupByLibrary.simpleMessage(
             "Hello, Welcome back You’ve been missed"),
@@ -168,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Procced To Checkout"),
         "ProceedTocheckout":
             MessageLookupByLibrary.simpleMessage("Proceed To checkout"),
+        "Promocode": MessageLookupByLibrary.simpleMessage("Promo code"),
         "PushNotifications":
             MessageLookupByLibrary.simpleMessage("Push Notifications"),
         "RecoverySent": MessageLookupByLibrary.simpleMessage(
