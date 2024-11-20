@@ -11,14 +11,7 @@ class CourseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Center(
-        child: ListView(
-          children: [
-            // Load a Lottie file from your assets
-            Lottie.asset('assets/img/Animation - 1731427772342.json'),
-
-
-          ],
-        ),
+        child: Lottie.asset('assets/img/Animation - 1732019401672.json'),
       ),
     );
   }

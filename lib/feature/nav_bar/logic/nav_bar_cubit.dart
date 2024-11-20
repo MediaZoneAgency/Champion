@@ -1,4 +1,5 @@
-import 'package:education/feature/wishlist/logic/wish_list_cubit.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:education/feature/cart/ui/screen/cart_screen.dart';
 import 'package:education/feature/courses/ui/screen/courses_screen.dart';
@@ -49,8 +50,8 @@ class NavBarCubit extends Cubit<NavBarState> {
     ),
     // Other screens without the need for additional providers
     const CourseScreen(),
-    BlocProvider<WishListCubit>.value(
-      value: getIt<WishListCubit>(),
+    BlocProvider<FavCubit>.value(
+      value: getIt<FavCubit>(),
       child: const WishListScreen(),
     ),
 

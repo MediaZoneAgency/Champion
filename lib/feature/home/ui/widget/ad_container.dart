@@ -28,11 +28,11 @@ class _AdCarouselState extends State<AdCarousel> {
   Widget build(BuildContext context) {
     return Container(
       width: 370.w,
-      height: 135.h,
+      height: 141.h,
       child: Stack(
         children: [
           SizedBox(
-            height: 135.h,
+            height: 141.h,
             width: 370.w,
             child: PageView.builder(
               controller: _pageController,
@@ -81,7 +81,7 @@ class AdContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 370.w,
-      height: 135.h,
+      height: 141.h,
       margin: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
         color: ColorsManager.BlueLIght,

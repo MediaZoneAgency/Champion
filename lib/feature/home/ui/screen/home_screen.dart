@@ -141,9 +141,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Container();
                       }
                     }),
-
+                    SizedBox(
+                      height: 16.h,
+                    ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 5,right: 5),
+                      padding: const EdgeInsets.only(left: 5,right: 6),
                       child: Row(
                         children: [
                           Text(S.of(context).Popularcourses,

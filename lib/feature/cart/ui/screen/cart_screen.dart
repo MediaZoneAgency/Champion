@@ -14,6 +14,7 @@ import '../../../home/ui/widget/courses_list_view.dart';
 import '../../logic/cart_cubit.dart';
 import '../widget/cart_list_view.dart';
 import '../widget/cart_widget.dart';
+import 'package:lottie/lottie.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -66,23 +67,27 @@ class _CartScreenState extends State<CartScreen> {
                 },
               ),
               SizedBox(height: 28.h),
-              Padding(
+              CartCubit.get(context).cartList.isNotEmpty?  Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Row(
                   children: [
                     Text(
-                      'More Like This',
+                      S.of(context).MoreLikThis,
                       style: TextStyles.poppinsMedium18contantGray,
                     ),
 
                   ],
                 ),
-              ),
+              ):SizedBox(),
+
               SizedBox(height: 20.h),
-              Padding(
+              CartCubit.get(context).cartList.isNotEmpty? Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: CartListView(),
+              ):Center(
+                child: Lottie.asset('assets/img/Animation - 1732018992607.json'),
               ),
+
 
               verticalSpace(90.h)
 
@@ -92,8 +97,7 @@ class _CartScreenState extends State<CartScreen> {
             child: Column(
               children: [
                 Spacer(),
-                CustomTextButton(
-
+                CartCubit.get(context).cartList.isNotEmpty?CustomTextButton(
                   borderRadius: 10,
                   buttonHeight: 50.h,
                   buttonWidth: 260.w,
@@ -102,7 +106,8 @@ class _CartScreenState extends State<CartScreen> {
                   onPressed: () {
                     context.pushNamed(Routes.checkoutScreen);
                   },
-                ),
+                ):SizedBox(),
+
                 SizedBox(height: 10.h,)
               ],
             ),

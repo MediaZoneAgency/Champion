@@ -10,6 +10,7 @@ import '../../../../core/sharedWidgets/custom_cart_bar.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
+import '../../logic/profile_cubit.dart';
 import '../widget/country_list_tile.dart';
 import '../widget/language_list_tile.dart';
 import '../widget/setting_item_list_tile.dart';
@@ -27,41 +28,43 @@ class SettingScreen extends StatelessWidget {
             children: [
               CustomAppBar( title: S.of(context).Setting),
               verticalSpace(20),
-        
-               
-                SettingItemListTile(title: S.of(context).ChangePassword,onTap: () {
-                  context.pushNamed(Routes.resetPasswordScreen);
-                  }),
-                const Divider(),
-                SwitchListTile(
-                  title: Text(S.of(context).PushNotifications, style: TextStyles.poppinsMedium16BlackMeduim,),
-                  activeTrackColor: ColorsManager.primaryColorLight,
-                  value: true, onChanged:(value) {
-                },),
-                const Divider(),
+
+              ProfileCubit.get(context).token!=''?SettingItemListTile(title: S.of(context).ChangePassword,onTap: () {
+                context.pushNamed(Routes.resetPasswordScreen);
+              }):SizedBox(),
+              ProfileCubit.get(context).token!=''?Divider():SizedBox(),
+
+              ProfileCubit.get(context).token!=''?  SwitchListTile(
+                title: Text(S.of(context).PushNotifications, style: TextStyles.poppinsMedium16BlackMeduim,),
+                activeTrackColor: ColorsManager.primaryColorLight,
+                value: true, onChanged:(value) {
+              },):SizedBox(),
+              ProfileCubit.get(context).token!=''?Divider():SizedBox(),
                LanguageListTile(),
                 const Divider(),
                 const CountrylistTile(),
-                const Divider(),
-                SettingItemListTile(title: S.of(context).DeleteAccount,onTap: () {
-                  context.pushNamed(Routes.deleteAccountScreen);
-                }),
+              ProfileCubit.get(context).token!=''?Divider():SizedBox(),
+              ProfileCubit.get(context).token!=''?   SettingItemListTile(title: S.of(context).DeleteAccount,onTap: () {
+                context.pushNamed(Routes.deleteAccountScreen);
+              }):SizedBox(),
+
                 const Divider(),
         
               Spacer(),
-                AppTextButton(
-                        buttonText: S.of(context).Logout,
-                        textStyle: TextStyles.poppinsMedium20white,
-                        verticalPadding: 3,
-                        buttonHeight: 55,
-                        onPressed: () async {
-                          DioFactory.removeTokenIntoHeaderAfterLogout();
-                          await  CashHelper.clear();
-                         CachedApp.clearCache();
-                          context.pushNamedAndRemoveUntil(Routes.loginScreen, predicate: (Route<dynamic> route) { return false; });
-                        },
-                      ),
-            ],
+              ProfileCubit.get(context).token!=''?                  AppTextButton(
+                buttonText: S.of(context).Logout,
+                textStyle: TextStyles.poppinsMedium20white,
+                verticalPadding: 3,
+                buttonHeight: 55,
+                onPressed: () async {
+                  DioFactory.removeTokenIntoHeaderAfterLogout();
+                  await  CashHelper.clear();
+                  CachedApp.clearCache();
+                  context.pushNamedAndRemoveUntil(Routes.loginScreen, predicate: (Route<dynamic> route) { return false; });
+                },
+              )
+            :SizedBox(),
+]
           ),
         ),
       ),

@@ -1,8 +1,6 @@
 import 'package:education/core/theming/colors.dart';
 import 'package:education/feature/sign_up/data/models/register_model.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:icon_checkbox/icon_checkbox.dart';
-import 'package:education/core/sharedWidgets/custom_text.dart';
 import 'package:education/feature/sign_up/logic/sign_up_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +15,7 @@ import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../widgets/enter_your.dart';
 import '../widgets/sign_up_state.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -224,16 +223,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               Text(S.of(context).Agreewith,
                                   style: TextStyles.poppinsRegular12LightGray),
                               GestureDetector(
-                                onTap: () {
-                                  // Handle Terms & Conditions tap
+                                onTap: () async {
+                                  const url = 'https://clusters.mediazoneag.com/privacy-policy/';
+                                  if (await canLaunch(url)) {
+                                    await launch(url); // يفتح الرابط في المتصفح الافتراضي
+                                  } else {
+                                    // إذا كان هناك مشكلة في فتح الرابط
+                                    throw 'Could not launch $url';
+                                  }
                                 },
-                                child: Text(S.of(context).TermsConditions,
-                                    style: TextStyles.poppinsRegular12Blue.copyWith(
-
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: TextStyles.poppinsRegular12Blue.color
-
-                                    )),
+                                child: Text(
+                                  S.of(context).TermsConditions,
+                                  style: TextStyles.poppinsRegular12Blue.copyWith(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: TextStyles.poppinsRegular12Blue.color,
+                                  ),
+                                ),
                               ),
                             ],
                           ),

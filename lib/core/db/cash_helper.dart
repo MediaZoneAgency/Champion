@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum Keys {
   notFirstTime,
   userName,
+  userId,
   phoneNumber,
   token,
   darkMode,

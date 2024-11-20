@@ -1,17 +1,18 @@
 import 'dart:ui';
-import 'package:education/core/helpers/extensions.dart';
-import 'package:education/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';  // Import flutter_svg package
+import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../core/helpers/extensions.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/theming/colors.dart';
+import '../../../core/theming/styles.dart';
 import '../logic/nav_bar_cubit.dart';
 
 class NavigationBarApp extends StatefulWidget {
   const NavigationBarApp({super.key});
+
   @override
   State<NavigationBarApp> createState() => _NavigationBarAppState();
 }
@@ -26,19 +27,29 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
           floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           body: NavBarCubit.get(context).screens[NavBarCubit.get(context).selectedIndex],
           bottomNavigationBar: ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20.r),
+              bottomRight: Radius.circular(20.r),
+            ),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
               child: SizedBox(
-                height: 75, // تحديد الارتفاع هنا
+                height: 75, // Adjust height
                 child: BottomNavigationBar(
-                  iconSize: 30,
+                  iconSize: 24.sp,
                   type: BottomNavigationBarType.fixed,
-                  unselectedItemColor: ColorsManager.darkGray,
-                  selectedLabelStyle: TextStyles.poppinsLight12PrimaryColor,
                   currentIndex: NavBarCubit.get(context).selectedIndex,
                   onTap: (index) {
                     NavBarCubit.get(context).changeIndex(index);
                   },
+                  selectedItemColor: ColorsManager.primaryColorLight,
+                  unselectedItemColor: ColorsManager.darkGray,
+                  selectedLabelStyle: TextStyles.poppinsLight12PrimaryColor.copyWith(
+                    color: ColorsManager.primaryColorLight,
+                  ),
+                  unselectedLabelStyle: TextStyles.poppinsLight12PrimaryColor.copyWith(
+                    color: ColorsManager.darkGray,
+                  ),
                   items: [
                     BottomNavigationBarItem(
                       icon: SvgPicture.asset(
@@ -70,6 +81,7 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                     BottomNavigationBarItem(
                       icon: GestureDetector(
                         onTap: () {
+                          // Navigate to the cart screen
                           // context.pushNamed(Routes.cartScreen);
                         },
                         child: SvgPicture.asset(
@@ -95,7 +107,6 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
               ),
             ),
           ),
-
         );
       },
     );

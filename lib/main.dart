@@ -1,5 +1,6 @@
 import 'package:education/feature/nav_bar/logic/nav_bar_cubit.dart';
-import 'package:education/feature/wishlist/logic/wish_list_cubit.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,8 +57,8 @@ class EducationApp extends StatelessWidget {
         BlocProvider<NavBarCubit>.value(
           value: getIt<NavBarCubit>(),
         ),
-        BlocProvider<WishListCubit>.value(
-          value: getIt<WishListCubit>(),
+        BlocProvider<FavCubit>.value(
+          value: getIt<FavCubit>(),
         ),
 
       ],

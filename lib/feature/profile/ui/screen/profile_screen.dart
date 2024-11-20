@@ -84,20 +84,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           verticalSpace(30.h),
           Expanded(
+
             child: ListView(
               children: [
-                ProfileMenuItem(
+                ProfileCubit.get(context).token!=''?ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/notification (2).svg'),
                   text: 'Notifications',
                   onTap: () {},
-                ),
-                ProfileMenuItem(
+                ):SizedBox(),
+
+                ProfileCubit.get(context).token!=''?ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/edit.svg'),
                   text: 'Edit Profession',
                   onTap: () {
                     context.pushNamed(Routes.accountInfoScreen);
                   },
-                ),
+                ):SizedBox(),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/message-question.svg'),
                   text: 'Get Help',

@@ -1,4 +1,4 @@
-import 'package:education/feature/wishlist/logic/wish_list_cubit.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:education/feature/wishlist/ui/widget/wishlist_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,14 +20,14 @@ class _WishListScreenState extends State<WishListScreen> {
   void initState() {
     super.initState();
 
-    WishListCubit.get(context).getWishList();
+    FavCubit.get(context).getWishList();
 
   }
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WishListCubit, WishListState>(
+    return BlocBuilder<FavCubit, FavState>(
       builder: (context, state) {
-        return Scaffold(
+        return const Scaffold(
 
           body: Column(
 

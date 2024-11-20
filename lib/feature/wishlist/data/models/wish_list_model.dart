@@ -2,13 +2,13 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class WishListModel {
-  final int id;
+  final int? id;
   final String? name;
   final String? description;
   final String? price;
   final String? image;
   WishListModel({
-    required this.id,
+     this.id,
     this.name,
     this.description,
     this.price,

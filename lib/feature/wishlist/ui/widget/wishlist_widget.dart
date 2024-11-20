@@ -3,6 +3,7 @@ import 'package:education/core/sharedWidgets/network_image.dart';
 import 'package:education/core/theming/styles.dart';
 import 'package:education/feature/cart/data/models/cart_item_model.dart';
 import 'package:education/feature/wishlist/data/models/wish_list_model.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -88,7 +89,16 @@ class WishlistWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Spacer(), // Push trash icon to the right
+
+                      Spacer(),
+                      BlocBuilder<FavCubit, FavState>(
+                        builder: (context, state) {
+                          return GestureDetector(
+                            onTap: onremove,
+                            child: SvgPicture.asset('assets/img/trash.svg'),
+                          );
+                        },
+                      ),// Push trash icon to the right
                     ],
                   ),
                 ],

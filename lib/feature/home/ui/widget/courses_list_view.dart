@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../wishlist/logic/wish_list_cubit.dart';
 import 'field_circle.dart';
 
 class CoursesListView extends StatelessWidget {
@@ -18,12 +17,12 @@ class CoursesListView extends StatelessWidget {
         return SizedBox(
           height: 220.h,
           child: Padding(
-            padding: const EdgeInsets.only(left: 5),
+            padding: const EdgeInsets.only(left: 4),
             child: ListView.separated(
               itemCount: ProductCubit.get(context).productModel.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return CourseWidget( ProductCubit.get(context).productModel[index],  onTap: () {  }, isFavorite:WishListCubit.get(context).isFavorite!
+                return CourseWidget( ProductCubit.get(context).productModel[index],  onTap: () {  }, isFavorite: false,
                    );
               },
               separatorBuilder: (BuildContext context, int index) {

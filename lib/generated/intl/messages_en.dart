@@ -140,6 +140,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "LoginSignup": MessageLookupByLibrary.simpleMessage("Login/Signup"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "MobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
+        "MoreLikThis": MessageLookupByLibrary.simpleMessage("More Like This"),
         "Name": MessageLookupByLibrary.simpleMessage("Name"),
         "NewPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),

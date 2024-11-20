@@ -7,7 +7,7 @@ import 'package:education/feature/search/data/repo/search_repo.dart';
 import 'package:education/feature/search/logic/search_cubit.dart';
 import 'package:education/feature/sign_up/logic/sign_up_cubit.dart';
 import 'package:education/feature/wishlist/data/repo/wish_list_repo.dart';
-import 'package:education/feature/wishlist/logic/wish_list_cubit.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:get_it/get_it.dart';
 import '../../feature/home/data/repo/home_repo.dart';
 import '../../feature/home/logic/home_cubit.dart';
@@ -47,7 +47,7 @@ Future<void> setupGetIt() async
  getIt.registerFactory<SearchRepo>(() => SearchRepo(dio));
  getIt.registerLazySingleton<SearchCubit>(() => SearchCubit(getIt()));
 
- getIt.registerLazySingleton<WishListRepo>(()=>WishListRepo(dio));
- getIt.registerLazySingleton<WishListCubit>(()=>WishListCubit(getIt()));
+ getIt.registerLazySingleton<FavRepo>(()=>FavRepo(dio));
+ getIt.registerLazySingleton<FavCubit>(()=>FavCubit(getIt()));
 
 }
