@@ -11,6 +11,7 @@ import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../../../home/logic/product_cubit.dart';
 import '../../../home/ui/widget/courses_list_view.dart';
+import '../../../nav_bar/logic/nav_bar_cubit.dart';
 import '../../logic/cart_cubit.dart';
 import '../widget/cart_list_view.dart';
 import '../widget/cart_widget.dart';
@@ -84,8 +85,31 @@ class _CartScreenState extends State<CartScreen> {
               CartCubit.get(context).cartList.isNotEmpty? Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: CartListView(),
-              ):Center(
-                child: Lottie.asset('assets/img/Animation - 1732018992607.json'),
+              ):Column(
+                children: [
+                  Center(
+                    child: Lottie.asset('assets/img/Animation - 1732018992607.json'),
+                  ),
+                  SizedBox(height: 48.h,),
+                  GestureDetector(
+                    onTap: (){
+                      NavBarCubit.get(context).changeIndex(0);
+                      context.pushNamedAndRemoveUntil(Routes.navBarScreen,
+                          predicate: (Route<dynamic> route) => false);
+                    },
+                    child: Container(
+                      height: 40.h,
+                      width: 250.h,
+                      padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
+                      decoration: BoxDecoration(
+                          color: ColorsManager.primaryColorLight,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Center(
+                        child: Text(S.of(context).Checknewcourses,
+                            style: TextStyles.poppinsMedium12white),
+                      ),),
+                  )
+                ],
               ),
 
 

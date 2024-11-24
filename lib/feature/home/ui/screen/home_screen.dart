@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:education/core/helpers/extensions.dart';
 import 'package:education/feature/home/logic/home_cubit.dart';
 import 'package:education/feature/home/logic/product_cubit.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
     HomeCubit.get(context).getCategory();
-    ProductCubit.get(context).getProducts();
+    ProductCubit.get(context).getProducts().then(
+        (e)=>
+        FavCubit.get(context).getWishList());
     ProfileCubit.get(context).getProfile();
   }
 
@@ -117,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 20,
                     ),
                     const AdCarousel(),
                     const SizedBox(
@@ -142,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                     }),
                     SizedBox(
-                      height: 16.h,
+                      height: 20.h,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 5,right: 6),
@@ -172,7 +175,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
                       return Container();
                     }),
-
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 5,right:6),
                       child: Row(

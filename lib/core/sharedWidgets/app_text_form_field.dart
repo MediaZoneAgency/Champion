@@ -102,6 +102,7 @@ class AppTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Color? backgroundColor;
   final bool? readOnly;
+  final String?labeltext;
   final VoidCallback? onTap;
   final Function(String)? onFieldSubmitted;
   final TextEditingController? controller;
@@ -118,17 +119,21 @@ class AppTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
-    this.validator, this.prefexIcon, this.onFieldSubmitted, this.readOnly, this.onTap, this.borderRadius,
+    this.validator, this.prefexIcon, this.onFieldSubmitted, this.readOnly, this.onTap, this.borderRadius, this.labeltext,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+
       onTap: onTap,
       controller: controller,
       readOnly: readOnly ?? false,
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
+        label: Text(labeltext??""),
+        labelStyle: TextStyles.poppinsRegular16Gray,
+       // labelText: labeltext,
         isDense: true,
         contentPadding: contentPadding ??
             EdgeInsets.only(left: 10.w,right: 10.w,bottom: 32 ),

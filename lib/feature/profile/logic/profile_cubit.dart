@@ -17,7 +17,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   static ProfileCubit get(context) => BlocProvider.of(context);
   final ProfileRepo profileRepo;
-  ProfileModel?  profileUser;
+  ProfileModel? profileUser;
   bool isObscureText1 = true;
   bool isObscureText2 = true;
   String token = '';
@@ -34,8 +34,20 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> getToken() async {
-    token = (await CashHelper.getStringSecured(key: Keys.token))!;
-    emit(GetToken());
+    try {
+      final fetchedToken = await CashHelper.getStringSecured(key: Keys.token);
+
+      if (fetchedToken == null) {
+        // إذا لم يتم العثور على التوكين، يمكن إرسال حالة تعبر عن ذلك
+        if (!isClosed) emit(TokenNotFound());
+      } else {
+        token = fetchedToken;
+        if (!isClosed) emit(GetToken());
+      }
+    } catch (e) {
+      // إذا حدث خطأ أثناء جلب التوكين
+      if (!isClosed) emit(TokenError(e.toString()));
+    }
   }
 
   void updateSelectedCountry(String country) {
@@ -44,23 +56,22 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<void> getProfile() async {
-   await getToken();
+    await getToken();
     if (token != '') {
       try {
         profileUser = CachedApp.getCachedData(CachedDataType.profile.name);
+        log("aaaaaaa");
         emit(ProfileSuccess());
-      }
-      catch (e) {
+      } catch (e) {
         emit(ProfileLoading());
         final result = await profileRepo.fetchProfile();
         result.fold(
-              (failure) {
+          (failure) {
             profileUser = null;
             emit(ProfileFailure(failure.message));
             log('yarab nekhlas');
           },
-
-              (profileApi) async {
+          (profileApi) async {
             log('thannnks god');
             profileUser = profileApi;
             await CashHelper.setStringSecured(
@@ -69,75 +80,68 @@ class ProfileCubit extends Cubit<ProfileState> {
             emit(ProfileSuccess());
           },
         );
-        emit(ProfileSuccess());
-      }
-    }}
-    // Future<void> getProfileData() async {
-    //   getToken();
-    //   log("aaaaaaaaaa");
-    //   //token= (await CashHelper.getStringScoured(key: Keys.token))!;
-    //   if(token!=''){
-    //     try{
-    //       profile=CachedApp.getCachedData(CachedDataType.profile.name);
-    //       emit(FetchProfileDataSuccess());
-    //     }
-    //     catch(e){
-    //       emit(FetchProfileDataLoading());
-    //       final result = await profileRepoImpl.getProfile();
-    //       result.fold(
-    //             (failure) {
-    //           emit(FetchProfileDataError(failure));
-    //         },
-    //             (response) async {
-    //           profile = response;
-    //           await CashHelper.setStringScoured(
-    //               key: Keys.userId, value: response.id.toString() ?? '');
-    //           CachedApp.saveData(profile,CachedDataType.profile.name);
-    //           emit(FetchProfileDataSuccess());
-    //         },
-    //       );
-    //     }
-    //   }
-
-
-    Future<void> deletUserAccount() async {
-      emit(DeleteAccountLoading());
-      final List<ConnectivityResult> connectivityResult = await (Connectivity()
-          .checkConnectivity());
-      if (!connectivityResult.contains(ConnectivityResult.none)) {
-        final response = await profileRepo.deletAccount();
-        response.fold(
-                (error) {
-              emit(DeleteAccountFailure(error));
-            },
-                (profileData) {
-              emit(DeleteAccountSuccess('Account deleted successfully'));
-            });
-        return;
-      } else {
-        emit(DeleteAccountFailure(
-            ApiErrorModel(message: 'No internet connection')));
       }
     }
+  }
+  // Future<void> getProfileData() async {
+  //   getToken();
+  //   log("aaaaaaaaaa");
+  //   //token= (await CashHelper.getStringScoured(key: Keys.token))!;
+  //   if(token!=''){
+  //     try{
+  //       profile=CachedApp.getCachedData(CachedDataType.profile.name);
+  //       emit(FetchProfileDataSuccess());
+  //     }
+  //     catch(e){
+  //       emit(FetchProfileDataLoading());
+  //       final result = await profileRepoImpl.getProfile();
+  //       result.fold(
+  //             (failure) {
+  //           emit(FetchProfileDataError(failure));
+  //         },
+  //             (response) async {
+  //           profile = response;
+  //           await CashHelper.setStringScoured(
+  //               key: Keys.userId, value: response.id.toString() ?? '');
+  //           CachedApp.saveData(profile,CachedDataType.profile.name);
+  //           emit(FetchProfileDataSuccess());
+  //         },
+  //       );
+  //     }
+  //   }
 
-    Future<void> editProfile(EditProfileModel editProfileModel) async {
-      emit(EditProfileLoading());
-      final List<ConnectivityResult> connectivityResult = await (Connectivity()
-          .checkConnectivity());
-      if (!connectivityResult.contains(ConnectivityResult.none)) {
-        final response = await profileRepo.featchProfileNew(
-            editProfile: editProfileModel);
-        response.fold(
-                (l) => emit(EditProfileFailure(l)),
-                (r) {
-              emit(EditProfileSuccess(editProfileResponse: r));
-            }
-        );
-      } else {
-        // translate the message pls
-        emit(EditProfileFailure(
-            ApiErrorModel(message: 'No internet connection')));
-      }
+  Future<void> deletUserAccount() async {
+    emit(DeleteAccountLoading());
+    final List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
+    if (!connectivityResult.contains(ConnectivityResult.none)) {
+      final response = await profileRepo.deletAccount();
+      response.fold((error) {
+        emit(DeleteAccountFailure(error));
+      }, (profileData) {
+        emit(DeleteAccountSuccess('Account deleted successfully'));
+      });
+      return;
+    } else {
+      emit(DeleteAccountFailure(
+          ApiErrorModel(message: 'No internet connection')));
     }
+  }
 
+  Future<void> editProfile(EditProfileModel editProfileModel) async {
+    emit(EditProfileLoading());
+    final List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
+    if (!connectivityResult.contains(ConnectivityResult.none)) {
+      final response =
+          await profileRepo.featchProfileNew(editProfile: editProfileModel);
+      response.fold((l) => emit(EditProfileFailure(l)), (r) {
+        emit(EditProfileSuccess(editProfileResponse: r));
+      });
+    } else {
+      // translate the message pls
+      emit(
+          EditProfileFailure(ApiErrorModel(message: 'No internet connection')));
+    }
+  }
 }

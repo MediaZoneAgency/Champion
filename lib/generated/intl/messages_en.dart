@@ -61,9 +61,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "CardNumber": MessageLookupByLibrary.simpleMessage("Card Number"),
         "CardNumberDes":
             MessageLookupByLibrary.simpleMessage("Enter Card Number"),
+        "Cart": MessageLookupByLibrary.simpleMessage("Cart"),
         "Cash": MessageLookupByLibrary.simpleMessage("Cash"),
         "ChangePassword":
             MessageLookupByLibrary.simpleMessage("Change Password"),
+        "Checknewcourses":
+            MessageLookupByLibrary.simpleMessage("Check Our Courses"),
         "ChooseRecovery": MessageLookupByLibrary.simpleMessage(
             "Choose where to send you\nRecover Link"),
         "City": MessageLookupByLibrary.simpleMessage("City"),
@@ -90,11 +93,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "EditAccount": MessageLookupByLibrary.simpleMessage("Edit Account"),
         "EditPassword": MessageLookupByLibrary.simpleMessage("Edit Password"),
+        "EditProfession":
+            MessageLookupByLibrary.simpleMessage("Edit Profession"),
         "EditProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "Editaccount": MessageLookupByLibrary.simpleMessage("Edit account"),
         "Editaccountinfo":
             MessageLookupByLibrary.simpleMessage("Edit account info"),
-        "Email": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "Email": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "Emailcannotbeempty":
             MessageLookupByLibrary.simpleMessage("Email cannot be empty"),
         "Endsin": MessageLookupByLibrary.simpleMessage("Ends in"),
@@ -134,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "GetHelp": MessageLookupByLibrary.simpleMessage("Get Help"),
         "HelloWelcome": MessageLookupByLibrary.simpleMessage(
             "Hello, Welcome back You’ve been missed"),
+        "Home": MessageLookupByLibrary.simpleMessage("Home"),
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "Lastestsearch": MessageLookupByLibrary.simpleMessage("Lastest search"),
         "Login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -141,6 +147,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "MobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "MoreLikThis": MessageLookupByLibrary.simpleMessage("More Like This"),
+        "MyCourses": MessageLookupByLibrary.simpleMessage("My Courses"),
         "Name": MessageLookupByLibrary.simpleMessage("Name"),
         "NewPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -149,6 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "No": MessageLookupByLibrary.simpleMessage("No"),
         "NoAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "Notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "OTP": MessageLookupByLibrary.simpleMessage("OTP"),
         "OldPassword": MessageLookupByLibrary.simpleMessage("Old Password"),
         "Orders": MessageLookupByLibrary.simpleMessage("Orders"),
@@ -169,6 +177,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Procced To Checkout"),
         "ProceedTocheckout":
             MessageLookupByLibrary.simpleMessage("Proceed To checkout"),
+        "Profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "Promocode": MessageLookupByLibrary.simpleMessage("Promo code"),
         "PushNotifications":
             MessageLookupByLibrary.simpleMessage("Push Notifications"),
@@ -187,6 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Search For course or categoty "),
         "Seeall": MessageLookupByLibrary.simpleMessage("See all"),
         "Setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "Settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "SignUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "StreetName":
             MessageLookupByLibrary.simpleMessage("Enter Your Street name"),
@@ -204,7 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("What’s Your Location"),
         "WhatsYourLocationDes": MessageLookupByLibrary.simpleMessage(
             "We need to know your location in order to deliver your order"),
-        "WishList": MessageLookupByLibrary.simpleMessage("Wish-List"),
+        "WishList": MessageLookupByLibrary.simpleMessage("WishList"),
         "Yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "Youmightliketofititwith": MessageLookupByLibrary.simpleMessage(
             "You might like to fit it with"),

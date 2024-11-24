@@ -9,7 +9,7 @@
   "NoAccount": "Don't have an account?",
   "SignUp": "Sign Up",
   "ChooseRecovery": "Choose where to send you\nRecover Link",
-  "Email": "E-mail",
+  "Email": "E-Mail",
   "Phone": "Phone",
   "RecoverySent": "We have sent you a recover link to\nchange your password",
   "Resend": "Resend",
@@ -159,7 +159,22 @@
   "Nicetomeetyou": "Nice to meet you",
   "LoginSignup": "Login/Signup",
   "Promocode": "Promo code",
-  "MoreLikThis": "More Like This"
+  "MoreLikThis": "More Like This",
+  "Notifications": "Notifications",
+  "EditProfession": "Edit Profession",
+  "GetHelp": "Get Help",
+  "Terms&Conditions": "Terms & Conditions",
+  "Privacy Policy": "Privacy Policy",
+  "About App": "About App",
+  "Settings": "Settings",
+  "Checknewcourses": "Check Our Courses",
+  "Home": "Home",
+  "MyCourses": "My Courses",
+  "WishList": "WishList",
+  "Cart": "Cart",
+  "Profile": "Profile"
+
+
 
 
 }

@@ -25,9 +25,9 @@ class FavRepo{
     List<WishListModel> fav = [];
     try {
       Response response = await dio.get(NetworkConstant.getWishList);
-      for (var item in response.data["favorites"]) {
-        fav.add(WishListModel.fromMap(item));
-      }
+      response.data["favorites"].forEach((key,va){
+        fav.add(WishListModel.fromMap(va));
+      });
       return Right(fav);
     } catch (e) {
       log(e.toString());

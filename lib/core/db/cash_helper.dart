@@ -80,17 +80,22 @@ class CashHelper {
   static Future<String> getStringSecured({required Keys key}) async {
     const storage = FlutterSecureStorage();
     return await storage.read(key: key.name) ?? '';
-  } 
+  }
 
-  static clear() async {
-    final bool dark = CashHelper.getMode() ?? ThemeMode.system == ThemeMode.dark
-        ? true
-        : false;
-    final language = getString(key: Keys.language);
-    await sharedPreferences.clear();
-    await sharedPreferences.setBool(Keys.notFirstTime.name, true);
-    await sharedPreferences.setBool(Keys.darkMode.name, dark);
-    await sharedPreferences.setString(Keys.language.name, language ?? "ar");
+  static Future<void> clear() async {
+    try {
+      const storage = FlutterSecureStorage();
+      await storage.deleteAll();
+      final bool dark = getMode() ?? ThemeMode.system == ThemeMode.dark;
+      final language = getString(key: Keys.language);
+      await sharedPreferences.clear();
+      await sharedPreferences.setBool(Keys.notFirstTime.name, true);
+    //  await sharedPreferences.setBool(Keys.darkMode.name, dark);
+      await sharedPreferences.setString(Keys.language.name, language ?? "en");
+    } catch (e) {
+      // Handle any exceptions that might occur
+      debugPrint("Error clearing preferences: $e");
+    }
   }
 
 

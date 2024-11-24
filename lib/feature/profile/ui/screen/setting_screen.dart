@@ -1,4 +1,5 @@
 import 'package:education/core/helpers/extensions.dart';
+import 'package:education/feature/nav_bar/logic/nav_bar_cubit.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/db/cached_app.dart';
 import '../../../../core/db/cash_helper.dart';
@@ -56,11 +57,14 @@ class SettingScreen extends StatelessWidget {
                 textStyle: TextStyles.poppinsMedium20white,
                 verticalPadding: 3,
                 buttonHeight: 55,
-                onPressed: () async {
-                  DioFactory.removeTokenIntoHeaderAfterLogout();
-                  await  CashHelper.clear();
+                onPressed: () {
+                  CashHelper.clear();
                   CachedApp.clearCache();
-                  context.pushNamedAndRemoveUntil(Routes.loginScreen, predicate: (Route<dynamic> route) { return false; });
+                  DioFactory.removeTokenIntoHeaderAfterLogout();
+                 NavBarCubit.get(context).changeIndex(0);
+                  ProfileCubit.get(context).profileUser=null;
+                  context.pushNamedAndRemoveUntil(Routes.signUpScreen,
+                      predicate: (Route<dynamic> route) => false);
                 },
               )
             :SizedBox(),

@@ -8,6 +8,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
+import '../../../../core/sharedWidgets/network_image.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
@@ -56,10 +57,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 26.0.w),
                   child: Row(
                     children: [
-                      CircleAvatar(
-                        radius: 27,
-                        backgroundColor: Colors.grey.shade300,
-                        child: SvgPicture.asset('assets/img/Ellipse 10.svg'),
+                      AppCachedNetworkImage(image:ProfileCubit.get(context).profileUser!.profilePicture, width: 54, height: 54, radius: 200,
+
                       ),
                       horizontalSpace(17),
                       Column(
@@ -89,40 +88,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 ProfileCubit.get(context).token!=''?ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/notification (2).svg'),
-                  text: 'Notifications',
+                  text:S.of(context).Notifications,
                   onTap: () {},
                 ):SizedBox(),
 
                 ProfileCubit.get(context).token!=''?ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/edit.svg'),
-                  text: 'Edit Profession',
+                  text: S.of(context).EditProfession,
                   onTap: () {
                     context.pushNamed(Routes.accountInfoScreen);
                   },
                 ):SizedBox(),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/message-question.svg'),
-                  text: 'Get Help',
+                  text: S.of(context).GetHelp,
                   onTap: () {},
                 ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/terms  conditions.svg'),
-                  text: 'Terms & Conditions',
+                  text:S.of(context).TermsConditions,
                   onTap: () {},
                 ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/Frame (3).svg'),
-                  text: 'Privacy Policy',
+                  text:S.of(context).PrivacyPolicy,
                   onTap: () {},
                 ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/info-circle.svg'),
-                  text: 'About App',
+                  text: S.of(context).AboutApp,
                   onTap: () {},
                 ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/setting-2.svg'),
-                  text: 'Settings',
+                  text:S.of(context).Settings,
                   onTap: () {
                     context.pushNamed(Routes.settingsScreen);
                   },

@@ -85,11 +85,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          EnterYour(text: S.of(context).Name),
-                          verticalSpace(7),
+
+                          verticalSpace(16),
                           AppTextFormField(
+                            labeltext: S.of(context).Name ,
                             contentPadding: EdgeInsets.all(12.h),
-                            hintText: S.of(context).Name,
+                            hintText: "",
                             controller: _nameController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -98,12 +99,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return null;
                             },
                           ),
-                          verticalSpace(12),
-                          EnterYour(text: S.of(context).Email),
-                          verticalSpace(8),
+                          verticalSpace(16),
                           AppTextFormField(
+                            labeltext: S.of(context).Email,
                             contentPadding: EdgeInsets.all(12.h),
-                            hintText: S.of(context).Email,
+                            hintText:"",
                             controller: _emailController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -118,17 +118,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               return null;
                             },
                           ),
-                          verticalSpace(12),
-                          EnterYour(
-                            text: S.of(context).Password,
-                          ),
-                          verticalSpace(8),
+
+                          verticalSpace(16),
                           BlocBuilder<SignUpCubit, SignUpState>(
                             builder: (context, state) {
                               return AppTextFormField(
+                                labeltext:S.of(context).Password ,
                                 contentPadding: EdgeInsets.all(12.h),
                                 controller: _passwordController,
-                                hintText: S.of(context).Password,
+                                hintText:"",
                                 isObscureText:
                                     SignUpCubit.get(context).isObscureText1,
                                 suffixIcon: GestureDetector(
@@ -171,14 +169,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             },
                           ),
-                          verticalSpace(10),
-                          EnterYour(
-                            text: S.of(context).ConfirmPassword,
-                          ),
-                          verticalSpace(5),
+
+                          verticalSpace(16),
                           AppTextFormField(
+                            labeltext: S.of(context).ConfirmPassword,
                             controller: _PasswordConfirmController,
-                            hintText: S.of(context).ConfirmPassword,
+                            hintText: "",
                             borderRadius: 10.r,
                             backgroundColor: Colors.transparent,
                             contentPadding: EdgeInsets.only(left: 12,top:12,right: 12),
@@ -221,14 +217,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                               ),
                               Text(S.of(context).Agreewith,
-                                  style: TextStyles.poppinsRegular12LightGray),
-                              GestureDetector(
+                                  style: TextStyles.poppinsRegular12LightGray),GestureDetector(
                                 onTap: () async {
-                                  const url = 'https://clusters.mediazoneag.com/privacy-policy/';
-                                  if (await canLaunch(url)) {
-                                    await launch(url); // يفتح الرابط في المتصفح الافتراضي
+                                  final Uri url = Uri.parse('https://clusters.mediazoneag.com/privacy-policy/');
+                                  if (await launchUrl(url)) {
+                                    await launchUrl(url, mode: LaunchMode.externalApplication); // يفتح الرابط في المتصفح
                                   } else {
-                                    // إذا كان هناك مشكلة في فتح الرابط
                                     throw 'Could not launch $url';
                                   }
                                 },
@@ -242,7 +236,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ],
                           ),
-                          verticalSpace(27),
+                          verticalSpace(16),
                           AppTextButton(
                             horizontalPadding: 10,
                             verticalPadding: 10,
@@ -327,7 +321,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ],
                           ),
-                          verticalSpace(23),
+                          verticalSpace(16),
                           Center(
                             child: GestureDetector(
                               onTap: () {

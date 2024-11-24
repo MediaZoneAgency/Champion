@@ -1,4 +1,3 @@
-
 import 'package:education/core/routes/routes.dart';
 import 'package:education/feature/cart/logic/cart_cubit.dart';
 import 'package:education/feature/category/ui/screen/field_type_screen.dart';
@@ -76,10 +75,7 @@ class AppRouter {
       case Routes.navBarScreen:
         return MaterialPageRoute(
         builder: (_) =>
-               BlocProvider(
-                 create: (context) => getIt<NavBarCubit>(),
-                 child: const NavigationBarApp()
-               ),
+               const NavigationBarApp(),
          );
        case Routes.loginScreen:
          return MaterialPageRoute(
@@ -117,8 +113,8 @@ class AppRouter {
       case Routes.accountInfoScreen:
         return MaterialPageRoute(
           builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProductCubit>(),
+             BlocProvider.value(
+                value: getIt<ProfileCubit>(),
                 child: AccountInfoScreen(),
               ),
         );
@@ -177,25 +173,25 @@ class AppRouter {
       case Routes.profileScreen:
         return MaterialPageRoute(
           builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProfileCubit>(),
+              BlocProvider<ProfileCubit>.value(
+                value: getIt<ProfileCubit>(),
                 child: ProfileScreen(),
-              ),
+              )
         );
 
       case Routes.settingsScreen:
         return MaterialPageRoute(
           builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProfileCubit>(),
+             BlocProvider.value(
+                value: getIt<ProfileCubit>(),
                 child:const SettingScreen() ,
               ),
         );
       case Routes.deleteAccountScreen:
         return MaterialPageRoute(
           builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProfileCubit>(),
+             BlocProvider.value(
+                value: getIt<ProfileCubit>(),
                 child: DeleteAccountScreen(),
               ),
         );

@@ -27,7 +27,7 @@ class WishListView extends StatelessWidget {
               return WishlistWidget( FavCubit.get(context).wishList[index],
                 onremove: () {
                   FavCubit.get(context).removeFromWishList(
-                      FavCubit.get(context).wishList[index]);
+                      FavCubit.get(context).wishList[index])!;
                 },);
             },
             separatorBuilder: (BuildContext context, int index) {

@@ -26,13 +26,12 @@ class WishlistBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
- SizedBox(width:110.w),
+ Spacer(),
               Text(
                 '$username',
                 style: TextStyles.poppinsMedium18contantGray
               ),
-
-              SizedBox(width: 95.w),
+Spacer(),
               IconButton(
                 icon: SvgPicture.asset(
                   width: 30,

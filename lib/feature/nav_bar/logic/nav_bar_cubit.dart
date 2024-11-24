@@ -33,7 +33,6 @@ class NavBarCubit extends Cubit<NavBarState> {
   int selectedIndex = 0;
 
   List<Widget> screens = [
-    // Wrap HomeScreen with MultiBlocProvider to ensure all required cubits are provided
     MultiBlocProvider(
       providers: [
         BlocProvider<HomeCubit>.value(
@@ -48,23 +47,22 @@ class NavBarCubit extends Cubit<NavBarState> {
       ],
       child: const HomeScreen(),
     ),
-    // Other screens without the need for additional providers
     const CourseScreen(),
     BlocProvider<FavCubit>.value(
       value: getIt<FavCubit>(),
       child: const WishListScreen(),
     ),
-
     const CartScreen(),
-
     BlocProvider<ProfileCubit>.value(
-      value: getIt<ProfileCubit>(),
+      value:getIt<ProfileCubit>(),
       child: const ProfileScreen(),
     ),
   ];
 
   void changeIndex(int newIndex) {
-    selectedIndex = newIndex;
-    emit(ChangeIndex());
+    if (!isClosed) { // التحقق من أن الكيوبت ما زال متاحًا
+      selectedIndex = newIndex;
+      emit(ChangeIndex());
+    }
   }
 }

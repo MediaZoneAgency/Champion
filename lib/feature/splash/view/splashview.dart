@@ -69,7 +69,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
           position: slidingAnimation,
           child:Center(
             child: Image.asset(
-              'assets/img/Logo.png', // مسار الصورة الخاصة بك
+              'assets/img/Artboard 4.png', // مسار الصورة الخاصة بك
               fit: BoxFit.cover,
             ),
           ),

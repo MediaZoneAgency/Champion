@@ -150,10 +150,10 @@ class S {
     );
   }
 
-  /// `E-mail`
+  /// `E-Mail`
   String get Email {
     return Intl.message(
-      'E-mail',
+      'E-Mail',
       name: 'Email',
       desc: '',
       args: [],
@@ -810,10 +810,10 @@ class S {
     );
   }
 
-  /// `Wish-List`
+  /// `WishList`
   String get WishList {
     return Intl.message(
-      'Wish-List',
+      'WishList',
       name: 'WishList',
       desc: '',
       args: [],
@@ -1555,6 +1555,92 @@ class S {
     return Intl.message(
       'More Like This',
       name: 'MoreLikThis',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get Notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'Notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Profession`
+  String get EditProfession {
+    return Intl.message(
+      'Edit Profession',
+      name: 'EditProfession',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'Terms&Conditions' key
+
+  // skipped getter for the 'Privacy Policy' key
+
+  // skipped getter for the 'About App' key
+
+  /// `Settings`
+  String get Settings {
+    return Intl.message(
+      'Settings',
+      name: 'Settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check Our Courses`
+  String get Checknewcourses {
+    return Intl.message(
+      'Check Our Courses',
+      name: 'Checknewcourses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get Home {
+    return Intl.message(
+      'Home',
+      name: 'Home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Courses`
+  String get MyCourses {
+    return Intl.message(
+      'My Courses',
+      name: 'MyCourses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cart`
+  String get Cart {
+    return Intl.message(
+      'Cart',
+      name: 'Cart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get Profile {
+    return Intl.message(
+      'Profile',
+      name: 'Profile',
       desc: '',
       args: [],
     );

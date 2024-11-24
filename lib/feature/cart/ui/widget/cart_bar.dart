@@ -1,10 +1,12 @@
 
+import 'package:education/core/helpers/extensions.dart';
 import 'package:education/feature/home/ui/widget/ad_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/styles.dart';
 
 class CartBar extends StatelessWidget {
@@ -40,7 +42,7 @@ class CartBar extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                 ),
                 onPressed: () {
-                  // Notification button tapped
+                  context.pushNamed(Routes.searchScreen);
                 },
               ),
 

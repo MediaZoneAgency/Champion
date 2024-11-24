@@ -2,6 +2,7 @@ import 'package:education/core/helpers/extensions.dart';
 import 'package:education/core/sharedWidgets/network_image.dart';
 import 'package:education/feature/coursedetails/data/models/product_model.dart';
 import 'package:education/feature/coursedetails/ui/screen/details_screen.dart';
+import 'package:education/feature/wishlist/data/models/wish_list_model.dart';
 import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,9 +50,8 @@ class CourseWidget extends StatelessWidget {
                         top: 8,
                         right: 8,
                         child: GestureDetector(
-                            onTap: () {
-                              FavCubit.get(context).addToWishList(model: product);
-
+                            onTap: (){
+                              onTap();
                             },
                             child: SizedBox(
                               width: 44,

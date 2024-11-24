@@ -8,6 +8,7 @@ import '../../../core/helpers/extensions.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/theming/colors.dart';
 import '../../../core/theming/styles.dart';
+import '../../../generated/l10n.dart';
 import '../logic/nav_bar_cubit.dart';
 
 class NavigationBarApp extends StatefulWidget {
@@ -37,10 +38,13 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                 height: 75, // Adjust height
                 child: BottomNavigationBar(
                   iconSize: 24.sp,
-                  type: BottomNavigationBarType.fixed,
+                  type: BottomNavigationBarType.shifting ,
                   currentIndex: NavBarCubit.get(context).selectedIndex,
                   onTap: (index) {
-                    NavBarCubit.get(context).changeIndex(index);
+                    final cubit = NavBarCubit.get(context);
+                    if (!cubit.isClosed) { // تحقق من أن الكيوبت لم يُغلق
+                      cubit.changeIndex(index);
+                    }
                   },
                   selectedItemColor: ColorsManager.primaryColorLight,
                   unselectedItemColor: ColorsManager.darkGray,
@@ -52,55 +56,51 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                   ),
                   items: [
                     BottomNavigationBarItem(
-                      icon: SvgPicture.asset(
-                        'assets/img/home-2.svg',
-                        color: NavBarCubit.get(context).selectedIndex == 0
-                            ? ColorsManager.primaryColorLight
-                            : ColorsManager.LigGthGray,
+                      icon:NavBarCubit.get(context).selectedIndex == 0
+                      ?SvgPicture.asset(
+
+                        'assets/img/home-filled.svg',
+                      ):SvgPicture.asset(
+                        'assets/img/home-2.svg'
+                           ,
                       ),
-                      label: "Home",
+                      label:S.of(context).Home,
                     ),
                     BottomNavigationBarItem(
-                      icon: SvgPicture.asset(
+                      icon:NavBarCubit.get(context).selectedIndex == 1
+                      ?SvgPicture.asset(
+                        'assets/img/bookfilled.svg',
+                      ):SvgPicture.asset(
                         'assets/img/book.svg',
-                        color: NavBarCubit.get(context).selectedIndex == 1
-                            ? ColorsManager.primaryColorLight
-                            : ColorsManager.LigGthGray,
                       ),
-                      label: 'My Courses',
+                      label:S.of(context).MyCourses,
                     ),
                     BottomNavigationBarItem(
-                      icon: SvgPicture.asset(
+                      icon:  NavBarCubit.get(context).selectedIndex == 2
+                          ?SvgPicture.asset(
+                        'assets/img/heartfilled.svg',
+                      ):SvgPicture.asset(
                         'assets/img/heart.svg',
-                        color: NavBarCubit.get(context).selectedIndex == 2
-                            ? ColorsManager.primaryColorLight
-                            : ColorsManager.LigGthGray,
                       ),
-                      label: "WishList",
+                      label:S.of(context).WishList,
                     ),
                     BottomNavigationBarItem(
-                      icon: GestureDetector(
-                        onTap: () {
-                          // Navigate to the cart screen
-                          // context.pushNamed(Routes.cartScreen);
-                        },
-                        child: SvgPicture.asset(
-                          'assets/img/shopping-cart.svg',
-                          color: NavBarCubit.get(context).selectedIndex == 3
-                              ? ColorsManager.primaryColorLight
-                              : ColorsManager.LigGthGray,
-                        ),
+                      icon: NavBarCubit.get(context).selectedIndex == 3
+                      ?SvgPicture.asset(
+                        'assets/img/shopping-cartfilled.svg',
+                      ):SvgPicture.asset(
+                        'assets/img/shopping-cart.svg',
                       ),
-                      label: 'Cart',
+                      label: S.of(context).Cart,
                     ),
                     BottomNavigationBarItem(
-                      icon: SvgPicture.asset(
+                      icon: NavBarCubit.get(context).selectedIndex == 4
+                      ?SvgPicture.asset(
+                        'assets/img/profilefilled.svg',
+                      ):SvgPicture.asset(
                         'assets/img/profile.svg',
-                        color: NavBarCubit.get(context).selectedIndex == 4
-                            ? ColorsManager.primaryColorLight
-                            : ColorsManager.LigGthGray,
                       ),
-                      label: 'Profile',
+                      label: S.of(context).Profile,
                     ),
                   ],
                 ),

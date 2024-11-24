@@ -1,14 +1,18 @@
 import 'package:education/core/helpers/extensions.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
+import '../../../../core/sharedWidgets/network_image.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
+import '../../logic/profile_cubit.dart';
 
 
 class AccountInfoScreen extends StatelessWidget {
@@ -16,6 +20,8 @@ class AccountInfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<FavCubit ,FavState>(
+  builder: (context, state) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -26,12 +32,9 @@ class AccountInfoScreen extends StatelessWidget {
         children: [
 
           verticalSpace(15.h),
-          CircleAvatar(
-            radius: 40,
-            backgroundColor: Colors.grey.shade300,
-            child: SvgPicture.asset('assets/img/Ellipse 10.svg'),
-          ),
-      SizedBox(height: 16.h,),
+      AppCachedNetworkImage(image:ProfileCubit.get(context).profileUser!.profilePicture, width: 54, height: 54, radius: 200,),
+
+        SizedBox(height: 16.h,),
           Padding(
             padding: const EdgeInsets.only(left: 25, right: 25),
             child: Column(
@@ -54,7 +57,7 @@ class AccountInfoScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15,top: 10,bottom: 10),
                     child: Text(
-                      'Carin Osama',
+                      ProfileCubit.get(context).profileUser!.name!,
                       style: TextStyles.poppinsRegular16LightGray,
                     ),
                   ),
@@ -77,7 +80,7 @@ class AccountInfoScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15,top: 10,bottom: 10),
                     child: Text(
-                      'carinosama24@gmail.com',
+                      ProfileCubit.get(context).profileUser!.email!,
                       style: TextStyles.poppinsRegular16LightGray,
                     ),
                   ),
@@ -101,5 +104,7 @@ class AccountInfoScreen extends StatelessWidget {
       ),
 
     );
+  },
+);
   }
 }

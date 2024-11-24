@@ -28,11 +28,9 @@ class HomeBar extends StatelessWidget {
               Row(
                 children: [
 
-          CircleAvatar(
-                    radius: 20,
-                   child:   AppCachedNetworkImage(image:ProfileCubit.get(context).profileUser!.avatar, width: 24, height: 24, radius: 40,
+          AppCachedNetworkImage(image:ProfileCubit.get(context).profileUser!.profilePicture, width: 40, height: 40, radius: 200,
 
-                    ),),
+           ),
 
                   const SizedBox(width: 11),
                   Column(

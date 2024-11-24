@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/db/cached_app.dart';
 import '../../../../core/error/error_model.dart';
 import '../../../coursedetails/data/models/product_model.dart';
 import '../../data/models/wish_list_model.dart';
@@ -20,26 +23,7 @@ class FavCubit extends Cubit<FavState> {
   List<int> favorite = [];
 
   List<WishListModel> wishList = [
-    WishListModel(
-        name: "Product 1",
-        price: "100",
-        image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s'),
-    WishListModel(
-        name: "Product 2",
-        price: "200",
-        image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s'),
-    WishListModel(
-        name: "Product 3",
-        price: "300",
-        image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s'),
-    WishListModel(
-        name: "Product 3",
-        price: "300",
-        image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s'),
+
   ];
 
   Future<void> addToWishList({required ProductModel model}) async {
@@ -72,28 +56,46 @@ class FavCubit extends Cubit<FavState> {
     final List<ConnectivityResult> connectivityResult =
     await (Connectivity().checkConnectivity());
     if (!connectivityResult.contains(ConnectivityResult.none)) {
-      final response = await favRepo.getWishList();
-      response.fold((l) => emit(GetWishListFailure(l)), (r) {
+      try {
+        wishList = CachedApp.getCachedData(CachedDataType.wishlist.name);
+        for (var item in wishList) {
+          favorite.add(item.id!);
+        }
+        emit(GetWishListSuccess());
+      } catch (e) {
+        emit (GetWishListLoading());
+        final response = await favRepo.getWishList();
+      {
+      response.fold((l)
+      => emit(GetWishListFailure(l)), (r) {
         favorite = [];
         wishList = r;
+        CachedApp.saveData(wishList, CachedDataType.wishlist.name);
         for (var item in wishList) {
           favorite.add(item.id!);
         }
         emit(GetWishListSuccess());
       });
-    } else {
+    }  {
       emit(
           GetWishListFailure(ApiErrorModel(message: 'No internet connection')));
     }
-  }
+  }}}
 
   Future<void> removeFromWishList( WishListModel model) async {
     emit(RemoveFromWishListLoading());
     final List<ConnectivityResult> connectivityResult =
     await (Connectivity().checkConnectivity());
     if (!connectivityResult.contains(ConnectivityResult.none)) {
-      wishList.removeWhere((element) => element.id == model.id);
-      favorite.removeWhere((element) => element == model.id);
+      wishList.removeWhere((element) {
+        log("${element.id} == ${model.id}");
+     return   element.id == model.id;
+      });
+      favorite.removeWhere((element) {
+        log("${element} == ${model.id}");
+       return element == model.id;
+      });
+      emit(RemoveFromWishListSuccess());
       final response = await favRepo.removeFromWishList(productId: model.id!);
       response.fold((error) {
         wishList.add(model);

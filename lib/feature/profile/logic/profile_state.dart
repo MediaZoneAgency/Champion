@@ -45,3 +45,11 @@ final class EditProfileFailure extends ProfileState {
   EditProfileFailure( this.error);
 }
 
+class TokenNotFound extends ProfileState {}
+
+class TokenError extends ProfileState {
+  final String message;
+
+  TokenError(this.message);
+}
+

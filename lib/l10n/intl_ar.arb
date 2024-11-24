@@ -146,5 +146,18 @@
   "continueasguest": "المتابعة كضيف",
   "Nicetomeetyou": "تشرفنا بمعرفتك",
   "LoginSignup": "تسجيل الدخول/إنشاء حساب",
-  "Promocode": "رمز الخصم"
+  "Promocode": "رمز الخصم",
+  "Notifications": "الإشعارات",
+  "EditProfession": "تعديل المهنة",
+  "GetHelp": "الحصول على مساعدة",
+  "Terms&Conditions": "الشروط والأحكام",
+  "Privacy Policy": "سياسة الخصوصية",
+  "About App": "عن التطبيق",
+  "Settings": "الإعدادات",
+  "Checknewcourses": "تصفح دوراتنا",
+  "Home": "الرئيسية",
+  "MyCourses": "دوراتي",
+  "WishList": "قائمة الرغبات",
+  "Cart": "عربة التسوق",
+  "Profile": "الملف الشخصي"
 }
