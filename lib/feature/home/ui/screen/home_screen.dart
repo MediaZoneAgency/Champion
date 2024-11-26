@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:education/core/helpers/extensions.dart';
 import 'package:education/feature/home/logic/home_cubit.dart';
 import 'package:education/feature/home/logic/product_cubit.dart';
@@ -16,7 +15,6 @@ import '../../../../generated/l10n.dart';
 import '../../../profile/logic/profile_cubit.dart';
 import '../../../profile/ui/widget/ui_loading_profile.dart';
 import '../widget/ad_container.dart';
-import '../widget/course_widget.dart';
 import '../widget/courses_list_view.dart';
 import '../widget/fields_list_view.dart';
 import '../widget/home_bar.dart';
@@ -154,8 +152,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(S.of(context).Popularcourses,
                               style: TextStyles.poppinsMedium18contantGray),
                          Spacer(),
-                          Text(S.of(context).Seeall,
-                              style: TextStyles.poppinsRegular14babyblue),
+                          GestureDetector(
+                            onTap: (){
+                              context.pushNamed(Routes.girdviewScreen);
+                            },
+                            child: Text(S.of(context).Seeall,
+                                style: TextStyles.poppinsRegular14babyblue),
+                          ),
                         ],
                       ),
                     ),
@@ -185,8 +188,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text('For you',
                               style: TextStyles.poppinsMedium18contantGray),
                           Spacer(),
-                          Text(S.of(context).Seeall,
-                              style: TextStyles.poppinsRegular14babyblue),
+                          GestureDetector(
+                            onTap: (){
+                              context.pushNamed(Routes.girdviewScreen);
+                            },
+                            child: Text(S.of(context).Seeall,
+                                style: TextStyles.poppinsRegular14babyblue),
+                          ),
                         ],
                       ),
                     ),
@@ -207,8 +215,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           }
                           return Container();
                         }),
-
-
 
                   ],
                 ),

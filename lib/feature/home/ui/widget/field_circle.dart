@@ -1,7 +1,9 @@
+import 'package:education/core/helpers/extensions.dart';
 import 'package:education/core/sharedWidgets/network_image.dart';
 import 'package:education/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/styles.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -14,22 +16,28 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            color: ColorsManager.BabyBlue, // لون الخلفية الدائري
-            shape: BoxShape.circle,
+        GestureDetector(
+          onTap: () {
+            context.pushNamed(Routes.girdviewScreen);
+          },
+          child: Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              color: ColorsManager.BabyBlue, // لون الخلفية الدائري
+              shape: BoxShape.circle,
+            ),
+            child: AppCachedNetworkImage(
+              image: icon,
+              width: 24,
+              height: 24,
+              radius: 40,
+            ),
           ),
-          child:
-
-      AppCachedNetworkImage(image: icon, width: 24, height: 24, radius: 40,
-            
-          )
         ),
         SizedBox(height: 8),
         Text(
-          label,
+         label,
           style: TextStyles.poppinsMedium12contantGray,
         ),
       ],

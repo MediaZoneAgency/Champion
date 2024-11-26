@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:education/core/network/network_constant.dart';
 import '../../../../core/error/error_model.dart';
 import '../../../../core/error/failure.dart';
+import '../../../coursedetails/data/models/product_model.dart';
 import '../models/wish_list_model.dart';
 
 class FavRepo{
@@ -21,13 +22,16 @@ class FavRepo{
     }
   }
 
-  Future<Either<ApiErrorModel, List<WishListModel>>> getWishList() async {
-    List<WishListModel> fav = [];
+  Future<Either<ApiErrorModel, List<ProductModel>>> getWishList() async {
+    List<ProductModel> fav = [];
     try {
       Response response = await dio.get(NetworkConstant.getWishList);
-      response.data["favorites"].forEach((key,va){
-        fav.add(WishListModel.fromMap(va));
-      });
+      // response.data["favorites"].forEach((key,va){
+      //   fav.add(ProductModel.fromMap(va));
+      // });
+      for (var item in response.data["favorites"]) {
+        fav.add(ProductModel.fromMap(item));
+      }
       return Right(fav);
     } catch (e) {
       log(e.toString());

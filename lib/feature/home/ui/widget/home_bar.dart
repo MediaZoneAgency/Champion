@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/network_image.dart';
 import '../../../../core/theming/styles.dart';
@@ -19,7 +20,7 @@ class HomeBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 20.h,),
+      padding:  EdgeInsets.only(top: 30.h,left: 15.w,right: 15.w),
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           return Column(
@@ -32,7 +33,7 @@ class HomeBar extends StatelessWidget {
 
            ),
 
-                  const SizedBox(width: 11),
+                  horizontalSpace(11.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -71,10 +72,7 @@ class HomeBar extends StatelessWidget {
                     },
                   ),
 
-
                 ],),
-              SizedBox(height: 8.h,),
-
             ],
           );
         },

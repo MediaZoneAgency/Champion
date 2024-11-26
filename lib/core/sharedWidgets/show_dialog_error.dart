@@ -24,7 +24,7 @@ class ShowDialogError {
             style: const TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
-              color: ColorsManager.darkBlack, // Ensure text color contrasts with background
+              color: ColorsManager.primaryColorLight, // Ensure text color contrasts with background
             ),
           ),
           content: Text(
@@ -32,7 +32,7 @@ class ShowDialogError {
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 20,
-              color: ColorsManager.darkBlack, // Ensure text color contrasts with background
+              color: ColorsManager.primaryColorLight, // Ensure text color contrasts with background
             ),
           ),
           actions: [

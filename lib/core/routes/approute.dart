@@ -1,5 +1,6 @@
 import 'package:education/core/routes/routes.dart';
 import 'package:education/feature/cart/logic/cart_cubit.dart';
+import 'package:education/feature/category/ui/screen/categories.dart';
 import 'package:education/feature/category/ui/screen/field_type_screen.dart';
 import 'package:education/feature/category/ui/screen/popular_fields.dart';
 import 'package:education/feature/coursedetails/data/models/product_model.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../feature/cart/ui/screen/cart_screen.dart';
 import '../../feature/cart/ui/screen/checkout_screen.dart';
+import '../../feature/category/ui/screen/courses_girdview.dart';
 import '../../feature/coursedetails/ui/screen/details_screen.dart';
 import '../../feature/home/logic/home_cubit.dart';
 import '../../feature/home/ui/screen/home_screen.dart';
@@ -71,7 +73,29 @@ class AppRouter {
           ),
         ], child: const HomeScreen()),
          );
+      case Routes.categoriesScreen:
+        return MaterialPageRoute(
+            builder: (_)=>
+                BlocProvider(
+                  create: (context) => getIt<HomeCubit>(),
+                  child:CategoriesScreen(),
+                ),
+        );
+      case Routes.girdviewScreen:
+        return MaterialPageRoute(
+          builder: (_)=>
+              BlocProvider(
+                create: (context) => getIt<ProductCubit>(),
+                child: CoursesGirdview(),
+              ),
+        );
 
+        // case Routes.girdviewScreen
+        // return MaterialPageRoute(
+        //     builder:(_)=>
+        //         BlocProvider.value(value:getIt<ProductCubit>,
+        //         child: CoursesGirdview(),)
+        // );
       case Routes.navBarScreen:
         return MaterialPageRoute(
         builder: (_) =>
@@ -121,8 +145,8 @@ class AppRouter {
       case Routes.editAccountInfoScreen:
         return MaterialPageRoute(
           builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProductCubit>(),
+              BlocProvider.value(
+                value: getIt<ProfileCubit>(),
                 child: EditAccountInfoScreen(),
               ),
         );

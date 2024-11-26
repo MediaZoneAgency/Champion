@@ -128,14 +128,15 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  Future<void> editProfile(EditProfileModel editProfileModel) async {
+  Future<void> editProfile(ProfileModel profile) async {
     emit(EditProfileLoading());
     final List<ConnectivityResult> connectivityResult =
         await (Connectivity().checkConnectivity());
     if (!connectivityResult.contains(ConnectivityResult.none)) {
       final response =
-          await profileRepo.featchProfileNew(editProfile: editProfileModel);
-      response.fold((l) => emit(EditProfileFailure(l)), (r) {
+          await profileRepo.featchProfileNew(editProfile: profile);
+      response.fold((l) => emit(EditProfileFailure(l)), (r) async{
+      profileUser=r;
         emit(EditProfileSuccess(editProfileResponse: r));
       });
     } else {
@@ -144,4 +145,20 @@ class ProfileCubit extends Cubit<ProfileState> {
           EditProfileFailure(ApiErrorModel(message: 'No internet connection')));
     }
   }
+  // Future<void> editProfileData(ProfileModel profile) async {
+  //   emit(EditProfileDataLoading());
+  //
+  //   final result = await profileRepoImpl.editProfile(profile);
+  //   result.fold(
+  //         (failure) {
+  //       emit(EditProfileDataError(failure));
+  //     },
+  //         (response) async {
+  //
+  //       profile = response;
+  //       emit(EditProfileDataSuccess());
+  //       getProfileData();
+  //     },
+  //   );
+  // }
 }

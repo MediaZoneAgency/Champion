@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../../coursedetails/data/models/product_model.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class WishListModel {
   final int? id;
@@ -80,4 +82,15 @@ class WishListModel {
       price.hashCode ^
       image.hashCode;
   }
+
+
+ProductModel toWishModel() {
+
+  return ProductModel(
+        id: id!
+        ,name: name!
+        ,description: description
+        ,price: price!
+  );
+}
 }

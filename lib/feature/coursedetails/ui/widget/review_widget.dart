@@ -37,7 +37,7 @@ class ReviewWidget extends StatelessWidget {
 
             ]
           ),
-         SizedBox(width: 110.w,),
+      Spacer(),
          Text(
              "1 Month ago",
              style: TextStyles.poppinsRegular12LightGray

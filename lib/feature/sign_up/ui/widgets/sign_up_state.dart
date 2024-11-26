@@ -27,8 +27,8 @@ class SignUpStateUi extends StatelessWidget {
               ),
             ),
           );
-        } else if (state is SignUpSuccess &&
-           SignUpCubit.get(context).isChecked == true){
+        } else if (state is SignUpSuccess
+        ){
           Navigator.pop(context);
           context.pushNamedAndRemoveUntil(
             Routes.navBarScreen,

@@ -66,56 +66,56 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
-  Future<void> addToWishList({required int productId}) async {
-    emit(AddToWishListLoading());
-    final List<ConnectivityResult> connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (!connectivityResult.contains(ConnectivityResult.none)) {
-      final response = await _homeRepo.addToWishList(productId: productId);
-      response.fold((l) => emit(AddToWishListFailure(l)), (r) {
-        emit(AddToWishListSuccess());
-      });
-    } else {
-      emit(AddToWishListFailure(
-          ApiErrorModel(message: 'No internet connection')));
-    }
-  }
+  // Future<void> addToWishList({required int productId}) async {
+  //   emit(AddToWishListLoading());
+  //   final List<ConnectivityResult> connectivityResult =
+  //       await (Connectivity().checkConnectivity());
+  //   if (!connectivityResult.contains(ConnectivityResult.none)) {
+  //     final response = await _homeRepo.addToWishList(productId: productId);
+  //     response.fold((l) => emit(AddToWishListFailure(l)), (r) {
+  //       emit(AddToWishListSuccess());
+  //     });
+  //   } else {
+  //     emit(AddToWishListFailure(
+  //         ApiErrorModel(message: 'No internet connection')));
+  //   }
+  // }
 
-  Future<void> getWishList() async {
-    emit(GetWishListLoading());
-    final List<ConnectivityResult> connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (!connectivityResult.contains(ConnectivityResult.none)) {
-      final response = await _homeRepo.getWishList();
-      response.fold((l) => emit(GetWishListFailure(l)), (r) {
-        favorite = [];
-        wishList = r;
-        for (var item in wishList) {
-          favorite.add(item.id!);
-        }
-        //  log(favorite.toString());
-        emit(GetWishListSuccess());
-      });
-    } else {
-      emit(
-          GetWishListFailure(ApiErrorModel(message: 'No internet connection')));
-    }
-  }
-
-  Future<void> removeFromWishList({required int productId}) async {
-    emit(RemoveFromWishListLoading());
-    final List<ConnectivityResult> connectivityResult =
-        await (Connectivity().checkConnectivity());
-    if (!connectivityResult.contains(ConnectivityResult.none)) {
-      final response = await _homeRepo.removeFromWishList(productId: productId);
-      response.fold((error) {
-        emit(RemoveFromWishListFailure(error));
-      }, (profileData) {
-        emit(RemoveFromWishListSuccess());
-      });
-    } else {
-      emit(RemoveFromWishListFailure(
-          ApiErrorModel(message: 'No internet connection')));
-    }
-  }
+  // Future<void> getWishList() async {
+  //   emit(GetWishListLoading());
+  //   final List<ConnectivityResult> connectivityResult =
+  //       await (Connectivity().checkConnectivity());
+  //   if (!connectivityResult.contains(ConnectivityResult.none)) {
+  //     final response = await _homeRepo.getWishList();
+  //     response.fold((l) => emit(GetWishListFailure(l)), (r) {
+  //       favorite = [];
+  //       wishList = r;
+  //       for (var item in wishList) {
+  //         favorite.add(item.id!);
+  //       }
+  //       //  log(favorite.toString());
+  //       emit(GetWishListSuccess());
+  //     });
+  //   } else {
+  //     emit(
+  //         GetWishListFailure(ApiErrorModel(message: 'No internet connection')));
+  //   }
+  // }
+  //
+  // Future<void> removeFromWishList({required int productId}) async {
+  //   emit(RemoveFromWishListLoading());
+  //   final List<ConnectivityResult> connectivityResult =
+  //       await (Connectivity().checkConnectivity());
+  //   if (!connectivityResult.contains(ConnectivityResult.none)) {
+  //     final response = await _homeRepo.removeFromWishList(productId: productId);
+  //     response.fold((error) {
+  //       emit(RemoveFromWishListFailure(error));
+  //     }, (profileData) {
+  //       emit(RemoveFromWishListSuccess());
+  //     });
+  //   } else {
+  //     emit(RemoveFromWishListFailure(
+  //         ApiErrorModel(message: 'No internet connection')));
+  //   }
+  // }
 }

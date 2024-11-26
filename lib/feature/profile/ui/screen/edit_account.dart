@@ -1,4 +1,6 @@
+import 'package:education/feature/profile/logic/profile_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,6 +10,7 @@ import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
+import '../../data/models/profile_model.dart';
 
 
 class EditAccountInfoScreen extends StatefulWidget {
@@ -59,17 +62,22 @@ class _EditAccountInfoScreenState extends State<EditAccountInfoScreen> {
                 SizedBox(height: 8.h,),
                 AppTextFormField(hintText: S.of(context).Email,controller: _emailController,),
                 SizedBox(height: 34,),
-                AppTextButton(
+                BlocBuilder<ProfileCubit,ProfileState>(
+  builder: (context, state) {
+    return AppTextButton(
                   borderRadius: 10,
                   buttonHeight: 58.h,
                   buttonWidth: 327.w,
                   buttonText: S.of(context).Done,
                   textStyle: TextStyles.poppinsMedium20white,
                   onPressed: ()  {
-                    // Check if the form is valid before proceeding
+                   ProfileCubit.get(context).editProfile(
+                       ProfileModel(name:  _nameController.text,email:  _emailController.text,));
 
                   },
-                ),
+                );
+  },
+),
               ],
             ),
           ),verticalSpace(51.h),

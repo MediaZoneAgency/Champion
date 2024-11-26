@@ -11,6 +11,7 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
+import '../../../../core/sharedWidgets/show_dialog_error.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
 import '../widgets/enter_your.dart';
@@ -247,13 +248,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             textStyle: TextStyles.poppinsMedium20white,
                             onPressed: () async {
                               if (formKey.currentState!.validate()) {
-                                await SignUpCubit.get(context).signUp(
-                                  RegisterRequestModel(
-                                      username: _nameController.text,
-                                      email: _emailController.text,
-                                      password: _passwordController.text,
-                                      phoneNumber: '01060938188'),
-                                );
+                                if ( SignUpCubit.get(context).isChecked == true){
+                                  await SignUpCubit.get(context).signUp(
+                                    RegisterRequestModel(
+                                        username: _nameController.text,
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                        phoneNumber: '01060938188'),
+                                  );
+                                }
+                                ShowDialogError.showErrorDialog(context, 'Error', "check the terms ana conditions");
                               }
                             },
                           ),

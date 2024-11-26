@@ -1,8 +1,10 @@
 
+import 'package:education/core/helpers/extensions.dart';
 import 'package:education/feature/coursedetails/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 
@@ -46,13 +48,24 @@ final ProductModel product;
                   ),
                   child: Stack(
                     children: [
+                      Positioned(top: 10,
+                          left: 10,
+                          child: GestureDetector(
+                            onTap: () {
 
+                              context.pushNamed(Routes.cartScreen);
+                            },
+                            child: SvgPicture.asset(
+                              'assets/img/cart-circle.svg',
+                            ),
+                          ), ),
                       Positioned(
                       top: 10,
                       right: 10,
                       child: GestureDetector(
                         onTap: () {
 
+                          context.pushNamed(Routes.wishListScreen);
                         },
                         child: SvgPicture.asset(
                           'assets/img/heart-circle (4).svg',

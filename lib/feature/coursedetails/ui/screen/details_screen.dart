@@ -12,7 +12,6 @@ import '../../../home/ui/widget/courses_list_view.dart';
 import '../widget/course_section.dart';
 import '../widget/details_widget.dart';
 import '../widget/review_widget.dart';
-
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen(this.product, {super.key,});
 
@@ -126,8 +125,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   SizedBox(height: 16.h,),
                   CoursesListView(),
                   SizedBox(height: 24.h,),
-            
-            
+
                   SizedBox(height: 20.h),
                 ],
               ),

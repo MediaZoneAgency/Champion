@@ -22,7 +22,7 @@ class FavCubit extends Cubit<FavState> {
 
   List<int> favorite = [];
 
-  List<WishListModel> wishList = [
+  List<ProductModel> wishList = [
 
   ];
 
@@ -30,11 +30,7 @@ class FavCubit extends Cubit<FavState> {
     final List<ConnectivityResult> connectivityResult =
     await (Connectivity().checkConnectivity());
     if (!connectivityResult.contains(ConnectivityResult.none)) {
-      wishList.add(WishListModel(
-          name: model.name,
-          price: model.price,
-          image: model.images![0].src,
-          id: model.id));
+      wishList.add(model);
       favorite.add(model.id!);
       emit(AddToWishListLoading());
       final response = await favRepo.addToWishList(productId: model.id!);
@@ -82,7 +78,7 @@ class FavCubit extends Cubit<FavState> {
     }
   }}}
 
-  Future<void> removeFromWishList( WishListModel model) async {
+  Future<void> removeFromWishList( ProductModel model) async {
     emit(RemoveFromWishListLoading());
     final List<ConnectivityResult> connectivityResult =
     await (Connectivity().checkConnectivity());

@@ -6,7 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../../core/theming/colors.dart';
+import '../../../profile/logic/profile_cubit.dart';
 import 'field_circle.dart';
 
 class CoursesListView extends StatelessWidget {
@@ -29,22 +32,26 @@ class CoursesListView extends StatelessWidget {
                 return CourseWidget(
                   ProductCubit.get(context).productModel[index],
                   onTap: () {
+                    if (ProfileCubit.get(context).profileUser != null){
                     if( FavCubit.get(context).favorite.contains(
                         ProductCubit.get(context).productModel[index].id)
                     ){
                       FavCubit.get(context).removeFromWishList(
-                          WishListModel(
-                              id:   ProductCubit.get(context).productModel[index].id,
-                              name:   ProductCubit.get(context).productModel[index].name,
-                              description:   ProductCubit.get(context).productModel[index].description,
-                              price:   ProductCubit.get(context).productModel[index].price,
-                              image:   ProductCubit.get(context).productModel[index].images![0].src!
-                          )
+                       ProductCubit.get(context).productModel[index]
                       );
                     }else{
                       FavCubit.get(context).addToWishList(model: ProductCubit
                           .get(context)
                           .productModel[index]);
+                    }}else{
+                      Fluttertoast.showToast(
+                        msg: "You Don't have account",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: ColorsManager.primaryColorLight,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
                     }
                   },
                   isFavorite: FavCubit.get(context).favorite.contains(

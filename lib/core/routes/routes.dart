@@ -25,6 +25,8 @@ static const String deleteAccountScreen = '/deleteAccountScreen';
 static const String checkoutScreen = '/checkoutScreen';
 static const String searchScreen='/searchScreen';
 static const String resultScreen='/resultScreen';
+static const String categoriesScreen='/categoriesScreen';
+static const String girdviewScreen='/girdviewScreen';
 
 
 }

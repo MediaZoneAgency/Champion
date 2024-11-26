@@ -39,14 +39,30 @@ class ProfileRepo {
       return Left(ApiErrorHandler.handle(e));
     }
   }
-  Future<Either<ApiErrorModel, EditProfileResponse>> featchProfileNew(
-      {required EditProfileModel editProfile}) async {
+  Future<Either<ApiErrorModel, ProfileModel>> featchProfileNew(
+      {required ProfileModel editProfile }) async {
     try {
       Response response =
-      await _dio.post(NetworkConstant.profile, data: editProfile.toMap());
-      return Right(EditProfileResponse.fromMap(response.data));
+      await _dio.put(NetworkConstant.profile, data: editProfile.toMap());
+
+      return Right(ProfileModel.fromMap(response.data));
     } catch (e) {
       return Left(ApiErrorHandler.handle(e));
     }
   }
+  // Future<Either<ApiErrorModel, ProfileModel>> editProfile(ProfileModel profile) async {
+  //
+  //
+  //   try {
+  //     var data = await apiService.put(endPoint: 'wp/v2/users/me', data: profile);
+  //
+  //     profile = ProfileModel.fromJson(data);
+  //
+  //
+  //     return right(profile);
+  //   } catch (e) {
+  //     log(e.toString());
+  //     return left(ApiErrorHandler.handle(e));
+  //   }
+  // }
 }

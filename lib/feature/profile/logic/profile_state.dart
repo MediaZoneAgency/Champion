@@ -36,7 +36,7 @@ final class  DeleteAccountFailure extends ProfileState {
 final class EditProfileLoading extends ProfileState {}
 
 final class EditProfileSuccess extends ProfileState {
-  final  EditProfileResponse editProfileResponse;
+  final  ProfileModel editProfileResponse;
   EditProfileSuccess({required this.editProfileResponse});
 }
 
