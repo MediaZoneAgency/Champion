@@ -13,8 +13,7 @@ class WishListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FavCubit, FavState>(
       builder: (context, state) {
-        return SizedBox(
-          height: 250.h,
+        return Expanded(
           child: ListView.separated(
             itemCount: FavCubit.get(context).wishList.length,
             scrollDirection: Axis.vertical,
@@ -28,17 +27,17 @@ class WishListView extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) {
               return Column(children: [
               SizedBox(height: 10.h,),
-        Divider(
-        color: ColorsManager.LigGthGray,
-        indent: 30,
-        endIndent: 30,
-        thickness: 0.3,
-        ),
-        SizedBox(height: 10.h,),
-
-
-        ]);},
-
+                  Divider(
+                  color: ColorsManager.LigGthGray,
+                  indent: 30,
+                  endIndent: 30,
+                  thickness: 0.3,
+                  ),
+                  SizedBox(height: 10.h,),
+          
+          
+                  ]);},
+          
           ),
         );
       },

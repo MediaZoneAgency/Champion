@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
@@ -14,6 +15,7 @@ import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/sharedWidgets/show_dialog_error.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
+import '../../../nav_bar/logic/nav_bar_cubit.dart';
 import '../widgets/enter_your.dart';
 import '../widgets/sign_up_state.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -194,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 return S.of(context).passwordcannotbeempty;
                               } else if (_passwordController.text !=
                                   _PasswordConfirmController.text) {
-                                return S.of(context).passwordcannotbeempty;
+                                return S.of(context).Passwordsdontmatch;
                               }
                               return null;
                             },
@@ -257,7 +259,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         phoneNumber: '01060938188'),
                                   );
                                 }
-                                ShowDialogError.showErrorDialog(context, 'Error', "check the terms ana conditions");
+                                Fluttertoast.showToast(
+                                  msg: "Check the terms and conditions",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  backgroundColor: ColorsManager.primaryColorLight,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0,
+                                );
                               }
                             },
                           ),
@@ -329,6 +338,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Center(
                             child: GestureDetector(
                               onTap: () {
+                                NavBarCubit.get(context).changeIndex(0);
                                 Navigator.pushNamed(
                                     context, Routes.navBarScreen);
                               },

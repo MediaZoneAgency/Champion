@@ -4,38 +4,38 @@ import 'dart:convert';
 class ResetPasswordModel {
   String? password;
   String? email;
-  String? otp;
+  String? secretKey;
   ResetPasswordModel({
     this.password,
     this.email,
-    this.otp,
+    this.secretKey,
   });
 
   ResetPasswordModel copyWith({
     String? password,
     String? email,
-    String? otp,
+    String? secretKey,
   }) {
     return ResetPasswordModel(
       password: password ?? this.password,
       email: email ?? this.email,
-      otp: otp ?? this.otp,
+      secretKey: secretKey ?? this.secretKey,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'password': password,
+      'new_password': password,
       'email': email,
-      'otp': otp,
+      'secret_key': secretKey,
     };
   }
 
   factory ResetPasswordModel.fromMap(Map<String, dynamic> map) {
     return ResetPasswordModel(
-      password: map['password'] != null ? map['password'] as String : null,
+      password: map['new_password'] != null ? map['new_password'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
-      otp: map['otp'] != null ? map['otp'] as String : null,
+      secretKey: map['secret_key'] != null ? map['secret_key'] as String : null,
     );
   }
 
@@ -44,19 +44,18 @@ class ResetPasswordModel {
   factory ResetPasswordModel.fromJson(String source) => ResetPasswordModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'ResetPasswordModel(password: $password, email: $email, otp: $otp)';
+  String toString() => 'ResetPasswordModel(new_password: $password, email: $email, secret_key: $secretKey)';
 
   @override
   bool operator ==(covariant ResetPasswordModel other) {
     if (identical(this, other)) return true;
-  
-    return 
+
+    return
       other.password == password &&
-      other.email == email &&
-      other.otp == otp;
+          other.email == email &&
+          other.secretKey == secretKey;
   }
 
   @override
-  int get hashCode => password.hashCode ^ email.hashCode ^ otp.hashCode;
+  int get hashCode => password.hashCode ^ email.hashCode ^ secretKey.hashCode;
 }
- 

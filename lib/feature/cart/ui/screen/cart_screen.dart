@@ -94,8 +94,7 @@ class _CartScreenState extends State<CartScreen> {
                   GestureDetector(
                     onTap: (){
                       NavBarCubit.get(context).changeIndex(0);
-                      context.pushNamedAndRemoveUntil(Routes.navBarScreen,
-                          predicate: (Route<dynamic> route) => false);
+
                     },
                     child: Container(
                       height: 40.h,

@@ -75,7 +75,7 @@ class CartWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        product.productModel.salePrice.toString(),
+                        product.productModel.price.toString(),
                         style: TextStyles.poppinsMedium20Blue.copyWith(fontSize: 18),
                       ),
                       SizedBox(width: 4.h),
@@ -83,7 +83,7 @@ class CartWidget extends StatelessWidget {
                         children: [
                           SvgPicture.asset('assets/img/star.svg'),
                           Text(
-                            product.productModel.ratingCount.toString(),
+                            product.productModel.price.toString(),
                             style: TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16),
                           ),
                         ],

@@ -44,7 +44,7 @@ class CategoryListView extends StatelessWidget {
                                   .src!
                               : "https://img.freepik.com/free-photo/abstract-surface-textures-white-concrete-stone-wall_74190-8189.jpg",
                           label:
-                              HomeCubit.get(context).categoryModel[index].name!,
+                              HomeCubit.get(context).categoryModel[index].name!, id:  HomeCubit.get(context).categoryModel[index].id!,
                         ),
                       );
                     },

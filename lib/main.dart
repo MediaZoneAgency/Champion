@@ -80,7 +80,7 @@ class EducationApp extends StatelessWidget {
               navigatorKey: NavigationService.navigatorKey,
               locale: currentLocale,
               theme: ThemeData(),
-              title: 'Broker',
+              title: 'Cluster',
               debugShowCheckedModeBanner: false,
               supportedLocales: const [
                 Locale('en'),

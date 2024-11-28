@@ -21,81 +21,88 @@ final ProductModel product;
  final Function()? onremove;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:EdgeInsets.only(left: 15.w, ),
-      child:
-          Row(children: [
+    return Container(
+      width: 375.w,
+      child: Padding(
+        padding:EdgeInsets.only(left: 10.w,right: 10.w,),
+        child:
+            Row(children: [
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, Routes.DetailsScreen,arguments: product) ;
+                },
+                  child: AppCachedNetworkImage
+                    (image:product.images![0].src!,
+                    width: 70.w,
+                    height: 70.h,
+                    radius: 5,)),
 
-            GestureDetector(
-              onTap: (){
-                Navigator.pushNamed(context, Routes.DetailsScreen,arguments: product) ;
-              },
-                child: AppCachedNetworkImage
-                  (image:product.images![0].src!,
-                  width: 70.w,
-                  height: 70.h,
-                  radius: 5,)),
-
-            SizedBox(width: 13.w,),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                     product.name.toString(),
-                      style: TextStyles.poppinsMedium16DarkGray.copyWith(fontSize: 14)
-                  ),
-                  SizedBox(height: 4.h,),
-                  SizedBox(
-                    width: 241,
-                    height: 55,
-                    child: Text(
-                        product.description.toString(),
-                        style: TextStyles.poppinsRegular12LightGray.copyWith(fontSize: 10)
+              SizedBox(width: 13.w,),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                       product.name.toString(),
+                        style: TextStyles.poppinsMedium16DarkGray.copyWith(fontSize: 14),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  SizedBox(height: 4.h,),
-                  Row(
-                    crossAxisAlignment:CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(product.salePrice.toString(),
-                          style: TextStyles.poppinsMedium20Blue,),
+                    SizedBox(height: 4.h,),
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: 222.w), // Limit text width
+                      child: RichText(
+                        maxLines: 2,
+                        //overflow: TextOverflow.ellipsis,
+                        text: TextSpan(
 
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
+                          children: [
+                            TextSpan(
+                              text:
+                              "${product.description!.substring(0,60)}..." ?? "Description not available",
+                              style: TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12),),
+                            TextSpan(
+                              text:
+                              ' See More',
+                              style: TextStyles.poppinsRegular14babyblue.copyWith(
+                                decoration: TextDecoration.underline,
+                                fontSize: 12,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 4.h,),
+                    Row(
+
+                        children: [
+                          Text(product.price.toString(),
+                            style: TextStyles.poppinsMedium20Blue,),
+                          SizedBox(width: 2.w),
+                          Row(
                             children: [
                               SvgPicture.asset(
                                 'assets/img/star.svg',
                               ),
-                              Text(product.ratingCount.toString() ,
-                                style: TextStyles.poppinsRegular14lightGray,),
+                              Text(product.price.toString() ,
+                                style:TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16),),
                             ],
                           ),
-                        ),
-          SizedBox(width: 99.w,),
-                        BlocBuilder<CartCubit, CartState>(
-  builder: (context, state) {
-    return GestureDetector(
-                          onTap: onremove,
-                          child: SvgPicture.asset(
-                            'assets/img/trash.svg',
-                          ),
-                        );
-  },
-),
-                      ]
 
-                  ),
-                ]
+                        ]
+
+                    ),
+                  ]
+              ),
+
+
+
+            ],
             ),
 
 
-
-          ],
-          ),
-
-
+      ),
     );
   }
 }

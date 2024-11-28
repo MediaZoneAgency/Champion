@@ -1645,6 +1645,26 @@ class S {
       args: [],
     );
   }
+
+  /// `For you`
+  String get Foryou {
+    return Intl.message(
+      'For you',
+      name: 'Foryou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords don't match`
+  String get Passwordsdontmatch {
+    return Intl.message(
+      'Passwords don\'t match',
+      name: 'Passwordsdontmatch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

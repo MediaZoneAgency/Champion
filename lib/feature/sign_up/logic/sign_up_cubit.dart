@@ -48,7 +48,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   if (!connectivityResult.contains(ConnectivityResult.none)) {
     final response = await authService.register(signUpModel);
     response.fold(
-            (l) => emit(SignUpFailed(message: l.errors)),
+            (l) => emit(SignUpFailed(message: l.message)),
             (r)  async {
 
               DioFactory.setTokenIntoHeaderAfterLogin(r.token!);

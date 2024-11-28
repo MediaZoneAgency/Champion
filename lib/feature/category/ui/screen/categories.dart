@@ -9,6 +9,7 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../home/logic/home_cubit.dart';
+import '../../../home/logic/product_cubit.dart';
 import '../widget/field_widget.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -41,7 +42,10 @@ class CategoriesScreen extends StatelessWidget {
                     child: FieldWidget(
                       title: category.name!,
                       onPressed: () {
-                        context.pushNamed(Routes.girdviewScreen);
+                        ProductCubit.get(context).getCategoryProducts( category.id!);
+                        context.pushNamed(Routes.girdviewScreen,
+                            arguments: category.name!
+                        );
                       },
                     ),
                   ),

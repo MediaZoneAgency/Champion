@@ -62,6 +62,7 @@ class CourseWidget extends StatelessWidget {
                                 width: 44,
                                 height: 44,
                                 child: isFavorite
+
                                     ? SvgPicture.asset(
                                         "assets/img/heart-circle (2).svg")
                                     : SvgPicture.asset(

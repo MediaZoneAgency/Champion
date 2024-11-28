@@ -9,6 +9,7 @@ class SearchTextFormField extends StatelessWidget {
   final InputBorder? enabledBorder;
   final TextStyle? inputTextStyle;
   final TextStyle? hintStyle;
+  final bool? read;
   final String hintText;
   final bool? isObscureText;
   final Widget? suffixIcon;
@@ -16,6 +17,7 @@ class SearchTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final VoidCallback? ontap;
   final String? Function(String?)? onSubmit;
   const SearchTextFormField({
     super.key,
@@ -29,7 +31,7 @@ class SearchTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
-    this.validator, this.onSubmit, this.prefixIcon,
+    this.validator, this.onSubmit, this.prefixIcon, this.read, this.ontap,
   });
 
   @override
@@ -38,11 +40,13 @@ class SearchTextFormField extends StatelessWidget {
       width: 326.w,
       height: 44.h,
       child: TextFormField(
+        onTap:ontap ,
+        readOnly: read ?? false,
         controller: controller,
         decoration: InputDecoration(
           isDense: true,
           contentPadding: contentPadding ??
-              EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+              EdgeInsets.symmetric(horizontal: 30.w, vertical: 18.h),
           focusedBorder: focusedBorder ??
               OutlineInputBorder(
                 borderSide: const BorderSide(

@@ -48,10 +48,18 @@ class NavBarCubit extends Cubit<NavBarState> {
       child: const HomeScreen(),
     ),
     const CourseScreen(),
-    BlocProvider<FavCubit>.value(
-      value: getIt<FavCubit>(),
-      child: const WishListScreen(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<ProfileCubit>.value(
+          value: getIt<ProfileCubit>(),
+        ),
+        BlocProvider<FavCubit>.value(
+          value: getIt<FavCubit>(),
+        ),
+      ],
+      child: const  WishListScreen(),
     ),
+
     const CartScreen(),
     BlocProvider<ProfileCubit>.value(
       value:getIt<ProfileCubit>(),

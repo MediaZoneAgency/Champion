@@ -136,6 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "FloorNumberDes": MessageLookupByLibrary.simpleMessage("Floor Number"),
         "ForgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password ?"),
+        "Foryou": MessageLookupByLibrary.simpleMessage("For you"),
         "GetHelp": MessageLookupByLibrary.simpleMessage("Get Help"),
         "HelloWelcome": MessageLookupByLibrary.simpleMessage(
             "Hello, Welcome back You’ve been missed"),
@@ -163,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Orsigninwith": MessageLookupByLibrary.simpleMessage("Or sign in with"),
         "Orsignup": MessageLookupByLibrary.simpleMessage("Or sign up with"),
         "Password": MessageLookupByLibrary.simpleMessage("Password"),
+        "Passwordsdontmatch":
+            MessageLookupByLibrary.simpleMessage("Passwords don\'t match"),
         "Paywith": MessageLookupByLibrary.simpleMessage("Pay with"),
         "Phone": MessageLookupByLibrary.simpleMessage("Phone"),
         "PhoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),

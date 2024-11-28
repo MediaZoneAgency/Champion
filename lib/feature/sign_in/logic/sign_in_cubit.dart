@@ -117,6 +117,10 @@ class SignInCubit extends Cubit<SignInState> {
       response.fold(
               (l) => emit(OtpFailure( l )),
               (r)  {
+            CashHelper.setStringSecured(
+              key: Keys.secretKey,
+              value: r.secretKey!,
+            );
             emit(OtpSuccess());
           }
       );

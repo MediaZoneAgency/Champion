@@ -15,7 +15,7 @@ class AddCardButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 12),
+        padding: EdgeInsets.symmetric(vertical: 6),
         decoration: BoxDecoration(
           border: Border.all(color: ColorsManager.darkBlack, width: 0.2),
           borderRadius: BorderRadius.circular(12),

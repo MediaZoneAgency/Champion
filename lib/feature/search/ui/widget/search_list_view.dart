@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/theming/colors.dart';
 import '../../logic/search_cubit.dart';
 
 
@@ -29,9 +30,18 @@ class SearchListView extends StatelessWidget {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 20.h,
-              );
+              return Column(children: [
+                SizedBox(height: 10.h,),
+                Divider(
+                  color: ColorsManager.LigGthGray,
+                  indent: 30,
+                  endIndent: 30,
+                  thickness: 0.3,
+                ),
+                SizedBox(height: 10.h,),
+
+
+              ]);
             },
           ),
         );

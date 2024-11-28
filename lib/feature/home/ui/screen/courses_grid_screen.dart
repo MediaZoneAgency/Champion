@@ -5,29 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../../../core/theming/colors.dart';
 import '../../../home/ui/widget/course_widget.dart';
 import '../../../profile/logic/profile_cubit.dart';
 import '../../../wishlist/data/models/wish_list_model.dart';
-
-class CourseGridView extends StatelessWidget {
-  const CourseGridView(this.label,{super.key});
-
-  final String? label;
+class CoursesGridScreen extends StatelessWidget {
+  const CoursesGridScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavCubit, FavState>(
-  builder: (context, state) {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
-        if (state is FetchCategoryProductLoading ) {
+        if (state is FetchProductLoading ) {
           return Center(
             child: CircularProgressIndicator(), // Replace with a loading widget if needed
           );
         }
-        final products = ProductCubit.get(context).categoryProductModel; // Replace with your product list
-
+        final products = ProductCubit.get(context).productModel; // Replace with your product list
         if (products.isNotEmpty) {
           return GridView.builder(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
@@ -48,7 +41,7 @@ class CourseGridView extends StatelessWidget {
                         ProductCubit.get(context).productModel[index].id)
                     ){
                       FavCubit.get(context).removeFromWishList(
-                       ProductCubit.get(context).productModel[index]
+                          ProductCubit.get(context).productModel[index]
                       );
                     }else{
                       FavCubit.get(context).addToWishList(model: ProductCubit
@@ -68,7 +61,6 @@ class CourseGridView extends StatelessWidget {
                 isFavorite: FavCubit.get(context).favorite.contains(
                     ProductCubit.get(context).productModel[index].id),
               );
-
             },
           );
         } else {
@@ -81,7 +73,5 @@ class CourseGridView extends StatelessWidget {
         }
       },
     );
-  },
-);
   }
 }

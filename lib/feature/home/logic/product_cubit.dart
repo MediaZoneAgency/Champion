@@ -15,34 +15,9 @@ part 'product_state.dart';
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this._homeRepo) : super(ProductInitial());
   final HomeRepo _homeRepo;
-  List<WishListModel> wishList = [
-    WishListModel(
-        name: "Product 1",
-        price: "100",
-        image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s',
-        id: 3),
-    WishListModel(
-        name: "Product 2",
-        price: "200",
-        image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s',
-        id: 4),
-    WishListModel(
-        name: "Product 3",
-        price: "300",
-        image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s',
-        id: 4),
-    WishListModel(
-        name: "Product 3",
-        price: "300",
-        image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8rHkK301LBCvaTWN5TnJbc4t5h0Cnzxm1tQ&s',
-        id: 4),
-  ];
   List<int> favorite = [];
   List<ProductModel> productModel = [];
+  List<ProductModel> categoryProductModel = [];
   static ProductCubit get(context) => BlocProvider.of(context);
   Future<void> getProducts() async {
     try {
@@ -66,56 +41,26 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
-  // Future<void> addToWishList({required int productId}) async {
-  //   emit(AddToWishListLoading());
-  //   final List<ConnectivityResult> connectivityResult =
-  //       await (Connectivity().checkConnectivity());
-  //   if (!connectivityResult.contains(ConnectivityResult.none)) {
-  //     final response = await _homeRepo.addToWishList(productId: productId);
-  //     response.fold((l) => emit(AddToWishListFailure(l)), (r) {
-  //       emit(AddToWishListSuccess());
-  //     });
-  //   } else {
-  //     emit(AddToWishListFailure(
-  //         ApiErrorModel(message: 'No internet connection')));
-  //   }
-  // }
 
-  // Future<void> getWishList() async {
-  //   emit(GetWishListLoading());
-  //   final List<ConnectivityResult> connectivityResult =
-  //       await (Connectivity().checkConnectivity());
-  //   if (!connectivityResult.contains(ConnectivityResult.none)) {
-  //     final response = await _homeRepo.getWishList();
-  //     response.fold((l) => emit(GetWishListFailure(l)), (r) {
-  //       favorite = [];
-  //       wishList = r;
-  //       for (var item in wishList) {
-  //         favorite.add(item.id!);
-  //       }
-  //       //  log(favorite.toString());
-  //       emit(GetWishListSuccess());
-  //     });
-  //   } else {
-  //     emit(
-  //         GetWishListFailure(ApiErrorModel(message: 'No internet connection')));
-  //   }
-  // }
-  //
-  // Future<void> removeFromWishList({required int productId}) async {
-  //   emit(RemoveFromWishListLoading());
-  //   final List<ConnectivityResult> connectivityResult =
-  //       await (Connectivity().checkConnectivity());
-  //   if (!connectivityResult.contains(ConnectivityResult.none)) {
-  //     final response = await _homeRepo.removeFromWishList(productId: productId);
-  //     response.fold((error) {
-  //       emit(RemoveFromWishListFailure(error));
-  //     }, (profileData) {
-  //       emit(RemoveFromWishListSuccess());
-  //     });
-  //   } else {
-  //     emit(RemoveFromWishListFailure(
-  //         ApiErrorModel(message: 'No internet connection')));
-  //   }
-  // }
+  Future<void> getCategoryProducts(int category) async {
+    try {
+      categoryProductModel = CachedApp.getCachedData("${CachedDataType.categoryProduct.name}$category");
+      emit(FetchCategoryProductSuccess(categoryProductModel));
+    } catch (e) {
+      emit(FetchCategoryProductLoading());
+      final result = await _homeRepo.getCategoryProducts(categoryName: category);
+      {
+        result.fold(
+              (failure) {
+            emit(FetchCategoryProductFailure(failure.message));
+          },
+              (categoryProducts) {
+                categoryProductModel = categoryProducts;
+            CachedApp.saveData(categoryProductModel, "${CachedDataType.categoryProduct.name}$category");
+            emit(FetchCategoryProductSuccess(categoryProducts));
+          },
+        );
+      }
+    }
+  }
 }

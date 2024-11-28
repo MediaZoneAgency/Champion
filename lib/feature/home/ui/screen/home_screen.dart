@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ],
                                 ),
-                                Spacer(),
+                                const Spacer(),
                             IconButton(
                                               icon: SvgPicture.asset(
                                                 width: 30,
@@ -138,7 +138,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         return CategoryListView();
                       }else {
                         log("offfffff");
-
                         return Container();
                       }
                     }),
@@ -154,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                          Spacer(),
                           GestureDetector(
                             onTap: (){
-                              context.pushNamed(Routes.girdviewScreen);
+                              context.pushNamed(Routes.coursesGridViewScreen);
                             },
                             child: Text(S.of(context).Seeall,
                                 style: TextStyles.poppinsRegular14babyblue),
@@ -185,12 +184,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.only(left: 5,right:6),
                       child: Row(
                         children: [
-                          Text('For you',
+                          Text(S.of(context).Foryou,
                               style: TextStyles.poppinsMedium18contantGray),
                           Spacer(),
                           GestureDetector(
                             onTap: (){
-                              context.pushNamed(Routes.girdviewScreen);
+                              context.pushNamed(Routes.coursesGridViewScreen);
                             },
                             child: Text(S.of(context).Seeall,
                                 style: TextStyles.poppinsRegular14babyblue),
@@ -211,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           }
                           if (ProductCubit.get(context).productModel.isNotEmpty) {
-                            return CoursesListView();
+                            return const CoursesListView();
                           }
                           return Container();
                         }),

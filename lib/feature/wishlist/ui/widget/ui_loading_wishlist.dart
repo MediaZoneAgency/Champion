@@ -86,10 +86,6 @@ class UiLoadingWishlist extends StatelessWidget {
 
                       Spacer(),
 
-                        GestureDetector(
-                            onTap: () {},
-                            child: SvgPicture.asset('assets/img/trash.svg'),
-                          )
 
                      // Push trash icon to the right
                     ],

@@ -172,7 +172,9 @@
   "MyCourses": "My Courses",
   "WishList": "WishList",
   "Cart": "Cart",
-  "Profile": "Profile"
+  "Profile": "Profile",
+  "Foryou": "For you",
+  "Passwordsdontmatch": "Passwords don't match"
 
 
 

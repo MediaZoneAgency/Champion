@@ -6,6 +6,7 @@ import '../../../../core/error/failure.dart';
 import '../../../sign_in/data/models/log_in_respone.dart';
 import '../../../sign_in/data/models/login_model.dart';
 import '../models/otp_model.dart';
+import '../models/otp_response.dart';
 import '../models/reset_password_model.dart';
 
 class SignInRepo {
@@ -47,14 +48,13 @@ class SignInRepo {
       return Left(ApiErrorHandler.handle(e));
     }
   }
-
-  Future<Either<ApiErrorModel, String>> otp({
+  Future<Either<ApiErrorModel, OtpResponse>> otp({
     required OtpModel otpModel,
   }) async {
     try {
       Response response =
       await _dio.post(NetworkConstant.otpValidate, data: otpModel.toMap());
-      return Right(response.data['message']);
+      return Right(OtpResponse.fromMap(response.data));
     }catch (e) {
       return Left(ApiErrorHandler.handle(e));
     }

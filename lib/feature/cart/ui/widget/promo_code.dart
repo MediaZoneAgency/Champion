@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/theming/colors.dart';
@@ -25,9 +26,21 @@ class PromoCode extends StatelessWidget {
           ),
           suffixIcon: Padding(
             padding: EdgeInsets.only(right: 20.0.w,top: 10.h),
-            child: Text( 'Apply',
-             style:  TextStyles.poppinsRegular16blue,
+            child: GestureDetector(
+              onTap: (){
+                Fluttertoast.showToast(
+                  msg: "Promo code applied",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: ColorsManager.primaryColorLight,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+              },
+              child: Text( 'Apply',
+               style:  TextStyles.poppinsRegular16blue,
 
+              ),
             )
 
           ),

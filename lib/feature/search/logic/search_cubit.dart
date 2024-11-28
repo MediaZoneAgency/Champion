@@ -24,6 +24,7 @@ class SearchCubit extends Cubit<SearchState> {
     'T-shirt',
   ];
   Future<void> fetchSearchResults(String search) async {
+    searchResults=[];
     emit(SearchLoading());
     var result = await searchRepo.getSearch(
         search: search,

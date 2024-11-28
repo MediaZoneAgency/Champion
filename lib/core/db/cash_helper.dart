@@ -21,6 +21,7 @@ enum Keys {
   signUpResponse,
   email,
   otp,
+  secretKey,
 }
 
 class CashHelper {

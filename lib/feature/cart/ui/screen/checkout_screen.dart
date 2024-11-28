@@ -39,142 +39,151 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
-        return Scaffold(
-          bottomNavigationBar: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 25.w,
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Total Price',
-                      style: TextStyles.poppinsRegular14LightGray,
-                    ),
-                    SizedBox(
-                      height: 4.h,
-                    ),
-                    Text(
-                      '450 EGP',
-                      style: TextStyles.poppinsMedium20NavyBlue,
-                    ),
-                  ],
-                ),
-                Spacer(),
-                AppTextButton(
-                  borderRadius: 10,
-                  buttonHeight: 48.h,
-                  buttonWidth: 170.w,
-                  buttonText: S.of(context).buynow,
-                  textStyle: TextStyles.poppinsMedium18white,
-                  onPressed: () async {
-                    CartCubit.get(context).orderModel = OrderModel(
-                      paymentMethodTitle: '',
-                      paymentMethod: '',
-                      email: '',
-                      lineItems: [
-                        ...CartCubit.get(context).cartList.map(
-                              (x) => LineItems(
-                            quantity: x.quantity,
-                            productId: x.productModel.id!,
-                            variationId: x.variantId,
-                          ),
-                        ),
-                      ],
-                      setPaid: true,
-                    );
-
-                    String token = await CashHelper.getStringSecured(key: Keys.token);
-
-                    if (token == '') {
-                      context.pushReplacementNamed(Routes.signUpScreen);
-                    } else {
-                      DioFactory.setTokenIntoHeaderAfterLogin(token);
-                      CartCubit.get(context).placeOrder();
-                    }
-                  },
-                ),
-              ],
-            ),
-          ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CartBar(username: 'Check Out'),
-              BlocBuilder<CartCubit, CartState>(
-                builder: (context, state) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10.0.w,
-                    ),
-                    child: SizedBox(
-                      height: 140,
-                      child: ListView.builder(
-                        itemCount: CartCubit.get(context).cartList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return CartWidget(
-                            CartCubit.get(context).cartList[index],
-                            onremove: () {
-                              CartCubit.get(context).removeFromCart(
-                                  CartCubit.get(context).cartList[index]);
-                            },
-                          );
-                        },
+        return SafeArea(
+          child: Scaffold(
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 25.w,
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Total Price',
+                        style: TextStyles.poppinsRegular14LightGray,
                       ),
+                      SizedBox(
+                        height: 4.h,
+                      ),
+                      Text(
+                        '450 EGP',
+                        style: TextStyles.poppinsMedium20NavyBlue,
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  AppTextButton(
+                    borderRadius: 10,
+                    buttonHeight: 48.h,
+                    buttonWidth: 170.w,
+                    buttonText: S.of(context).buynow,
+                    textStyle: TextStyles.poppinsMedium18white,
+                    onPressed: () async {
+                      CartCubit.get(context).orderModel = OrderModel(
+                        paymentMethodTitle: '',
+                        paymentMethod: '',
+                        email: '',
+                        lineItems: [
+                          ...CartCubit.get(context).cartList.map(
+                                (x) => LineItems(
+                              quantity: x.quantity,
+                              productId: x.productModel.id!,
+                              variationId: x.variantId,
+                            ),
+                          ),
+                        ],
+                        setPaid: true,
+                      );
+
+                      String token =
+                      await CashHelper.getStringSecured(key: Keys.token);
+
+                      if (token == '') {
+                        context.pushReplacementNamed(Routes.signUpScreen);
+                      } else {
+                        DioFactory.setTokenIntoHeaderAfterLogin(token);
+                        CartCubit.get(context).placeOrder();
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CartBar(username: 'Check Out'),
+                  BlocBuilder<CartCubit, CartState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: CartCubit.get(context).cartList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return CartWidget(
+                              CartCubit.get(context).cartList[index],
+                              onremove: () {
+                                CartCubit.get(context).removeFromCart(
+                                    CartCubit.get(context).cartList[index]);
+                              },
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: [
+                                SizedBox(height: 10.h),
+                                Divider(
+                                  color: ColorsManager.LigGthGray,
+                                  indent: 10,
+                                  endIndent: 10,
+                                  thickness: 0.5,
+                                ),
+                                SizedBox(height: 10.h),
+                              ],
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(height: 16.h),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 26),
+                    child: Text(
+                      S.of(context).Promocode,
+                      style: TextStyles.poppinsRegular16ContantGray,
                     ),
-                  );
-                },
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 26),
-                child: Text(
-                  S.of(context).Promocode,
-                  style: TextStyles.poppinsRegular16ContantGray,
-                ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 25, right: 23),
-                child: PromoCode(),
-              ),
-              SizedBox(
-                height: 28,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 25, right: 23),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      S.of(context).Paywith,
-                      style: TextStyles.poppinsMedium18Blue,
+                  ),
+                  SizedBox(height: 8.h),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: PromoCode(),
+                  ),
+                  SizedBox(height: 28.h),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).Paywith,
+                          style: TextStyles.poppinsMedium18Blue,
+                        ),
+                        verticalSpace(12.h),
+                        buildCardItem(context, "xxx-4113",
+                            SvgPicture.asset("assets/img/card.svg")),
+                        AddCardButton(onTap: () {}),
+
+                      ],
                     ),
-                    verticalSpace(12.h),
-                    buildCardItem(context, S.of(context).Cash,
-                        SvgPicture.asset("assets/img/dollar-circle.svg")),
-                    buildCardItem(context, "xxx-4113",
-                        SvgPicture.asset("assets/img/card.svg")),
-                    AddCardButton(onTap: () {}),
-                    verticalSpace(200.h),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         );
       },
     );
   }
 }
+
 
 CardItem buildCardItem(BuildContext context, String text, Widget icon) {
   return CardItem(

@@ -36,40 +36,43 @@ class _DetailsScreenState extends State<DetailsScreen> {
           return SizedBox(
             height: 60.h,
             width: double.infinity,
-            child: Row(
-    
-                children: [
-                  SizedBox(width: 25.w,),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-    
-                    children: [
-                      Text('Total Price',
-                        style: TextStyles.poppinsRegular14LightGray,),
-                      SizedBox(height: 4.h,),
-                      Text('450 EGP',
-                        style: TextStyles.poppinsMedium20NavyBlue,),
-    
-    
-                    ],),
-                  SizedBox(width: 54.w,),
-                  BlocBuilder<CartCubit, CartState>(
-                    builder: (context, state) {
-                      return AppTextButton(
-                        borderRadius: 10,
-                        buttonHeight: 48.h,
-                        buttonWidth: 170.w,
-                        buttonText: 'Add to Cart',
-                        textStyle: TextStyles.poppinsMedium18white,
-                        onPressed: () {
-                          CartCubit.get(context).addToCart(context,
-                              product: CartItemModel(
-                                  productModel: widget.product));
-                        },
-                      );
-                    },
-                  ),
-                ]
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8, right: 20),
+              child: Row(
+
+                  children: [
+                    SizedBox(width: 25.w,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+
+                      children: [
+                        Text('Total Price',
+                          style: TextStyles.poppinsRegular14LightGray,),
+                        SizedBox(height: 4.h,),
+                        Text('450 EGP',
+                          style: TextStyles.poppinsMedium20NavyBlue,),
+
+
+                      ],),
+                   Spacer(),
+                    BlocBuilder<CartCubit, CartState>(
+                      builder: (context, state) {
+                        return AppTextButton(
+                          borderRadius: 10,
+                          buttonHeight: 48.h,
+                          buttonWidth: 170.w,
+                          buttonText: 'Add to Cart',
+                          textStyle: TextStyles.poppinsMedium18white,
+                          onPressed: () {
+                            CartCubit.get(context).addToCart(context,
+                                product: CartItemModel(
+                                    productModel: widget.product));
+                          },
+                        );
+                      },
+                    ),
+                  ]
+              ),
             ),
           );
         },
@@ -94,7 +97,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ReviewWidget(),
                   SizedBox(height: 20.h),
                   Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    padding: const EdgeInsets.only(left: 20, right: 10),
                     child: Center(
                       child: Text(
                           "See All Reviews",

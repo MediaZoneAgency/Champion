@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../core/db/cash_helper.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
@@ -15,6 +16,7 @@ import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../sign_up/ui/widgets/enter_your.dart';
+import '../../data/models/reset_password_model.dart';
 import '../../logic/sign_in_cubit.dart';
 import '../widget/sign_in_state.dart';
 
@@ -110,9 +112,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             buttonWidth: 326.w,
                             buttonText: S.of(context).Done,
                             textStyle: TextStyles.poppinsMedium20white,
-                            onPressed: ()  async {
+                            onPressed: () async {
                               if (formKey.currentState!.validate()) {
-                                context.pushNamed(Routes.loginScreen);
+                                context.read<SignInCubit>().resetPassword(
+                                    ResetPasswordModel(
+                                      password: _passwordController.text,
+                                      email: CashHelper.getString(key: Keys.email),
+                                      secretKey:await CashHelper.getStringSecured(key: Keys.secretKey),
+                                    ));
                               }
                             },
                           ),

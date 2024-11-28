@@ -9,6 +9,7 @@ import 'package:education/feature/profile/ui/screen/account_ifo.dart';
 import 'package:education/feature/profile/ui/screen/edit_account.dart';
 import 'package:education/feature/profile/ui/screen/profile_screen.dart';
 import 'package:education/feature/search/ui/screen/search_result_screen.dart';
+import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../feature/cart/ui/screen/cart_screen.dart';
@@ -17,6 +18,7 @@ import '../../feature/category/ui/screen/courses_girdview.dart';
 import '../../feature/coursedetails/ui/screen/details_screen.dart';
 import '../../feature/home/logic/home_cubit.dart';
 import '../../feature/home/ui/screen/home_screen.dart';
+import '../../feature/home/ui/widget/courses_grid_view.dart';
 import '../../feature/nav_bar/logic/nav_bar_cubit.dart';
 import '../../feature/nav_bar/ui/navigation_bar.dart';
 import '../../feature/profile/logic/profile_cubit.dart';
@@ -81,20 +83,21 @@ class AppRouter {
                   child:CategoriesScreen(),
                 ),
         );
-      case Routes.girdviewScreen:
-        return MaterialPageRoute(
-          builder: (_)=>
-              BlocProvider(
-                create: (context) => getIt<ProductCubit>(),
-                child: CoursesGirdview(),
-              ),
-        );
+      // case Routes.girdviewScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_)=>
+      //         BlocProvider(
+      //           create: (context) => getIt<ProductCubit>(),
+      //           child: CoursesGirdview(),
+      //         ),
+      //   );
 
         // case Routes.girdviewScreen
         // return MaterialPageRoute(
         //     builder:(_)=>
-        //         BlocProvider.value(value:getIt<ProductCubit>,
-        //         child: CoursesGirdview(),)
+        //         BlocProvider.value(value:
+        //         getIt<ProductCubit>,
+        //         child: CoursesGirdviewScreen(),)
         // );
       case Routes.navBarScreen:
         return MaterialPageRoute(
@@ -125,15 +128,21 @@ class AppRouter {
                 child: CheckoutScreen(),
               ),
         );
+
       case Routes.wishListScreen:
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProductCubit>(),
-                child: WishListScreen(),
-              ),
-        );
 
+          builder: (_) =>MultiBlocProvider(
+              providers: [
+
+                BlocProvider<ProfileCubit>.value(
+                  value: getIt<ProfileCubit>(),
+                ),
+                BlocProvider<FavCubit>.value(
+                  value: getIt<FavCubit>(),
+                ),
+              ], child: const WishListScreen()),
+        );
       case Routes.accountInfoScreen:
         return MaterialPageRoute(
           builder: (_) =>
@@ -141,6 +150,22 @@ class AppRouter {
                 value: getIt<ProfileCubit>(),
                 child: AccountInfoScreen(),
               ),
+        );
+      case Routes.coursesGridViewScreen:
+        return MaterialPageRoute(
+          builder: (_) =>MultiBlocProvider(providers: [
+            BlocProvider.value(
+                 value: getIt<ProductCubit>()
+            ),
+            BlocProvider.value(
+                value: getIt<FavCubit>()
+            ),
+            BlocProvider<ProfileCubit>.value(
+              value: getIt<ProfileCubit>(),
+            ),
+          ],
+              child:CoursesGirdviewScreen())
+
         );
       case Routes.editAccountInfoScreen:
         return MaterialPageRoute(
@@ -185,15 +210,57 @@ class AppRouter {
           builder: (_) => TypeFieldsScreen(type: '',),
         );
       //
-      case Routes.DetailsScreen:
-         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProductCubit>(),
-                child: DetailsScreen( settings.arguments as ProductModel),
-              ),
-        );
 
+      case Routes.DetailsScreen:
+        return MaterialPageRoute(
+
+          builder: (_) =>MultiBlocProvider(
+              providers: [
+
+                BlocProvider<ProfileCubit>.value(
+                  value: getIt<ProfileCubit>(),
+                ),
+                BlocProvider<FavCubit>.value(
+                  value: getIt<FavCubit>(),
+                ),
+    BlocProvider(
+    create: (context) => getIt<ProductCubit>()),
+              ], child:  DetailsScreen( settings.arguments as ProductModel),
+          ),
+        );
+      // case Routes.DetailsScreen:
+      //    return MaterialPageRoute(
+      //     builder: (_) =>
+      //         BlocProvider(
+      //           create: (context) => getIt<ProductCubit>(),
+      //           child: DetailsScreen( settings.arguments as ProductModel),
+      //         ),
+      //   );
+      // case Routes.girdviewScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_) =>
+      //         BlocProvider(
+      //           create: (context) => getIt<ProductCubit>(),
+      //           child: CoursesGirdview( settings.arguments as String),
+      //         ),
+      //   );
+      case Routes.girdviewScreen:
+        return MaterialPageRoute(
+          builder: (_)=> MultiBlocProvider(
+            providers: [
+          BlocProvider.value(
+          value:  getIt<ProductCubit>()),
+              BlocProvider<FavCubit>.value(
+                value: getIt<FavCubit>(),
+              ),
+              BlocProvider<ProfileCubit>.value(
+                value: getIt<ProfileCubit>(),
+              ),
+            ],
+            child:CoursesGirdview( settings.arguments as String ?? 'DefaultArgument'),
+          ),
+
+        );
       case Routes.profileScreen:
         return MaterialPageRoute(
           builder: (_) =>

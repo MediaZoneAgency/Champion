@@ -19,7 +19,7 @@ class UiLoadingHome extends StatelessWidget {
         itemCount: 5,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return  const CategoryItem(icon: "https://img.freepik.com/free-photo/abstract-surface-textures-white-concrete-stone-wall_74190-8189.jpg", label: 'tessst', );
+          return  const CategoryItem(icon: "https://img.freepik.com/free-photo/abstract-surface-textures-white-concrete-stone-wall_74190-8189.jpg", label: 'tessst', id: 0, );
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(
