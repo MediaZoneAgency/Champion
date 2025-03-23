@@ -6,78 +6,116 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/network_image.dart';
+import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../profile/logic/profile_cubit.dart';
 
+
+
 class HomeBar extends StatelessWidget {
-
-  const HomeBar({
-    Key? key,
-
-
-  }) : super(key: key);
+  const HomeBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(top: 30.h,left: 15.w,right: 15.w),
-      child: BlocBuilder<ProfileCubit, ProfileState>(
-        builder: (context, state) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
+        padding: EdgeInsets.only(top: 30.h, left: 15.w, right: 15.w),
+    child: BlocBuilder<ProfileCubit, ProfileState>(
+    builder: (context, state) {
+    var profileUser = ProfileCubit.get(context).profileUser;
 
-          AppCachedNetworkImage(image:ProfileCubit.get(context).profileUser!.profilePicture, width: 40, height: 40, radius: 200,
+    if (profileUser == null) {
+    return const Center(child: CircularProgressIndicator()); // عرض لودينج إذا كان null
+    }
 
-           ),
+    return BlocBuilder<ThemeCubit, ThemeState>(
+    builder: (context, themeState) {
+    var themeMode = ThemeCubit.get(context).themeMode;
 
-                  horizontalSpace(11.w),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          ProfileCubit.get(context).profileUser!.name!,
-                          style: TextStyles.poppinsRegular16ContantGray
-                      ),
-                      Text(
-                          'UX Designer',
-                          style: TextStyles.poppinsRegular12babyGray
-                      ),
-                    ],
-                  ),
-        Spacer(),
-                //  SizedBox(width: 120.w),
-                  IconButton(
-                    icon: SvgPicture.asset(
-                      width: 30,
-                      height: 30,
-                      'assets/img/search-normal.svg',
-                      fit: BoxFit.scaleDown,
-                    ),
-                    onPressed: () {
-                      context.pushNamed(Routes.searchScreen);
-                    },
-                  ),
-                  IconButton(
-                    icon: SvgPicture.asset(
-                      width: 30,
-                      height: 30,
-                      'assets/img/notification.svg',
-                      fit: BoxFit.scaleDown,
-                    ),
-                    onPressed: () {
-                      // Notification button tapped
-                    },
-                  ),
+    return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Row(
+    children: [
+    AppCachedNetworkImage(
+    image:"assets/img/avvvatar.png",
+    //profileUser.profilePicture ?? 'assets/img/default_avatar.png',
+    width: 38.w,
+    height: 40.h,
+    radius: 200.r,
+    ),
+    horizontalSpace(11.w),
+    Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Text(
+    profileUser.name ?? "Guest User",
+    style: ThemeCubit.get(context).themeMode== ThemeMode.light
+    ? TextStyles.poppinsRegular16ContantGray
+        : TextStyles.poppinsRegular16ContantGray.copyWith(color: Colors.white),
+    ),
+    Text(
+    'UX Designer',
+    style: TextStyles.poppinsRegular12babyGray,
+    ),
+    ],
+    ),
 
-                ],),
-            ],
-          );
-        },
-      ),
-
+    // Container(
+    // margin: EdgeInsets.symmetric(horizontal: 10.w),
+    // decoration: BoxDecoration(
+    // color:
+    // ThemeCubit.get(context).themeMode== ThemeMode.light?
+    // ColorsManager.mainGrray : ColorsManager.mainGrray,
+    // borderRadius: BorderRadius.circular(10),
+    // ),
+    // child: IconButton(
+    // icon: SvgPicture.asset(
+    // width: 30,
+    // height: 30,
+    // 'assets/img/coin.svg',
+    // fit: BoxFit.scaleDown,
+    // ),
+    // onPressed: () {
+    // context.pushNamed(Routes.searchScreen);
+    // },
+    // ),
+    // ),
+    IconButton(
+    icon: SvgPicture.asset(
+    width: 30,
+    height: 30,
+      ThemeCubit.get(context).themeMode== ThemeMode.light
+    ? 'assets/img/search-normal.svg'
+        : 'assets/img/SearchDarkk.svg',
+    fit: BoxFit.scaleDown,
+    ),
+    onPressed: () {
+    context.pushNamed(Routes.searchScreen);
+    },
+    ),
+    IconButton(
+    icon: SvgPicture.asset(
+    width: 30,
+    height: 30,
+      ThemeCubit.get(context).themeMode== ThemeMode.light
+    ? 'assets/img/notification.svg'
+        : 'assets/img/notificationdark.svg',
+    fit: BoxFit.scaleDown,
+    ),
+    onPressed: () {
+    // Notification button tapped
+    },
+    ),
+    ],
+    ),
+    ],
+    );
+    },
+    );
+    },
+    )
     );
   }
+
 }

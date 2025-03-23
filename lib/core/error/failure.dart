@@ -58,8 +58,7 @@ class ApiErrorHandler {
     return ApiErrorModel(
       message: error['message'] ??
           S
-              .of(NavigationService.navigatorKey.currentContext!)
-              .UnexpectedErrorOccurred,
+              .of(NavigationService.navigatorKey.currentContext!).UnexpectedErrorOccurred,
       code: statusCode?.toString(),  // Convert int? to String?
       errors: error['data'],
     );

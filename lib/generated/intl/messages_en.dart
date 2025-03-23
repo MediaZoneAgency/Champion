@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ConfirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "Country": MessageLookupByLibrary.simpleMessage("Country"),
+        "Dark": MessageLookupByLibrary.simpleMessage("Dark"),
         "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "DeleteAccount": MessageLookupByLibrary.simpleMessage("Delete Account"),
         "DeleteYourAccount":
@@ -143,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "Home": MessageLookupByLibrary.simpleMessage("Home"),
         "Language": MessageLookupByLibrary.simpleMessage("Language"),
         "Lastestsearch": MessageLookupByLibrary.simpleMessage("Lastest search"),
+        "Light": MessageLookupByLibrary.simpleMessage("Light"),
         "Login": MessageLookupByLibrary.simpleMessage("Login"),
         "LoginSignup": MessageLookupByLibrary.simpleMessage("Login/Signup"),
         "Logout": MessageLookupByLibrary.simpleMessage("Logout"),
@@ -208,6 +210,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "SubCategories": MessageLookupByLibrary.simpleMessage("Sub-Categories"),
         "TermsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "Theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "Todaysspecial": MessageLookupByLibrary.simpleMessage("Todays special"),
         "UnexpectedErrorOccurred":
             MessageLookupByLibrary.simpleMessage("Unexpected error occurred"),

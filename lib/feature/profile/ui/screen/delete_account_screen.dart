@@ -9,6 +9,7 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/theming/font_weight.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../logic/profile_cubit.dart';
 import '../widget/delete_account_state_ui.dart';
@@ -37,7 +38,9 @@ class DeleteAccountScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 5.0.h),
                     child: Text(
                       S.of(context).Deletingyouraccountwill,
-                      style: TextStyles.poppinsMedium20BlackMeduim
+                      style:
+                      ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                      TextStyles.poppinsMedium20BlackMeduim:  TextStyles.poppinsMedium20BlackMeduim.copyWith(color:Colors.white)
                     ),
                   ),
                 ],

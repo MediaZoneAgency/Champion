@@ -25,7 +25,7 @@ class CartWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 5),
               child: AppCachedNetworkImage(
-                image: product.productModel.images![0].src!,
+                image: product.productModel.thumbnailUrl!,
                 width: 70.w,
                 height: 70.h,
                 radius: 5,
@@ -38,7 +38,7 @@ class CartWidget extends StatelessWidget {
 
                 children: [
                   Text(
-                    product.productModel.name.toString(),
+                    product.productModel.title.toString(),
                     style: TextStyles.poppinsMedium18contantGray,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -55,7 +55,7 @@ class CartWidget extends StatelessWidget {
                         children: [
                         TextSpan(
                         text:
-                      "${product.productModel.description!.substring(0,60)}..." ?? "Description not available",
+                      "${product.productModel.content!.substring(0,60)}..." ?? "Description not available",
                         style: TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12),),
                           TextSpan(
                           text:
@@ -75,7 +75,7 @@ class CartWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        product.productModel.price.toString(),
+                        product.productModel.salePrice.toString(),
                         style: TextStyles.poppinsMedium20Blue.copyWith(fontSize: 18),
                       ),
                       SizedBox(width: 4.h),
@@ -83,7 +83,7 @@ class CartWidget extends StatelessWidget {
                         children: [
                           SvgPicture.asset('assets/img/star.svg'),
                           Text(
-                            product.productModel.price.toString(),
+                            product.productModel.salePrice.toString(),
                             style: TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16),
                           ),
                         ],

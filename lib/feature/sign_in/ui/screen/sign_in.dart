@@ -12,6 +12,7 @@ import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../../sign_up/ui/widgets/enter_your.dart';
 import '../../data/models/login_model.dart';
@@ -101,7 +102,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             },
                             child: Text(
                               S.of(context).ForgotPassword,
-                              style: TextStyles.poppinsRegular14Blue,
+                              style: TextStyles.poppinsRegular14Blue.copyWith(color:Color(0xFF992232),),
                             ),
                           ),
                         ),
@@ -109,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         AppTextButton(
                           borderRadius: 10,
                           buttonHeight: 58.h,
-                          buttonWidth: 327.w,
+                          buttonWidth: 327,
                           buttonText: S.of(context).sign_in,
                           textStyle: TextStyles.poppinsMedium20white,
                           onPressed: () async {
@@ -129,13 +130,15 @@ class _SignInScreenState extends State<SignInScreen> {
                         verticalSpace(24),
                         Row(
                           children: [
-                            Expanded(child: Divider(color:ColorsManager.Blackmeduim)),
+                            Expanded(child: Divider(  color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
                               child: Text(S.of(context).Orsigninwith,
-                                  style: TextStyles.poppinsMedium16BlackMeduim),
+                                  style:
+                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                  TextStyles.poppinsMedium16BlackMeduim:   TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white)),
                             ),
-                            Expanded(child: Divider(color: ColorsManager.Blackmeduim)),
+                            Expanded(child: Divider(color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
                           ],
                         ),
                         verticalSpace(20),
@@ -144,20 +147,26 @@ class _SignInScreenState extends State<SignInScreen> {
                           children: [
                             IconButton(
                               icon: SvgPicture.asset(
-                                'assets/img/apple.svg',
-                              ), onPressed: () {  },
+                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                'assets/img/apple.svg': 'assets/img/apple (1).svg',
+                              ),
+                              onPressed: () {},
                             ),
-                            SizedBox(width: 40),
+                            SizedBox(width: 20.w),
                             IconButton(
                               icon: SvgPicture.asset(
-                                'assets/img/google.svg',
-                              ), onPressed: () {  },
+                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                'assets/img/google.svg':'assets/img/google (1).svg',
+                              ),
+                              onPressed: () {},
                             ),
-                            SizedBox(width: 40),
+                            SizedBox(width: 20.w),
                             IconButton(
-                              icon:SvgPicture.asset(
-                                'assets/img/facebook.svg',
-                              ), onPressed: () {  },
+                              icon: SvgPicture.asset(
+                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                'assets/img/facebook.svg':'assets/img/facebook (1).svg',
+                              ),
+                              onPressed: () {},
                             ),
                           ],
                         ),
@@ -165,7 +174,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(S.of(context).NoAccount,style: TextStyles.poppinsMedium16BlackMeduim),
+                            Text(S.of(context).NoAccount,style:ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.poppinsMedium16BlackMeduim:TextStyles.poppinsMedium16BlackMeduim.copyWith(color: Colors.white)),
                             GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
@@ -175,8 +184,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                   S.of(context).SignUp,
                                   style: TextStyles.poppinsRegular16Blue.copyWith(
                                     decoration: TextDecoration.underline,
-                                      decorationColor: TextStyles.poppinsRegular16Blue.color
-
+                                      decorationColor: TextStyles.poppinsRegular16Blue.color,
+                                      color:Color(0xFF992232),
                                   )
                               ),
                             ),

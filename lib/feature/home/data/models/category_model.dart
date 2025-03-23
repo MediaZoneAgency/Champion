@@ -1,8 +1,6 @@
 import 'package:education/core/models/image_model.dart';
 
 class CategoryModel {
-  //<editor-fold desc="Data Methods">
-
   CategoryModel({
     this.id,
     this.name,
@@ -13,7 +11,12 @@ class CategoryModel {
     this.image,
     this.menu_order,
     this.count,
+    this.link,
+    this.taxonomy,
+    this.thumbnailUrl,
+    this.links,
   });
+
   int? id;
   String? name;
   String? slug;
@@ -23,21 +26,29 @@ class CategoryModel {
   ImageModel? image;
   int? menu_order;
   int? count;
+  String? link; // New field
+  String? taxonomy; // New field
+  String? thumbnailUrl; // New field
+  Map<String, dynamic>? links; // New field for _links
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CategoryModel &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          slug == other.slug &&
-          parent == other.parent &&
-          description == other.description &&
-          display == other.display &&
-          image == other.image &&
-          menu_order == other.menu_order &&
-          count == other.count);
+          (other is CategoryModel &&
+              runtimeType == other.runtimeType &&
+              id == other.id &&
+              name == other.name &&
+              slug == other.slug &&
+              parent == other.parent &&
+              description == other.description &&
+              display == other.display &&
+              image == other.image &&
+              menu_order == other.menu_order &&
+              count == other.count &&
+              link == other.link &&
+              taxonomy == other.taxonomy &&
+              thumbnailUrl == other.thumbnailUrl &&
+              links == other.links);
 
   @override
   int get hashCode =>
@@ -49,7 +60,11 @@ class CategoryModel {
       display.hashCode ^
       image.hashCode ^
       menu_order.hashCode ^
-      count.hashCode;
+      count.hashCode ^
+      link.hashCode ^
+      taxonomy.hashCode ^
+      thumbnailUrl.hashCode ^
+      links.hashCode;
 
   @override
   String toString() {
@@ -63,6 +78,10 @@ class CategoryModel {
         ' image: $image,' +
         ' menu_order: $menu_order,' +
         ' count: $count,' +
+        ' link: $link,' +
+        ' taxonomy: $taxonomy,' +
+        ' thumbnailUrl: $thumbnailUrl,' +
+        ' links: $links,' +
         '}';
   }
 
@@ -76,6 +95,10 @@ class CategoryModel {
     ImageModel? image,
     int? menu_order,
     int? count,
+    String? link,
+    String? taxonomy,
+    String? thumbnailUrl,
+    Map<String, dynamic>? links,
   }) {
     return CategoryModel(
       id: id ?? this.id,
@@ -87,6 +110,10 @@ class CategoryModel {
       image: image ?? this.image,
       menu_order: menu_order ?? this.menu_order,
       count: count ?? this.count,
+      link: link ?? this.link,
+      taxonomy: taxonomy ?? this.taxonomy,
+      thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
+      links: links ?? this.links,
     );
   }
 
@@ -98,26 +125,31 @@ class CategoryModel {
       'parent': this.parent,
       'description': this.description,
       'display': this.display,
-      'image': this.image,
+      'image': this.image?.toMap(),
       'menu_order': this.menu_order,
       'count': this.count,
+      'link': this.link,
+      'taxonomy': this.taxonomy,
+      'thumbnail_url': this.thumbnailUrl,
+      '_links': this.links,
     };
   }
 
   factory CategoryModel.fromMap(Map<String, dynamic> map) {
     return CategoryModel(
-      id: map['id'] ,
-      name: map['name'] ,
-      slug: map['slug'] ,
-      parent: map['parent'] ,
+      id: map['id'],
+      name: map['name'],
+      slug: map['slug'],
+      parent: map['parent'],
       description: map['description'],
-      display: map['display'] ,
-      image:map['image'] != null? ImageModel.fromMap( map['image']):null,
-      menu_order: map['menu_order'] ,
-      count: map['count'] ,
+      display: map['display'],
+      image: map['image'] != null ? ImageModel.fromMap(map['image']) : null,
+      menu_order: map['menu_order'],
+      count: map['count'],
+      link: map['link'],
+      taxonomy: map['taxonomy'],
+      thumbnailUrl: map['thumbnail_url'],
+      links: map['_links'],
     );
   }
-
-  //</editor-fold>
-
 }

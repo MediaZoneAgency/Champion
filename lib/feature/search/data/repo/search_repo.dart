@@ -1,9 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:education/core/network/network_constant.dart';
+
 import '../../../../core/error/error_model.dart';
 import '../../../../core/error/failure.dart';
+import '../../../../core/network/network_constant.dart';
 import '../../../coursedetails/data/models/product_model.dart';
+
+
 
 class SearchRepo {
   SearchRepo(this.dio);
@@ -18,7 +21,8 @@ class SearchRepo {
       //?search=rice&min_price=10&max_price=50&category?name=humanitarian
       Response response = await dio.get(NetworkConstant.search, queryParameters: {
         'search': search,
-        'category_name': categoryName
+        'category_name': categoryName,
+
       });
       List<ProductModel> products = (response.data as List)
           .map((item) => ProductModel.fromMap(item))

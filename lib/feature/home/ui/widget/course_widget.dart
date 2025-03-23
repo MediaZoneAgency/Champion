@@ -11,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 
 class CourseWidget extends StatelessWidget {
   const CourseWidget(this.product,
@@ -48,7 +49,7 @@ class CourseWidget extends StatelessWidget {
                   AppCachedNetworkImage(
                     width: 155.w,
                     height: 111.h,
-                    image:  product.images![0].src!,
+                    image:  product.thumbnailUrl!,
                     radius: 9,
                   ),
                        Positioned(
@@ -85,8 +86,10 @@ class CourseWidget extends StatelessWidget {
                         height: 8.h,
                       ),
                       Text(
-                        product.name!,
-                        style: TextStyles.poppinsRegular16contantGray,
+                        product.title!,
+                        style:
+                        ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        TextStyles.poppinsRegular16contantGray: TextStyles.poppinsRegular16contantGray.copyWith(color:Colors.white),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -98,7 +101,7 @@ class CourseWidget extends StatelessWidget {
                           'assets/img/star.svg',
                         ),
                         Text(
-                          product.price.toString(),
+                          product.salePrice.toString(),
                           style: TextStyles.poppinsRegular14lightGray,
                         ),
                         SizedBox(
@@ -122,7 +125,7 @@ class CourseWidget extends StatelessWidget {
                         height: 8.h,
                       ),
                       Text(
-                          product.price.toString()+"EGP" ,
+                          product.salePrice.toString()+"EGP" ,
                         style: TextStyles.poppinsRegular16blue,
                       ),
                     ],

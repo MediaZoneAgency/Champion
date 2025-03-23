@@ -8,6 +8,7 @@ import '../../../core/helpers/extensions.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/theming/colors.dart';
 import '../../../core/theming/styles.dart';
+import '../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../generated/l10n.dart';
 import '../logic/nav_bar_cubit.dart';
 
@@ -58,8 +59,8 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                     BottomNavigationBarItem(
                       icon:NavBarCubit.get(context).selectedIndex == 0
                       ?SvgPicture.asset(
-
-                        'assets/img/home-filled.svg',
+                        ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        'assets/img/home-2fillnew.svg':'assets/img/home-2darkfilld.svg',
                       ):SvgPicture.asset(
                         'assets/img/home-2.svg'
                            ,
@@ -69,7 +70,8 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                     BottomNavigationBarItem(
                       icon:NavBarCubit.get(context).selectedIndex == 1
                       ?SvgPicture.asset(
-                        'assets/img/bookfilled.svg',
+                        ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        'assets/img/bookneeeew.svg':'assets/img/bookdarkfilled.svg',
                       ):SvgPicture.asset(
                         'assets/img/book.svg',
                       ),
@@ -78,7 +80,8 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                     BottomNavigationBarItem(
                       icon:  NavBarCubit.get(context).selectedIndex == 2
                           ?SvgPicture.asset(
-                        'assets/img/heartfilled.svg',
+                        ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        'assets/img/heartnewfill.svg':'assets/img/heartfilleddark.svg',
                       ):SvgPicture.asset(
                         'assets/img/heart.svg',
                       ),
@@ -87,7 +90,8 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                     BottomNavigationBarItem(
                       icon: NavBarCubit.get(context).selectedIndex == 3
                       ?SvgPicture.asset(
-                        'assets/img/shopping-cartfilled.svg',
+                        ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        'assets/img/shopping-cart (1)new.svg':'assets/img/shopping-cartdarkdilled.svg',
                       ):SvgPicture.asset(
                         'assets/img/shopping-cart.svg',
                       ),
@@ -96,7 +100,8 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
                     BottomNavigationBarItem(
                       icon: NavBarCubit.get(context).selectedIndex == 4
                       ?SvgPicture.asset(
-                        'assets/img/profilefilled.svg',
+                        ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        'assets/img/profile (1).svg':'assets/img/profiledarkfilled.svg',
                       ):SvgPicture.asset(
                         'assets/img/profile.svg',
                       ),

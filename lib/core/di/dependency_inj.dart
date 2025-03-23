@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:education/feature/cart/data/repo/cart_repo.dart';
 import 'package:education/feature/cart/logic/cart_cubit.dart';
 import 'package:education/feature/profile/data/repo/profile_repo.dart';
-import 'package:education/feature/search/data/repo/search_repo.dart';
 import 'package:education/feature/search/logic/search_cubit.dart';
 import 'package:education/feature/sign_up/logic/sign_up_cubit.dart';
 import 'package:education/feature/wishlist/data/repo/wish_list_repo.dart';
@@ -14,10 +13,12 @@ import '../../feature/home/logic/home_cubit.dart';
 import '../../feature/home/logic/product_cubit.dart';
 import '../../feature/nav_bar/logic/nav_bar_cubit.dart';
 import '../../feature/profile/logic/profile_cubit.dart';
+import '../../feature/search/data/repo/search_repo.dart';
 import '../../feature/sign_in/data/repo/signin_repo.dart';
 import '../../feature/sign_in/logic/sign_in_cubit.dart';
 import '../../feature/sign_up/data/repo/sign_up_repo.dart';
 import '../network/dio_factory.dart';
+import '../theming/theming_change/theme_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -49,5 +50,6 @@ Future<void> setupGetIt() async
 
  getIt.registerLazySingleton<FavRepo>(()=>FavRepo(dio));
  getIt.registerLazySingleton<FavCubit>(()=>FavCubit(getIt()));
+ getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 
 }

@@ -17,7 +17,7 @@ class SignUpRepo {
   // Registration API Call
   Future<Either<ApiErrorModel, RegisterResponseModel>> register(RegisterRequestModel registerModel) async {
     try {
-      final response = await _dio.post(NetworkConstant.register, data: registerModel.toMap());
+      final response = await _dio.post( NetworkConstant.register, data: registerModel.toMap());
 
 
         return Right(RegisterResponseModel.fromMap(response.data));

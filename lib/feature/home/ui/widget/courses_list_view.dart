@@ -11,7 +11,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../profile/logic/profile_cubit.dart';
 import 'field_circle.dart';
-
 class CoursesListView extends StatelessWidget {
   const CoursesListView({super.key});
 
@@ -19,55 +18,65 @@ class CoursesListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
-        return BlocBuilder<FavCubit, FavState>(
-  builder: (context, state) {
-    return SizedBox(
-          height: 225.h,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 4),
-            child: ListView.separated(
-              itemCount: ProductCubit.get(context).productModel.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return CourseWidget(
-                  ProductCubit.get(context).productModel[index],
-                  onTap: () {
-                    if (ProfileCubit.get(context).profileUser != null){
-                    if( FavCubit.get(context).favorite.contains(
-                        ProductCubit.get(context).productModel[index].id)
-                    ){
-                      FavCubit.get(context).removeFromWishList(
-                       ProductCubit.get(context).productModel[index]
+        var productCubit = ProductCubit.get(context);
+
+        if (state is FetchProductLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        if (state is FetchProductSuccess && productCubit.productModel.isEmpty) {
+          return Center(child: Text("No courses available"));
+        }
+
+        if (state is FetchProductSuccess) {
+          return BlocBuilder<FavCubit, FavState>(
+            builder: (context, favState) {
+              return SizedBox(
+                height: 225,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: ListView.separated(
+                    itemCount: productCubit.productModel.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return CourseWidget(
+                        productCubit.productModel[index],
+                        onTap: () {
+                          if (ProfileCubit.get(context).profileUser != null) {
+                            if (FavCubit.get(context).favorite.contains(
+                                productCubit.productModel[index].id)) {
+                              FavCubit.get(context).removeFromWishList(
+                                  productCubit.productModel[index]);
+                            } else {
+                              FavCubit.get(context).addToWishList(
+                                  model: productCubit.productModel[index]);
+                            }
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: "You Don't have an account",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: ColorsManager.primaryColorLight,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                          }
+                        },
+                        isFavorite: FavCubit.get(context).favorite.contains(
+                            productCubit.productModel[index].id),
                       );
-                    }else{
-                      FavCubit.get(context).addToWishList(model: ProductCubit
-                          .get(context)
-                          .productModel[index]);
-                    }}else{
-                      Fluttertoast.showToast(
-                        msg: "You Don't have account",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        backgroundColor: ColorsManager.primaryColorLight,
-                        textColor: Colors.white,
-                        fontSize: 16.0,
-                      );
-                    }
-                  },
-                  isFavorite: FavCubit.get(context).favorite.contains(
-                      ProductCubit.get(context).productModel[index].id),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  width: 20.w,
-                );
-              },
-            ),
-          ),
-        );
-  },
-);
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(width: 20.w);
+                    },
+                  ),
+                ),
+              );
+            },
+          );
+        }
+
+        return SizedBox(); // تفادي الأخطاء عند حالة غير متوقعة
       },
     );
   }

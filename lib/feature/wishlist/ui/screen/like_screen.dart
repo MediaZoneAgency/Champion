@@ -101,7 +101,7 @@ class _WishListScreenState extends State<WishListScreen> {
                       Center(
                         child: Lottie.asset('assets/img/Animation - 1732019401672.json'),
                       ),
-                      SizedBox(height: 48.h,),
+
                       GestureDetector(
                         onTap: (){
                           context.pushNamedAndRemoveUntil(Routes.signUpScreen,

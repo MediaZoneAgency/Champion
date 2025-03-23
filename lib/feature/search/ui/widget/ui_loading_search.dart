@@ -24,7 +24,7 @@ class LoadingCartWidget extends StatelessWidget {
       child:
       Row(children: [
 
-        AppCachedNetworkImage(image:product.productModel.images![0].src!, width: 75.w, height: 75.h, radius: 5,),
+        AppCachedNetworkImage(image:product.productModel.thumbnailUrl!, width: 75.w, height: 75.h, radius: 5,),
 
         SizedBox(width: 13.w,),
         Column(
@@ -58,7 +58,7 @@ class LoadingCartWidget extends StatelessWidget {
                           'assets/img/star.svg',
                         ),
 
-                        Text(product.productModel.ratingCount.toString() ,
+                        Text(product.productModel.salePrice.toString() ,
                           style: TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16),),
                       ],
                     ),

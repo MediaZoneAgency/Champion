@@ -60,19 +60,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "CardNumber": MessageLookupByLibrary.simpleMessage("رقم البطاقة"),
         "CardNumberDes":
             MessageLookupByLibrary.simpleMessage("أدخل رقم البطاقة"),
-        "Cart": MessageLookupByLibrary.simpleMessage("عربة التسوق"),
         "Cash": MessageLookupByLibrary.simpleMessage("نقدًا"),
         "ChangePassword":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
-        "Checknewcourses": MessageLookupByLibrary.simpleMessage("تصفح دوراتنا"),
         "ChooseRecovery": MessageLookupByLibrary.simpleMessage(
-            "اختر أين تريد إرسال رابط استعادة كلمة المرور"),
+            "اختر مكان إرسال رابط استعادة كلمة المرور"),
         "City": MessageLookupByLibrary.simpleMessage("المدينة"),
         "CityName": MessageLookupByLibrary.simpleMessage("اسم المدينة"),
         "CityNameDes": MessageLookupByLibrary.simpleMessage("أدخل اسم مدينتك"),
         "ConfirmPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "Country": MessageLookupByLibrary.simpleMessage("الدولة"),
+        "Dark": MessageLookupByLibrary.simpleMessage("داكن"),
         "Delete": MessageLookupByLibrary.simpleMessage("حذف"),
         "DeleteAccount": MessageLookupByLibrary.simpleMessage("حذف الحساب"),
         "DeleteYourAccount": MessageLookupByLibrary.simpleMessage("حذف حسابك"),
@@ -80,7 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("حذف معلومات حسابك."),
         "Deleteyourhistory": MessageLookupByLibrary.simpleMessage("حذف سجلك."),
         "Deletingyouraccountwill": MessageLookupByLibrary.simpleMessage(
-            "حذف حسابك سيؤدي إلى إزالة حسابك نهائيًا من نظامنا. لا يمكن التراجع عن هذا الإجراء. هل تريد المتابعة؟"),
+            "حذف حسابك سيؤدي إلى إزالة بياناتك نهائيًا. لا يمكن التراجع عن هذا الإجراء."),
         "Done": MessageLookupByLibrary.simpleMessage("تم"),
         "DontreceiveOTPcode":
             MessageLookupByLibrary.simpleMessage("لم تستلم كود التحقق؟"),
@@ -88,7 +87,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "EditAccount": MessageLookupByLibrary.simpleMessage("تعديل الحساب"),
         "EditPassword":
             MessageLookupByLibrary.simpleMessage("تعديل كلمة المرور"),
-        "EditProfession": MessageLookupByLibrary.simpleMessage("تعديل المهنة"),
         "EditProfile":
             MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
         "Editaccountinfo":
@@ -115,10 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك المحمول"),
         "Enteravalidemailaddress": MessageLookupByLibrary.simpleMessage(
             "أدخل بريدًا إلكترونيًا صالحًا"),
-        "Enteravalidpassword":
-            MessageLookupByLibrary.simpleMessage("أدخل كلمة مرور صالحة"),
         "Enterthecode": MessageLookupByLibrary.simpleMessage(
-            "أدخل الكود الذي أرسلناه إلى البريد الإلكتروني carinosama24@gmail.com"),
+            "أدخل الكود الذي أرسلناه إلى البريد الإلكتروني"),
         "Enteryournewpassword":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور الجديدة"),
         "Enteryouroldpassword":
@@ -130,28 +126,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أدخل رقم الطابق"),
         "ForgotPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
-        "GetHelp": MessageLookupByLibrary.simpleMessage("الحصول على مساعدة"),
+        "GetHelp": MessageLookupByLibrary.simpleMessage("الحصول على المساعدة"),
         "HelloWelcome": MessageLookupByLibrary.simpleMessage(
-            "مرحبًا، سعيدون بعودتك! لقد افتقدناك."),
-        "Home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+            "مرحبًا، سعيدون بعودتك! لقد افتقدناك"),
         "Language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "Lastestsearch":
             MessageLookupByLibrary.simpleMessage("أحدث عمليات البحث"),
+        "Light": MessageLookupByLibrary.simpleMessage("فاتح"),
         "Login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
-        "LoginSignup":
-            MessageLookupByLibrary.simpleMessage("تسجيل الدخول/إنشاء حساب"),
         "Logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "MobileNumber":
             MessageLookupByLibrary.simpleMessage("رقم الهاتف المحمول"),
-        "MyCourses": MessageLookupByLibrary.simpleMessage("دوراتي"),
         "Name": MessageLookupByLibrary.simpleMessage("الاسم"),
         "NewPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "Next": MessageLookupByLibrary.simpleMessage("التالي"),
-        "Nicetomeetyou": MessageLookupByLibrary.simpleMessage("تشرفنا بمعرفتك"),
         "No": MessageLookupByLibrary.simpleMessage("لا"),
         "NoAccount": MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
-        "Notifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "OTP": MessageLookupByLibrary.simpleMessage("كود التحقق"),
         "OldPassword":
             MessageLookupByLibrary.simpleMessage("كلمة المرور القديمة"),
@@ -174,8 +165,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("المتابعة إلى الدفع"),
         "ProceedTocheckout":
             MessageLookupByLibrary.simpleMessage("المتابعة إلى الدفع"),
-        "Profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
-        "Promocode": MessageLookupByLibrary.simpleMessage("رمز الخصم"),
         "PushNotifications": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "RecoverySent": MessageLookupByLibrary.simpleMessage(
             "لقد أرسلنا لك رابط استعادة لتغيير كلمة المرور"),
@@ -193,7 +182,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ابحث عن دورة أو فئة"),
         "Seeall": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "Setting": MessageLookupByLibrary.simpleMessage("الإعدادات"),
-        "Settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
         "SignUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
         "StreetName": MessageLookupByLibrary.simpleMessage("اسم الشارع"),
         "StreetNameDes":
@@ -202,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("التصنيفات الفرعية"),
         "TermsConditions":
             MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
+        "Theme": MessageLookupByLibrary.simpleMessage("المظهر"),
         "Todaysspecial":
             MessageLookupByLibrary.simpleMessage("عرض اليوم المميز"),
         "UnexpectedErrorOccurred":
@@ -224,7 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "أفضل المميزات مع دورات تبدأ من 399.99 جنيهًا مصريًا"),
         "buynow": MessageLookupByLibrary.simpleMessage("اشترِ الآن"),
         "connectionTimeoutWithTheServer":
-            MessageLookupByLibrary.simpleMessage("انتهى وقت الاتصال بالخادم"),
+            MessageLookupByLibrary.simpleMessage("انتهت مهلة الاتصال بالخادم"),
         "connectionToServerFailed":
             MessageLookupByLibrary.simpleMessage("فشل الاتصال بالخادم"),
         "connectionToTheServerFailedDueToInternetConnection":
@@ -256,6 +245,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "somethingWentWrong":
             MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
         "sorry": MessageLookupByLibrary.simpleMessage(
-            "عذرًا، فشل في جلب بيانات المستخدم. يرجى إعادة تشغيل التطبيق أو التحقق من اتصال الإنترنت!")
+            "عذرًا، فشل جلب بيانات المستخدم. يرجى إعادة تشغيل التطبيق أو التحقق من اتصال الإنترنت!")
       };
 }

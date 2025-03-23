@@ -32,7 +32,7 @@ final ProductModel product;
                   Navigator.pushNamed(context, Routes.DetailsScreen,arguments: product) ;
                 },
                   child: AppCachedNetworkImage
-                    (image:product.images![0].src!,
+                    (image:product.thumbnailUrl!,
                     width: 70.w,
                     height: 70.h,
                     radius: 5,)),
@@ -42,7 +42,7 @@ final ProductModel product;
                 crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                       product.name.toString(),
+                       product.title.toString(),
                         style: TextStyles.poppinsMedium16DarkGray.copyWith(fontSize: 14),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -58,7 +58,7 @@ final ProductModel product;
                           children: [
                             TextSpan(
                               text:
-                              "${product.description!.substring(0,60)}..." ?? "Description not available",
+                              "${product.content!.substring(0,60)}..." ?? "Description not available",
                               style: TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12),),
                             TextSpan(
                               text:
@@ -77,7 +77,7 @@ final ProductModel product;
                     Row(
 
                         children: [
-                          Text(product.price.toString(),
+                          Text(product.salePrice.toString(),
                             style: TextStyles.poppinsMedium20Blue,),
                           SizedBox(width: 2.w),
                           Row(
@@ -85,7 +85,7 @@ final ProductModel product;
                               SvgPicture.asset(
                                 'assets/img/star.svg',
                               ),
-                              Text(product.price.toString() ,
+                              Text(product.salePrice.toString() ,
                                 style:TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16),),
                             ],
                           ),

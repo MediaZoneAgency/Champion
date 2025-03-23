@@ -31,7 +31,7 @@ class MoreLikeWidget extends StatelessWidget {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: NetworkImage(
-                product.images![0].src!,
+                product.thumbnailUrl!,
               ),
             ),
             borderRadius: BorderRadius.only(
@@ -75,7 +75,7 @@ class MoreLikeWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                product.name!,
+                product.title!,
                 style: TextStyles.poppinsRegular16contantGray.copyWith(fontSize: 11.sp),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -87,7 +87,7 @@ class MoreLikeWidget extends StatelessWidget {
                 ),
                 SizedBox(width: 2.w,),
                 Text(
-                  product.ratingCount.toString(),
+                  product.salePrice.toString(),
                   style: TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 10.sp),
                 ),
                 SizedBox(
@@ -111,7 +111,7 @@ class MoreLikeWidget extends StatelessWidget {
                 height: 8.h,
               ),
               Text(
-                product.regularPrice ?? "not vaild",
+                product.salePrice.toString() ?? "not vaild",
                 style: TextStyles.poppinsRegular16blue.copyWith(fontSize: 11.sp),
               ),
             ],

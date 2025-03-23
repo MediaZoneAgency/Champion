@@ -174,10 +174,11 @@
   "Cart": "Cart",
   "Profile": "Profile",
   "Foryou": "For you",
-  "Passwordsdontmatch": "Passwords don't match"
-
-
-
-
+  "Passwordsdontmatch": "Passwords don't match",
+  "Theme":"Theme",
+  "Light":"Light",
+"Dark" :"Dark",
+"Enrol":"Enrol Now",
+"Progress":"Progress",
 }
 

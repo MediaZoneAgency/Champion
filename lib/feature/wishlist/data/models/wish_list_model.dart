@@ -88,9 +88,9 @@ ProductModel toWishModel() {
 
   return ProductModel(
         id: id!
-        ,name: name!
-        ,description: description
-        ,price: price!
+        ,title: name!
+        ,content: description
+
   );
 }
 }

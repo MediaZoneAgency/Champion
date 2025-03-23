@@ -5,6 +5,7 @@ import '../helpers/spacing.dart';
 import '../theming/colors.dart';
 
 import '../theming/styles.dart';
+import '../theming/theming_change/theme_cubit.dart';
 
 class AppText extends StatelessWidget {
 
@@ -19,13 +20,14 @@ class AppText extends StatelessWidget {
         Center(
           child: Text(
            title,
-            style: TextStyles.poppinsMedium24ContantGray,
+            style:ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.poppinsMedium24ContantGray : TextStyles.poppinsMedium24ContantGray.copyWith(color: Color(0xffFFFFFF)),
           ),
         ),
         Center(
           child: Text(
             description,
-            style: TextStyles.poppinsRegular12ContantGray,
+            style: ThemeCubit.get(context).themeMode== ThemeMode.light ?TextStyles.poppinsRegular12ContantGray:TextStyles.poppinsRegular12ContantGray.copyWith(color:  Color(0xffFFFFFF)),
+
             textAlign: TextAlign.center,
             maxLines: 1,
           ),

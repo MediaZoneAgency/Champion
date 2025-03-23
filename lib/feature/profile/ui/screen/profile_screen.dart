@@ -5,13 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/network_image.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
+import '../../../cart/ui/widget/cart_bar.dart';
 import '../../logic/profile_cubit.dart';
 import '../widget/guest_profile.dart';
 
@@ -32,18 +33,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          S.of(context).profile,
-          style: TextStyles.poppinsMedium18contantGray,
-        ),
-      ),
-      backgroundColor: Colors.white,
+      // appBar: AppBar(
+      // backgroundColor: Colors.transparent,
+      //   centerTitle: true,
+      //   title: Text(
+      //     S.of(context).profile,
+      //     style: ThemeCubit.get(context).themeMode== ThemeMode.light ?
+      //     TextStyles.poppinsMedium18contantGray: TextStyles.poppinsMedium18contantGray.copyWith(color:Colors.white),
+      //   ),
+      // ),
+
       body: Column(
         children: [
-          verticalSpace(15.h),
+SizedBox(height: 20.h,),
+          profileBar(username: S.of(context).profile),
+
           BlocBuilder<ProfileCubit, ProfileState>(
             builder: (context, state) {
               if (state is ProfileLoading) {
@@ -51,76 +55,93 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   enabled: true,
                   child: UiLoadingProfile(),
                 );
-              }
-              if (ProfileCubit.get(context).profileUser != null) {
+              } else if (state is ProfileSuccess) {
                 return Padding(
                   padding: EdgeInsets.symmetric(horizontal: 26.0.w),
                   child: Row(
                     children: [
-                      AppCachedNetworkImage(image:ProfileCubit.get(context).profileUser!.profilePicture, width: 54, height: 54, radius: 200,
-
+                      AppCachedNetworkImage(
+                        image: ProfileCubit.get(context).profileUser!.profilePicture,
+                        width: 54,
+                        height: 54,
+                        radius: 200,
                       ),
                       horizontalSpace(17),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            ProfileCubit.get(context).profileUser!.name!,
-                            style: TextStyles.poppinsRegular16contantGray,
+              ProfileCubit.get(context).profileUser!.name!,
+                            style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                                ? TextStyles.poppinsRegular16contantGray
+                                : TextStyles.poppinsRegular16contantGray.copyWith(color: Colors.white),
                           ),
                           Text(
                             ProfileCubit.get(context).profileUser!.email!,
-                            style: TextStyles.poppinsRegular16LightGray,
+                            style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                                ? TextStyles.poppinsRegular16LightGray
+                                : TextStyles.poppinsRegular16LightGray.copyWith(color: Colors.white),
                           ),
                         ],
                       )
                     ],
                   ),
                 );
+              } else {
+                return GuestProfile();
               }
-              return GuestProfile();
             },
           ),
-          verticalSpace(30.h),
+
+          verticalSpace(15.h),
           Expanded(
 
             child: ListView(
               children: [
                 ProfileCubit.get(context).token!=''?ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/notification (2).svg'),
+                  icon: SvgPicture.asset('assets/img/notification (1).svg'),
                   text:S.of(context).Notifications,
                   onTap: () {},
                 ):SizedBox(),
 
                 ProfileCubit.get(context).token!=''?ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/edit.svg'),
+                  icon: SvgPicture.asset('assets/img/editnew.svg'),
                   text: S.of(context).EditProfession,
                   onTap: () {
                     context.pushNamed(Routes.accountInfoScreen);
                   },
                 ):SizedBox(),
                 ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/message-question.svg'),
+                  icon: SvgPicture.asset('assets/img/message-questionneew.svg'),
                   text: S.of(context).GetHelp,
-                  onTap: () {},
+                  onTap: () {
+                    context.pushNamed(Routes.chatSupprot);
+                  },
                 ),
                 ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/terms  conditions.svg'),
+                  icon: SvgPicture.asset('assets/img/terms  conditionsnw.svg'),
                   text:S.of(context).TermsConditions,
                   onTap: () {},
                 ),
                 ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/Frame (3).svg'),
+                  icon: SvgPicture.asset('assets/img/provcynew.svg'),
                   text:S.of(context).PrivacyPolicy,
                   onTap: () {},
                 ),
                 ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/info-circle.svg'),
+                  icon: SvgPicture.asset('assets/img/progressnew.svg'),
                   text: S.of(context).AboutApp,
                   onTap: () {},
                 ),
                 ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/setting-2.svg'),
+                  icon: SvgPicture.asset('assets/img/procircle.svg'),
+                  text: S.of(context).AboutApp,
+                  onTap: () {
+
+                  },
+                ),
+                ProfileMenuItem(
+                  icon: SvgPicture.asset('assets/img/setting-2 (1).svg'),
                   text:S.of(context).Settings,
                   onTap: () {
                     context.pushNamed(Routes.settingsScreen);

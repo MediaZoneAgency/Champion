@@ -10,11 +10,13 @@ import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/custom_cart_bar.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../logic/profile_cubit.dart';
 import '../widget/country_list_tile.dart';
 import '../widget/language_list_tile.dart';
 import '../widget/setting_item_list_tile.dart';
+import '../widget/theme_list_tile .dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -36,7 +38,12 @@ class SettingScreen extends StatelessWidget {
               ProfileCubit.get(context).token!=''?Divider():SizedBox(),
 
               ProfileCubit.get(context).token!=''?  SwitchListTile(
-                title: Text(S.of(context).PushNotifications, style: TextStyles.poppinsMedium16BlackMeduim,),
+                title: Text(S.of(context).PushNotifications, style:
+                ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                TextStyles.poppinsMedium16BlackMeduim:    TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white),
+
+                ),
+
                 activeTrackColor: ColorsManager.primaryColorLight,
                 value: true, onChanged:(value) {
               },):SizedBox(),
@@ -44,6 +51,8 @@ class SettingScreen extends StatelessWidget {
                LanguageListTile(),
                 const Divider(),
                 const CountrylistTile(),
+              const Divider(),
+const ThemeListTile(),
               ProfileCubit.get(context).token!=''?Divider():SizedBox(),
               ProfileCubit.get(context).token!=''?   SettingItemListTile(title: S.of(context).DeleteAccount,onTap: () {
                 context.pushNamed(Routes.deleteAccountScreen);

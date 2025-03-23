@@ -83,7 +83,7 @@
 // //     };
 // //   }
 // //
-// //   factory RegisterResponseModel.fromMap(Map<String, dynamic> map) {
+// //   factory RegisterResponseModel.fromMapM(ap<String, dynamic> map) {
 // //     return RegisterResponseModel(
 // //       message: map['message'] as String,
 // //       userId: map['user_id'] as int,

@@ -32,7 +32,7 @@ class SearchListView extends StatelessWidget {
             separatorBuilder: (BuildContext context, int index) {
               return Column(children: [
                 SizedBox(height: 10.h,),
-                Divider(
+                const Divider(
                   color: ColorsManager.LigGthGray,
                   indent: 30,
                   endIndent: 30,

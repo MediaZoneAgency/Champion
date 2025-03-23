@@ -2,7 +2,7 @@
 
 import 'cash_helper.dart';
 
-enum CachedDataType { categories, profile ,productHome,wishlist,categoryProduct}
+enum CachedDataType { categories, profile ,productHome,wishlist,categoryProduct,topics}
 
 class CachedKeys {
   static Map<String, int> expirationCacheTime = {
@@ -10,7 +10,8 @@ class CachedKeys {
     CachedDataType.profile.name: 600000,
     CachedDataType.productHome.name: 600000,
     CachedDataType.wishlist.name:60000,
-    CachedDataType.categoryProduct.name:60000
+    CachedDataType.categoryProduct.name:60000,
+    CachedDataType.topics.name:60000
   };
 }
 

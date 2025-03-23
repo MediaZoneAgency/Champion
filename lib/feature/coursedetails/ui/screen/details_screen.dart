@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../../cart/logic/cart_cubit.dart';
 import '../../../home/ui/widget/courses_list_view.dart';
@@ -34,7 +35,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       bottomNavigationBar: BlocBuilder<CartCubit ,CartState>(
         builder: (context, state) {
           return SizedBox(
-            height: 60.h,
+            height: 68.h,
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.only(left: 8, right: 20),
@@ -47,10 +48,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
                       children: [
                         Text('Total Price',
-                          style: TextStyles.poppinsRegular14LightGray,),
+                          style:
+                          ThemeCubit.get(context).themeMode== ThemeMode.light?
+                          TextStyles.poppinsRegular14LightGray: TextStyles.poppinsRegular14white,),
                         SizedBox(height: 4.h,),
                         Text('450 EGP',
-                          style: TextStyles.poppinsMedium20NavyBlue,),
+                          style:
+                          ThemeCubit.get(context).themeMode== ThemeMode.light?
+                          TextStyles.poppinsMedium20NavyBlue: TextStyles.poppinsMedium20white.copyWith(color: Colors.white),),
 
 
                       ],),
@@ -58,10 +63,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     BlocBuilder<CartCubit, CartState>(
                       builder: (context, state) {
                         return AppTextButton(
+                          horizontalPadding: 5.w,
+                          verticalPadding:5.w,
                           borderRadius: 10,
                           buttonHeight: 48.h,
                           buttonWidth: 170.w,
-                          buttonText: 'Add to Cart',
+                          buttonText:"Enrol Now",
+                          //S.of(context).Enrol,
                           textStyle: TextStyles.poppinsMedium18white,
                           onPressed: () {
                             CartCubit.get(context).addToCart(context,
@@ -90,7 +98,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   SizedBox(height: 40.h),
                   Text(
                       "    Reviews(12)",
-                      style: TextStyles.poppinsMedium16DarkGray
+                      style:
+                      ThemeCubit.get(context).themeMode== ThemeMode.light?
+                      TextStyles.poppinsMedium16DarkGray:TextStyles.poppinsMedium16DarkGray.copyWith(color: Colors.white)
                   ),
                   ReviewWidget(),
                   SizedBox(height: 12.h),
@@ -112,7 +122,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       children: [
                         Text(
                             'For you',
-                            style: TextStyles.poppinsMedium18contantGray
+                            style: ThemeCubit.get(context).themeMode== ThemeMode.light?
+                            TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white)
                         ),
                         SizedBox(width: 200.w,),
                         Text(

@@ -14,6 +14,7 @@ import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/sharedWidgets/show_dialog_error.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../../nav_bar/logic/nav_bar_cubit.dart';
 import '../widgets/enter_your.dart';
@@ -32,8 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _PasswordConfirmController =
-      TextEditingController();
+  final TextEditingController _PasswordConfirmController = TextEditingController();
 
   bool _isChecked = false;
   @override
@@ -63,18 +63,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     verticalSpace(20.h),
                      Center(
                        child: SizedBox(
-                         height: 72.h,
-                         width: 280.w,
+                        // height: 72.h,
+                        width: 280.w,
                          child: Column(
 
                            children: [
                              Text(
                               S.of(context).createAccount,
-                               style: TextStyles.poppinsMedium24ContantGray,
+                               style:ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.poppinsMedium24ContantGray : TextStyles.poppinsMedium24ContantGray.copyWith(color: Color(0xffFFFFFF)),
                              ),
                                                  Text(
                                                    S.of(context).Fillaccount,
-                                                   style: TextStyles.poppinsRegular12ContantGray,
+                                                   style: ThemeCubit.get(context).themeMode== ThemeMode.light ?TextStyles.poppinsRegular12ContantGray:TextStyles.poppinsRegular12ContantGray.copyWith(color:  Color(0xffFFFFFF)),
                                                    textAlign: TextAlign.center,
                                                    maxLines: 2,
                                                  ),
@@ -202,6 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             },
                           ),
 
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
 
@@ -209,6 +210,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               BlocBuilder<SignUpCubit, SignUpState>(
                                 builder: (context, state) {
                                   return Checkbox(
+
                                     activeColor: ColorsManager.primaryColorLight,
                                  //   checkColor: ColorsManager.primaryColorLight,
                                     value: SignUpCubit.get(context).isChecked,
@@ -220,7 +222,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                               ),
                               Text(S.of(context).Agreewith,
-                                  style: TextStyles.poppinsRegular12LightGray),GestureDetector(
+                                  style:ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.poppinsRegular12LightGray:TextStyles.poppinsRegular12LightGray.copyWith(color:Colors.white)
+                              ),GestureDetector(
                                 onTap: () async {
                                   final Uri url = Uri.parse('https://clusters.mediazoneag.com/privacy-policy/');
                                   if (await launchUrl(url)) {
@@ -231,7 +234,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                                 child: Text(
                                   S.of(context).TermsConditions,
-                                  style: TextStyles.poppinsRegular12Blue.copyWith(
+                                  style:  ThemeCubit.get(context).themeMode== ThemeMode.light ?TextStyles.poppinsRegular12Blue.copyWith(
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: TextStyles.poppinsRegular12Blue.color,
+                                  ):TextStyles.poppinsRegular12Blue.copyWith(
+
+                                  //  color: ColorsManager.primaryColorLight,
                                     decoration: TextDecoration.underline,
                                     decorationColor: TextStyles.poppinsRegular12Blue.color,
                                   ),
@@ -239,13 +247,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ],
                           ),
-                          verticalSpace(16),
+                          verticalSpace(10),
                           AppTextButton(
                             horizontalPadding: 10,
                             verticalPadding: 10,
                             borderRadius: 10,
                             buttonHeight: 58.h,
-                            buttonWidth: 327.w,
+                            buttonWidth: 340,
                             buttonText: S.of(context).SignUp,
                             textStyle: TextStyles.poppinsMedium20white,
                             onPressed: () async {
@@ -256,7 +264,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         username: _nameController.text,
                                         email: _emailController.text,
                                         password: _passwordController.text,
-                                        phoneNumber: '01060938188'),
+                                        ),
                                   );
                                 }
                                 Fluttertoast.showToast(
@@ -275,17 +283,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             children: [
                               Expanded(
                                   child: Divider(
-                                      color: ColorsManager.Blackmeduim)),
+                                      color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
                               Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 25.0),
                                 child: Text(S.of(context).Orsignup,
                                     style:
-                                        TextStyles.poppinsMedium16BlackMeduim),
+                                    ThemeCubit.get(context).themeMode== ThemeMode.light ?   TextStyles.poppinsMedium16BlackMeduim :TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white)),
                               ),
                               Expanded(
                                   child: Divider(
-                                      color: ColorsManager.Blackmeduim)),
+                                      color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
                             ],
                           ),
                           verticalSpace(20),
@@ -294,21 +302,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             children: [
                               IconButton(
                                 icon: SvgPicture.asset(
-                                  'assets/img/apple.svg',
+                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                  'assets/img/apple.svg': 'assets/img/apple (1).svg',
                                 ),
                                 onPressed: () {},
                               ),
-                              SizedBox(width: 40),
+                              SizedBox(width: 20.w),
                               IconButton(
                                 icon: SvgPicture.asset(
-                                  'assets/img/google.svg',
+                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                  'assets/img/google.svg':'assets/img/google (1).svg',
                                 ),
                                 onPressed: () {},
                               ),
-                              SizedBox(width: 40),
+                              SizedBox(width: 20.w),
                               IconButton(
                                 icon: SvgPicture.asset(
-                                  'assets/img/facebook.svg',
+                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                  'assets/img/facebook.svg':'assets/img/facebook (1).svg',
                                 ),
                                 onPressed: () {},
                               ),
@@ -319,7 +330,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(S.of(context).Alreadyhaveanaccount,
-                                  style: TextStyles.poppinsMedium16BlackMeduim),
+                                  style:          ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.poppinsMedium16BlackMeduim:TextStyles.poppinsMedium16BlackMeduim.copyWith(color: Colors.white)),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.pushNamed(
@@ -328,6 +339,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: Text(S.of(context).Login,
                                     style: TextStyles.poppinsRegular16Blue
                                         .copyWith(
+
                                       decoration: TextDecoration.underline,
                                         decorationColor: TextStyles.poppinsRegular16Blue.color
                                     )),

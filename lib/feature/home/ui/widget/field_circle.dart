@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 
 class CategoryItem extends StatelessWidget {
   final String icon;
@@ -34,18 +35,26 @@ final int id;
               color: ColorsManager.BabyBlue, // لون الخلفية الدائري
               shape: BoxShape.circle,
             ),
-            child: AppCachedNetworkImage(
-              image: icon,
-              width: 24,
-              height: 24,
-              radius: 40,
+            child: SizedBox(
+              width: 14,
+              height: 14,
+              child: AppCachedNetworkImage(
+                image: icon,
+                width: 14,
+                height: 14,
+                radius: 40,
+
+              ),
             ),
           ),
         ),
         SizedBox(height: 8),
         Text(
          label,
-          style: TextStyles.poppinsMedium12contantGray,
+          style:
+          ThemeCubit.get(context).themeMode == ThemeMode.light
+              ?
+          TextStyles.poppinsMedium12contantGray:TextStyles.poppinsMedium12contantGray.copyWith(color: Colors.white),
         ),
       ],
     );

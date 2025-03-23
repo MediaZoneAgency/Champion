@@ -10,7 +10,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
+import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 import '../../../profile/logic/profile_cubit.dart';
 import '../../../profile/ui/widget/ui_loading_profile.dart';
@@ -43,13 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // backgroundColor: ColorsManager.primaryColorLight,
+      //backgroundColor: Colors.white,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
+                padding: const EdgeInsets.only(left: 15, right: 1),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return HomeBar();
                         }
                         return  Padding(
-                            padding:  EdgeInsets.only(top: 30.h,left: 15.w,right: 15.w),
+                            padding:  EdgeInsets.only(top: 30.h,),
                             child: Row(
                               children: [
                                 CircleAvatar(
@@ -78,21 +80,60 @@ class _HomeScreenState extends State<HomeScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      S.of(context).Nicetomeetyou,
-                                      style: TextStyles.poppinsRegular16ContantGray,
+                                    "geust mode"
+                                      ,
+                                      style: ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                      TextStyles.poppinsRegular16ContantGray: TextStyles.poppinsRegular16ContantGray.copyWith(color: Colors.white),
                                     ),
                                     Text(
                                       "Guest Mode",
-                                      style: TextStyles.poppinsRegular14LightGray,
+                                      style:
+                                      TextStyles.poppinsRegular14LightGray,
                                     ),
                                   ],
                                 ),
-                                const Spacer(),
+
+                                Container(
+                                  height: 45.h,
+                                  width: 70.w,
+                                  decoration: BoxDecoration(
+                                    color: ThemeCubit.get(context).themeMode == ThemeMode.light
+                                        ? ColorsManager.mainGrray
+                                        : ColorsManager.mainGrray,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                     // Adjust alignment
+                                    children: [
+                                      Flexible( // Use Flexible to allow the Text to shrink if needed
+                                        child: Text(
+                                          "160",
+                                          style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                                              ? TextStyles.poppinsRegular12ContantGray
+                                              : TextStyles.poppinsRegular12ContantGray,
+                                          //overflow: TextOverflow.ellipsis, // Handle text overflow
+                                        ),
+                                      ),
+                                      IconButton(
+                                        icon: SvgPicture.asset(
+                                          width: 20.w,
+                                          height: 20.h,
+                                          'assets/img/coin.svg',
+                                          fit: BoxFit.scaleDown,
+                                        ),
+                                        onPressed: () {
+                                          context.pushNamed(Routes.rewardGridViewScreen);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
                             IconButton(
                                               icon: SvgPicture.asset(
                                                 width: 30,
                                                 height: 30,
-                                                'assets/img/search-normal.svg',
+                                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                                'assets/img/search-normal.svg':'assets/img/SearchDarkk.svg',
                                                 fit: BoxFit.scaleDown,
                                               ),
                                               onPressed: () {
@@ -103,7 +144,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               icon: SvgPicture.asset(
                                                 width: 30,
                                                 height: 30,
-                                                 'assets/img/notification.svg',
+                                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                                                 'assets/img/notification.svg':'assets/img/notificationdark.svg',
                                                 fit: BoxFit.scaleDown,
                                               ),
                                               onPressed: () {
@@ -149,7 +191,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         children: [
                           Text(S.of(context).Popularcourses,
-                              style: TextStyles.poppinsMedium18contantGray),
+                              style:
+                              ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                              TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color:Colors.white)),
                          Spacer(),
                           GestureDetector(
                             onTap: (){
@@ -165,18 +209,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 16.h,
                     ),
                     BlocBuilder<ProductCubit, ProductState>(
-                        builder: (context, state) {
-                      if (state is  FetchProductLoading) {
-                        return Skeletonizer(
-                          enabled: true,
-                          child: UiLoadingWidget(),
-                        );
-                      }
-                      if (ProductCubit.get(context).productModel.isNotEmpty) {
-                        return CoursesListView();
-                      }
-                      return Container();
-                    }),
+                      builder: (context, state) {
+                        if (state is FetchProductLoading) {
+                          return Skeletonizer(
+                            enabled: true,
+                            child: UiLoadingWidget(),
+                          );
+                        }
+                        if (state is FetchProductSuccess && ProductCubit.get(context).productModel.isNotEmpty) {
+                          return CoursesListView();
+                        }
+                        return Center(child: Text("No courses available")); // عرض رسالة عند عدم وجود بيانات
+                      },
+                    ),
+
                     SizedBox(
                       height: 10.h,
                     ),
@@ -185,7 +231,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         children: [
                           Text(S.of(context).Foryou,
-                              style: TextStyles.poppinsMedium18contantGray),
+                              style: ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                              TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color:Colors.white)),
                           Spacer(),
                           GestureDetector(
                             onTap: (){
@@ -213,7 +260,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             return const CoursesListView();
                           }
                           return Container();
-                        }),
+                        }
+                        ),
 
                   ],
                 ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669095559063",
+    "project_id": "champion-6c444",
+    "storage_bucket": "champion-6c444.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669095559063:android:064b8149de5a86fd1eced2",
+        "android_client_info": {
+          "package_name": "com.educationmz.education"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaRJn9DbN2YNveQpo12F5BjuCMPp0_AKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

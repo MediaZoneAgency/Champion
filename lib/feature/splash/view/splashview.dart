@@ -25,7 +25,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
     // Initialize the animation controller and the sliding animation
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),  // Adjust the duration as needed
+      duration: const Duration(seconds: 5),  // Adjust the duration as needed
     );
 
     slidingAnimation = Tween<Offset>(begin: const Offset(0, 4), end: Offset.zero).animate(animationController);
@@ -38,7 +38,7 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
   }
 
   _navigateToHome() async {
-    await Future.delayed(const Duration(seconds: 3), () async {
+    await Future.delayed(const Duration(seconds: 5), () async {
       WidgetsFlutterBinding.ensureInitialized();
 
       String token = await CashHelper.getStringSecured(key: Keys.token);
@@ -62,14 +62,14 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsManager.primaryColorLight,
+      backgroundColor:Colors.black,
       body: Center(
         // Apply the SlideTransition to the image
         child: SlideTransition(
           position: slidingAnimation,
           child:Center(
             child: Image.asset(
-              'assets/img/Artboard 4.png', // مسار الصورة الخاصة بك
+              'assets/img/champion-03.png', // مسار الصورة الخاصة بك
               fit: BoxFit.cover,
             ),
           ),

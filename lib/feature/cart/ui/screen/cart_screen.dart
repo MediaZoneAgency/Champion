@@ -67,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
                   );
                 },
               ),
-              SizedBox(height: 28.h),
+              SizedBox(height: 18.h),
               CartCubit.get(context).cartList.isNotEmpty?  Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Row(
@@ -81,7 +81,7 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ):SizedBox(),
 
-              SizedBox(height: 20.h),
+              SizedBox(height: 18.h),
               CartCubit.get(context).cartList.isNotEmpty? Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: CartListView(),
@@ -90,7 +90,7 @@ class _CartScreenState extends State<CartScreen> {
                   Center(
                     child: Lottie.asset('assets/img/Animation - 1732018992607.json'),
                   ),
-                  SizedBox(height: 48.h,),
+                  SizedBox(height: 46.h,),
                   GestureDetector(
                     onTap: (){
                       NavBarCubit.get(context).changeIndex(0);

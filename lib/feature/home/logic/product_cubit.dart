@@ -19,8 +19,11 @@ class ProductCubit extends Cubit<ProductState> {
   List<ProductModel> productModel = [];
   List<ProductModel> categoryProductModel = [];
   static ProductCubit get(context) => BlocProvider.of(context);
+
   Future<void> getProducts() async {
+
     try {
+      log('ddd');
       productModel = CachedApp.getCachedData(CachedDataType.productHome.name);
       emit(FetchProductSuccess(productModel));
     } catch (e) {

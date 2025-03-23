@@ -34,7 +34,7 @@ class WishlistWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 2),
                 child: AppCachedNetworkImage(
-                  image:product.images![0].src!,
+                  image:product.thumbnailUrl!,
                   width: 70.w,
                   height: 70.h,
                   radius: 5,
@@ -47,7 +47,7 @@ class WishlistWidget extends StatelessWidget {
 
                   children: [
                     Text(
-                      product.name.toString(),
+                      product.title.toString(),
                       style: TextStyles.poppinsMedium18contantGray,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -64,7 +64,7 @@ class WishlistWidget extends StatelessWidget {
                           children: [
                           TextSpan(
                           text:
-                        "${product.description?.substring(0,60)}..." ?? "Description not available",
+                        "${product.content?.substring(0,60)}..." ?? "Description not available",
                           style: TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12),),
                             TextSpan(
                             text:
@@ -84,7 +84,7 @@ class WishlistWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          product.price.toString()+"EGP",
+                          product.salePrice.toString()+"EGP",
                           style: TextStyles.poppinsMedium20Blue.copyWith(fontSize: 18),
                         ),
                         SizedBox(width: 4.h),
@@ -92,7 +92,7 @@ class WishlistWidget extends StatelessWidget {
                           children: [
                             SvgPicture.asset('assets/img/star.svg'),
                             Text(
-                              product.price.toString(),
+                              product.salePrice.toString(),
                               style: TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16),
                             ),
                           ],
@@ -106,7 +106,7 @@ class WishlistWidget extends StatelessWidget {
                               child: SvgPicture.asset('assets/img/trash.svg'),
                             );
                           },
-                        ),// Push trash icon to the right
+                        ),
                       ],
                     ),
                   ],

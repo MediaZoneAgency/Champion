@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 
 
 class FieldWidget extends StatelessWidget {
@@ -20,11 +21,12 @@ final String title ;
           children: [
             Text(
               title,
-              style: TextStyles.poppinsRegular16contantGray,
+              style:ThemeCubit.get(context).themeMode== ThemeMode.light ?  TextStyles.poppinsRegular16contantGray:TextStyles.poppinsRegular16contantGray.copyWith(color: Colors.white),
             ),
             const Spacer(),
             SvgPicture.asset(
-              'assets/img/arrow-right (1).svg',
+              ThemeCubit.get(context).themeMode== ThemeMode.light ?
+              'assets/img/arrow-right (1).svg':'assets/img/arrow-rightdark.svg',
               fit: BoxFit.scaleDown,
             ),
 

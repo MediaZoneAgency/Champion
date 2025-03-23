@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theming/colors.dart';
 
 import '../theming/styles.dart';
+import '../theming/theming_change/theme_cubit.dart';
 
 // class AppTextFormField extends StatelessWidget {
 //   final EdgeInsetsGeometry? contentPadding;
@@ -132,7 +133,8 @@ class AppTextFormField extends StatelessWidget {
       onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         label: Text(labeltext??""),
-        labelStyle: TextStyles.poppinsRegular16Gray,
+
+        labelStyle:   ThemeCubit.get(context).themeMode== ThemeMode.light ?TextStyles.poppinsRegular16Gray.copyWith(fontSize: 16):TextStyles.poppinsRegular16Gray.copyWith(color:Colors.white),
        // labelText: labeltext,
         isDense: true,
         contentPadding: contentPadding ??
@@ -167,7 +169,7 @@ class AppTextFormField extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(borderRadius?? 10.0),
         ),
-        hintStyle: hintStyle ?? TextStyles.poppinsRegular16LightGray,
+        hintStyle: ThemeCubit.get(context).themeMode== ThemeMode.light ?  TextStyles.poppinsRegular16LightGray:TextStyles.poppinsRegular16LightGray.copyWith(color: ColorsManager.GrayLIght) ,
         hintText: hintText,
         suffixIcon: suffixIcon,
         prefixIcon: prefexIcon,
@@ -175,7 +177,7 @@ class AppTextFormField extends StatelessWidget {
         filled: true,
       ),
       obscureText: isObscureText ?? false,
-      style: TextStyles.poppinsMedium12contantGray.copyWith(fontSize: 16),
+      style: ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.poppinsMedium12contantGray.copyWith(fontSize: 16) :TextStyles.poppinsRegular16LightGray.copyWith(color:Colors.white) ,
       validator: validator ?? (value) {
         if (value == null || value.isEmpty) {
           return "Must not be empty";

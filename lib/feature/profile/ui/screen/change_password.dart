@@ -7,6 +7,7 @@ import '../../../../core/sharedWidgets/app_text_button.dart';
 import '../../../../core/sharedWidgets/app_text_form_field.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 
 
@@ -28,7 +29,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title:  Text(S.of(context).ChangePassword,style: TextStyles.poppinsMedium18contantGray,),),
+        title:  Text(S.of(context).ChangePassword,
+          style:
+          ThemeCubit.get(context).themeMode== ThemeMode.light ?
+        TextStyles.poppinsMedium18contantGray: TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white
+          )),),
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -43,14 +48,18 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               children: [
                 Text(
                   S.of(context).Name,
-                  style: TextStyles.poppinsRegular16Gray,
+                  style:
+                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                  TextStyles.poppinsRegular16Gray:TextStyles.poppinsRegular16Gray.copyWith(color:Colors.white),
                 ),
                 SizedBox(height: 8.h,),
                 AppTextFormField(hintText: S.of(context).Name,controller: _nameController,),
                 SizedBox(height: 16.h,),
                 Text(
                   S.of(context).Email,
-                  style: TextStyles.poppinsRegular16Gray,
+                    style:
+                    ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                    TextStyles.poppinsRegular16Gray:TextStyles.poppinsRegular16Gray.copyWith(color:Colors.white)
                 ),
                 SizedBox(height: 8.h,),
                 AppTextFormField(hintText: S.of(context).Email,controller: _emailController,),

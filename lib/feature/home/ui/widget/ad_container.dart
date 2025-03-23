@@ -5,6 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/font_weight.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 
 class AdCarousel extends StatefulWidget {
@@ -84,7 +85,8 @@ class AdContainer extends StatelessWidget {
       height: 141.h,
       margin: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
-        color: ColorsManager.BlueLIght,
+        color: ThemeCubit.get(context).themeMode== ThemeMode.light ?
+        Color(0xffFFFFFF):Color(0xff343A40),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -96,14 +98,21 @@ class AdContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+
                     S.of(context).Todaysspecial,
-                    style: TextStyles.poppinsMedium20white,
-                    maxLines: 1,
-                  ),
+                    style:
+                    ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                    TextStyles.poppinsMedium20white.copyWith(
+                      color: Colors.black,
+                    ):TextStyles.poppinsMedium20white),
                   SizedBox(height: 4.h),
                   Text(
                     S.of(context).bestfeatures,
-                    style: TextStyles.poppinsRegular12white,
+                    style:
+                    ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                    TextStyles.poppinsRegular12white.copyWith(
+                      color: Colors.black,
+                    )  : TextStyles.poppinsRegular12white,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
 
@@ -128,12 +137,17 @@ class AdContainer extends StatelessWidget {
               children: [
                 Text(
                   S.of(context).Endsin,
-                  style: TextStyles.poppinsRegular14white,
+                  style:
+                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                  TextStyles.poppinsRegular14white.copyWith(color: Color(0xffEE3139)):TextStyles.poppinsRegular14white.copyWith(color: Color(0xffEE3139
+                  )),
                 ),
                 SizedBox(height: 4.h),
                 Text(
                   timeLeft,
-                  style: TextStyles.poppinsMedium20white,
+                  style:
+                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                  TextStyles.poppinsMedium20white.copyWith(color: Color(0xffEE3139)):TextStyles.poppinsMedium20white.copyWith(color: Color(0xffEE3139) ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   softWrap: true,

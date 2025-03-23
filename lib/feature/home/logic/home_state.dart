@@ -18,3 +18,18 @@ class FetchCategoryFailure extends HomeState {
   final String errorMessage;
   FetchCategoryFailure(this.errorMessage);
 }
+
+class FetchTopicInitial extends HomeState {}
+class FetchTopicSuccess extends HomeState {
+  final List<TopicModel> Topics;
+  FetchTopicSuccess(this.Topics);
+}
+
+
+
+class FetchTopicLoading extends HomeState {}
+
+class FetchTopicFailure extends HomeState {
+  final String errorMessage;
+  FetchTopicFailure(this.errorMessage);
+}

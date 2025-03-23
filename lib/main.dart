@@ -1,5 +1,6 @@
 import 'package:education/feature/nav_bar/logic/nav_bar_cubit.dart';
 import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,21 +15,28 @@ import 'core/routes/routes.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'dart:ui' as ui;
+import 'core/theming/theming_change/theme_cubit.dart';
 import 'feature/cart/logic/cart_cubit.dart';
 import 'feature/home/logic/home_cubit.dart';
 import 'feature/home/logic/product_cubit.dart';
+import 'firebase_options.dart';
 import 'generated/l10n.dart'; // Import the AuthRepository
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CashHelper.init();
   SystemChrome.setPreferredOrientations([
+
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
   await setupGetIt();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(EducationApp(
     appRouter: AppRouter(),
   ));
@@ -60,13 +68,15 @@ class EducationApp extends StatelessWidget {
         BlocProvider<FavCubit>.value(
           value: getIt<FavCubit>(),
         ),
-
+        BlocProvider<ThemeCubit>.value(
+          value: getIt<ThemeCubit>(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
-        child: BlocBuilder<LocalizationCubit, LocalizationState>(
-          builder: (context, localizationState) {
+        child: BlocBuilder<LocalizationCubit,LocalizationState>(
+          builder: (context,localizationState) {
             // Determine the current locale
             Locale currentLocale;
             if (localizationState is LocalizationChanged) {
@@ -76,25 +86,29 @@ class EducationApp extends StatelessWidget {
               currentLocale = ui.window.locale; // Default to English
             }
 
-            return MaterialApp(
-              navigatorKey: NavigationService.navigatorKey,
-              locale: currentLocale,
-              theme: ThemeData(),
-              title: 'Cluster',
-              debugShowCheckedModeBanner: false,
-              supportedLocales: const [
-                Locale('en'),
-                Locale('ar'),
-              ],
-              localizationsDelegates: [
-                S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
+            return BlocBuilder<ThemeCubit, ThemeState>(
+              builder: (context, themeState) {
+                return MaterialApp(
+                  navigatorKey: NavigationService.navigatorKey,
+                  locale: currentLocale,
+                  theme:   ThemeCubit.get(context).getTheme(),
+                  title: 'CHAMPION',
+                  debugShowCheckedModeBanner: false,
+                  supportedLocales: const [
+                    Locale('en'),
+                    Locale('ar'),
+                  ],
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
 
-              initialRoute: Routes.splashScreen,
-              onGenerateRoute: appRouter.generateRoute,
+                  initialRoute: Routes.splashScreen,
+                  onGenerateRoute: appRouter.generateRoute,
+                );
+              },
             );
           },
         ),

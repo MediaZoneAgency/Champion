@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import '../../../../core/error/error_model.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/network/network_constant.dart';
+import '../../../coursedetails/data/topic_model.dart';
 import '../../../wishlist/data/models/wish_list_model.dart';
 import '../models/category_model.dart';
 
@@ -30,21 +31,45 @@ class HomeRepo {
     }
   }
 
-  Future<Either<ApiErrorModel,List <ProductModel>>> getProduct() async {
+  Future<Either<ApiErrorModel, List<ProductModel>>> getProduct() async {
     List<ProductModel> products = [];
     try {
-      final response = await _dio.get(NetworkConstant.products);
+      final response = await _dio.get(
+        NetworkConstant.products,
+
+
+      );
+
       for (var item in response.data) {
         products.add(ProductModel.fromMap(item));
       }
       return right(products);
-
     } catch (e) {
       log(e.toString());
       return left(ApiErrorHandler.handle(e));
-
     }
   }
+
+  Future<Either<ApiErrorModel, List<TopicModel>>> getTopic() async {
+    List<TopicModel> topics = [];
+    try {
+      final response = await _dio.get(
+        "https://clustersplatform.com/wp-json/tutor/v1/topics?course_id=16279",
+        queryParameters:{ 'course_id':16279 }
+
+
+      );
+
+      for (var item in response.data) {
+        topics.add(TopicModel.fromMap(item));
+      }
+      return right(topics);
+    } catch (e) {
+      log(e.toString());
+      return left(ApiErrorHandler.handle(e));
+    }
+  }
+
   Future<Either<ApiErrorModel,List <ProductModel>>> getCategoryProducts( {required int categoryName}) async {
     List<ProductModel> categoryProducts = [];
     try {

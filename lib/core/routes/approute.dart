@@ -15,10 +15,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../feature/cart/ui/screen/cart_screen.dart';
 import '../../feature/cart/ui/screen/checkout_screen.dart';
 import '../../feature/category/ui/screen/courses_girdview.dart';
+import '../../feature/chatSupport/chat_screen.dart';
 import '../../feature/coursedetails/ui/screen/details_screen.dart';
 import '../../feature/home/logic/home_cubit.dart';
 import '../../feature/home/ui/screen/home_screen.dart';
 import '../../feature/home/ui/widget/courses_grid_view.dart';
+import '../../feature/home/ui/widget/reward_grid_view.dart';
 import '../../feature/nav_bar/logic/nav_bar_cubit.dart';
 import '../../feature/nav_bar/ui/navigation_bar.dart';
 import '../../feature/profile/logic/profile_cubit.dart';
@@ -104,6 +106,11 @@ class AppRouter {
         builder: (_) =>
                const NavigationBarApp(),
          );
+      case Routes.chatSupprot:
+        return MaterialPageRoute(
+          builder: (_) =>
+          WebViewChat(),
+        );
        case Routes.loginScreen:
          return MaterialPageRoute(
           builder: (_) =>
@@ -165,6 +172,22 @@ class AppRouter {
             ),
           ],
               child:CoursesGirdviewScreen())
+
+        );
+      case Routes.rewardGridViewScreen:
+        return MaterialPageRoute(
+            builder: (_) =>MultiBlocProvider(providers: [
+              BlocProvider.value(
+                  value: getIt<ProductCubit>()
+              ),
+              BlocProvider.value(
+                  value: getIt<FavCubit>()
+              ),
+              BlocProvider<ProfileCubit>.value(
+                value: getIt<ProfileCubit>(),
+              ),
+            ],
+                child:RewardGridView())
 
         );
       case Routes.editAccountInfoScreen:

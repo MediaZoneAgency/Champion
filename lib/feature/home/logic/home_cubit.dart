@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:education/feature/coursedetails/data/topic_model.dart';
 import 'package:education/feature/home/logic/product_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,8 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
 
   List<CategoryModel> categoryModel = [];
+  List<TopicModel> Topics =[];
+
   static HomeCubit get(context) => BlocProvider.of(context);
   Future<void> getCategory() async {
     try {
@@ -41,4 +44,37 @@ class HomeCubit extends Cubit<HomeState> {
       );
     }
   }
+
+  Future<void> getTopic() async {
+    try {
+      // Attempt to load cached topics
+      final cachedTopics = CachedApp.getCachedData(CachedDataType.topics.name);
+      // Emit success state with cached topics if available
+      emit(FetchTopicSuccess(cachedTopics));
+    } catch (e) {
+      // If no cached data is available, start loading
+      emit(FetchTopicLoading());
+
+      // Call the repository method to fetch topics
+      final result = await _homeRepo.getTopic();
+
+      result.fold(
+            (failure) {
+          log("Error fetching topics: ${failure.message}");
+          emit(FetchTopicFailure(failure.message));
+        },
+            (topics) {
+          // Save the fetched topics into the cache
+              Topics = topics;
+              CachedApp.saveData(topics, CachedDataType.topics.name);
+          // Emit success state with the fetched topics
+          emit(FetchTopicSuccess(topics));
+        },
+      );
+    }
+  }
+
+
+
+
 }

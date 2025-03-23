@@ -1,101 +1,86 @@
 import 'package:education/core/theming/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/theming/colors.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
+import '../../../home/logic/home_cubit.dart';
 
-class CourseSections extends StatelessWidget {
+import '../../data/topic_model.dart';
+
+class CourseSections extends StatefulWidget {
+  @override
+  State<CourseSections> createState() => _CourseSectionsState();
+}
+
+
+class _CourseSectionsState extends State<CourseSections> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    HomeCubit.get(context).getTopic();
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-decoration: BoxDecoration(color: ColorsManager.primaryBlueLight),
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        final homeCubit = HomeCubit.get(context);
 
-        child: Column(children: [
-          ExpansionTile(
-            title: Text("Section 1 - Introduction",
-            style:  TextStyles.poppinsRegular16blue),
+        if (state is FetchTopicLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
 
-            children: [
-              ListTile(
-                title: Text("1. Introduction"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),
-              ),
-              ListTile(
-                title: Text("2. Why Python"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),)
-            ],
-          ),
-          ExpansionTile(
-            title: Text("Section 2 - Join the community",
-                style:  TextStyles.poppinsRegular16blue),
-            children: [
-              ListTile(
-                title: Text("1. Introduction"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),
-              ),
-              ListTile(
-                title: Text("2. Why Python"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),
-              ),
-            ],
-          ),
-          ExpansionTile(
-            title: Text("Section 3 - Project files",
-                style:  TextStyles.poppinsRegular16blue
-            ),
-            children: [
-              ListTile(
-                title: Text("1. Introduction"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),
-              ),
-              ListTile(
-                title: Text("2. Why Python"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),
-              ),
-            ],
-          ),
-          ExpansionTile(
-            title: Text("Section 4 - Download and setup",
-                style:  TextStyles.poppinsRegular16blue),
-            children: [
-              ListTile(
-                title: Text("1. Introduction"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),
-              ),
-              ListTile(
-                title: Text("2. Why Python"),
-                subtitle: Text("Video - 1:39"),
-                trailing: SvgPicture.asset(
-                  'assets/img/video-square.svg',
-                ),
-              ),
-            ],
-          ),
+        if (state is FetchTopicFailure) {
+          return Center(child: Text("خطأ في تحميل البيانات: ${state.errorMessage}"));
+        }
 
-        ],
-        )
+        // **جلب المواضيع بشكل صحيح**
+        final List<TopicData> topics = HomeCubit.get(context).Topics.cast<TopicData>();
+
+        if (topics.isEmpty) {
+          return Center(child: Text("لا توجد مواضيع متاحة."));
+        }
+
+        return Container(
+          decoration: BoxDecoration(
+            color: ThemeCubit.get(context).themeMode == ThemeMode.light
+                ? ColorsManager.primaryBlueLight
+                : Color(0xFF343A40),
+          ),
+          child: ListView.builder(
+            itemCount: topics.length,
+            itemBuilder: (context, index) {
+              final topic = topics[index]; // **الوصول إلى عنصر معين داخل القائمة**
+
+              return ExpansionTile(
+                title: Text(
+                  topic.postTitle ?? "بدون عنوان", // **العنوان من `TopicData`**
+                  style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                      ? TextStyles.poppinsRegular16blue
+                      : TextStyles.poppinsRegular16blue,
+                ),
+                children: [
+                  ListTile(
+                    title: Text(
+                      topic.postContent ?? "لا يوجد محتوى متاح", // **الوصول إلى `postContent` بشكل صحيح**
+                      style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                          ? TextStyles.poppinsRegular16blue.copyWith(color: Colors.black)
+                          : TextStyles.poppinsRegular16blue.copyWith(color: Colors.white),
+                    ),
+                    subtitle: Text("مدة الفيديو - 1:39"), // يمكنك تحديث هذه القيمة ديناميكيًا
+                    trailing: SvgPicture.asset('assets/img/video-square.svg'),
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

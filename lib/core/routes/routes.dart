@@ -28,6 +28,7 @@ static const String resultScreen='/resultScreen';
 static const String categoriesScreen='/categoriesScreen';
 static const String girdviewScreen='/girdviewScreen';
 static const String coursesGridViewScreen='/coursesGridViewScreen';
-
-
+static const String chatSupprot ='/chatSupport';
+static const String paymentScreen='/paymentScreen';
+static const String rewardGridViewScreen='/rewardGridViewScreen';
 }

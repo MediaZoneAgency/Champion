@@ -4,13 +4,13 @@ class RegisterRequestModel {
   final String username;
   final String email;
   final String password;
-  final String phoneNumber;
+
 
   RegisterRequestModel({
     required this.username,
     required this.email,
     required this.password,
-    required this.phoneNumber,
+
   });
 
   Map<String, dynamic> toMap() {
@@ -18,7 +18,7 @@ class RegisterRequestModel {
       'username': username,
       'email': email,
       'password': password,
-      'phone_number': phoneNumber,
+
     };
   }
 
@@ -27,7 +27,7 @@ class RegisterRequestModel {
       username: map['username'] as String,
       email: map['email'] as String,
       password: map['password'] as String,
-      phoneNumber: map['phone_number'] as String,
+
     );
   }
 

@@ -5,6 +5,7 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/theming_change/theme_cubit.dart';
 import '../../../../generated/l10n.dart';
 
 class GuestProfile extends StatelessWidget {
@@ -25,7 +26,10 @@ borderRadius: BorderRadius.circular(12.r),
        mainAxisAlignment: MainAxisAlignment.center,
        children: [
 
-       Text(S.of(context).Nicetomeetyou,style: TextStyles.poppinsRegular16ContantGray,),
+       Text(S.of(context).Nicetomeetyou,
+         style:
+         ThemeCubit.get(context).themeMode== ThemeMode.light ?
+       TextStyles.poppinsRegular16ContantGray: TextStyles.poppinsRegular16ContantGray.copyWith(color:Colors.white),),
          verticalSpace(8.h),
          GestureDetector(
            onTap: (){
@@ -35,7 +39,7 @@ borderRadius: BorderRadius.circular(12.r),
            child: Container(
              height: 40.h,
              width: 250.h,
-             padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
+             padding: EdgeInsets.symmetric(vertical: 10.h),
              decoration: BoxDecoration(
                  color: ColorsManager.primaryColorLight,
                  borderRadius: BorderRadius.circular(10)),

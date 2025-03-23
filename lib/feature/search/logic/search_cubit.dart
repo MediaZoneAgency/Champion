@@ -6,7 +6,6 @@ import 'package:meta/meta.dart';
 import '../../../core/error/error_model.dart';
 import '../../coursedetails/data/models/product_model.dart';
 import '../data/repo/search_repo.dart';
-
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {

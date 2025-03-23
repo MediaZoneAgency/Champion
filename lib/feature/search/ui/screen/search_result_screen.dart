@@ -10,7 +10,6 @@ import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../generated/l10n.dart';
-import '../../../home/ui/widget/courses_list_view.dart';
 import '../../../wishlist/ui/widget/ui_loading_wishlist.dart';
 import '../../logic/search_cubit.dart';
 import '../widget/custom_search_bar.dart';
