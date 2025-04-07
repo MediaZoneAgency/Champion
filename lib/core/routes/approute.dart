@@ -293,6 +293,15 @@ class AppRouter {
               )
         );
 
+   case Routes.payment:
+        return MaterialPageRoute(
+          builder: (_) =>
+              BlocProvider<ProfileCubit>.value(
+                value: getIt<ProfileCubit>(),
+                child: ProfileScreen(),
+              )
+        );
+
       case Routes.settingsScreen:
         return MaterialPageRoute(
           builder: (_) =>

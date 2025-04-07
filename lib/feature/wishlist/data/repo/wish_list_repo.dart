@@ -15,7 +15,7 @@ class FavRepo{
       {required int productId}) async {
     try {
       Response response = await dio
-          .post(NetworkConstant.addToWishList, data: {"product_id": productId});
+          .post(NetworkConstant.addToWishList, data: {"course_id": productId});
       return Right(response.data["message"]);
     } catch (e) {
       return Left(ApiErrorHandler.handle(e));

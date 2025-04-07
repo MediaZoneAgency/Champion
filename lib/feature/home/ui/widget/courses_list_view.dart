@@ -32,7 +32,7 @@ class CoursesListView extends StatelessWidget {
           return BlocBuilder<FavCubit, FavState>(
             builder: (context, favState) {
               return SizedBox(
-                height: 225,
+                height: 240,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 4),
                   child: ListView.separated(
@@ -42,6 +42,7 @@ class CoursesListView extends StatelessWidget {
                       return CourseWidget(
                         productCubit.productModel[index],
                         onTap: () {
+                          print("object");
                           if (ProfileCubit.get(context).profileUser != null) {
                             if (FavCubit.get(context).favorite.contains(
                                 productCubit.productModel[index].id)) {

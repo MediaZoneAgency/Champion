@@ -37,12 +37,12 @@ class HomeBar extends StatelessWidget {
     children: [
     Row(
     children: [
-    AppCachedNetworkImage(
-    image:"assets/img/avvvatar.png",
+    Image.asset(
+    "assets/img/avvvatar.png",
     //profileUser.profilePicture ?? 'assets/img/default_avatar.png',
     width: 38.w,
     height: 40.h,
-    radius: 200.r,
+    
     ),
     horizontalSpace(11.w),
     Column(
@@ -55,7 +55,7 @@ class HomeBar extends StatelessWidget {
         : TextStyles.poppinsRegular16ContantGray.copyWith(color: Colors.white),
     ),
     Text(
-    'UX Designer',
+    'AMRICAN',
     style: TextStyles.poppinsRegular12babyGray,
     ),
     ],
@@ -81,6 +81,8 @@ class HomeBar extends StatelessWidget {
     // },
     // ),
     // ),
+   
+   Spacer(),
     IconButton(
     icon: SvgPicture.asset(
     width: 30,

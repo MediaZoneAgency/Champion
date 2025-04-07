@@ -21,28 +21,32 @@ class ProductCubit extends Cubit<ProductState> {
   static ProductCubit get(context) => BlocProvider.of(context);
 
   Future<void> getProducts() async {
-
-    try {
-      log('ddd');
-      productModel = CachedApp.getCachedData(CachedDataType.productHome.name);
-      emit(FetchProductSuccess(productModel));
-    } catch (e) {
-      emit(FetchProductLoading());
-      final result = await _homeRepo.getProduct();
-      {
-        result.fold(
-          (failure) {
-            emit(FetchProductFailure(failure.message));
-          },
-          (Products) {
-            productModel = Products;
-            CachedApp.saveData(productModel, CachedDataType.productHome.name);
-            emit(FetchProductSuccess(Products));
-          },
-        );
-      }
+  try {
+    log('Fetching cached products');
+    productModel = CachedApp.getCachedData(CachedDataType.productHome.name);
+    if (productModel == null || productModel.isEmpty) {
+      throw Exception("No cached data available");
     }
+    log('Products fetched from cache: $productModel');
+    emit(FetchProductSuccess(productModel));
+  } catch (e) {
+    emit(FetchProductLoading());
+    log('Fetching from API');
+    final result = await _homeRepo.getProduct();
+    result.fold(
+      (failure) {
+        emit(FetchProductFailure(failure.message));
+      },
+      (Products) {
+        productModel = Products;
+        CachedApp.saveData(productModel, CachedDataType.productHome.name);
+        log('Products fetched from API: $productModel');
+        emit(FetchProductSuccess(Products));
+      },
+    );
   }
+}
+
 
 
   Future<void> getCategoryProducts(int category) async {

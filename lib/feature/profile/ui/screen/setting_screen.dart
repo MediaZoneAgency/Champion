@@ -1,6 +1,7 @@
 import 'package:education/core/helpers/extensions.dart';
 import 'package:education/feature/nav_bar/logic/nav_bar_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/db/cached_app.dart';
 import '../../../../core/db/cash_helper.dart';
 import '../../../../core/helpers/spacing.dart';
@@ -43,7 +44,8 @@ class SettingScreen extends StatelessWidget {
                 TextStyles.poppinsMedium16BlackMeduim:    TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white),
 
                 ),
-
+                activeColor: Colors.white,
+inactiveTrackColor: Colors.white,
                 activeTrackColor: ColorsManager.primaryColorLight,
                 value: true, onChanged:(value) {
               },):SizedBox(),
@@ -64,8 +66,8 @@ const ThemeListTile(),
               ProfileCubit.get(context).token!=''?                  AppTextButton(
                 buttonText: S.of(context).Logout,
                 textStyle: TextStyles.poppinsMedium20white,
-                verticalPadding: 3,
-                buttonHeight: 55,
+                verticalPadding: 3.h,
+                buttonHeight: 55.h,
                 onPressed: () {
                   CashHelper.clear();
                   CachedApp.clearCache();
@@ -76,6 +78,7 @@ const ThemeListTile(),
                       predicate: (Route<dynamic> route) => false);
                 },
               )
+              
             :SizedBox(),
 ]
           ),

@@ -16,7 +16,23 @@ import '../../logic/cart_cubit.dart';
 import '../widget/cart_list_view.dart';
 import '../widget/cart_widget.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:education/core/helpers/extensions.dart';
+import 'package:education/feature/cart/ui/widget/cart_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../../core/sharedWidgets/app_text_button.dart';
+import '../../../../core/theming/colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../../generated/l10n.dart';
+import '../../../home/ui/widget/courses_list_view.dart';
+import '../../../nav_bar/logic/nav_bar_cubit.dart';
+import '../../logic/cart_cubit.dart';
+import '../widget/cart_list_view.dart';
+import '../widget/cart_widget.dart';
+import 'package:lottie/lottie.dart';
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
 
@@ -27,117 +43,109 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    final cartCubit = CartCubit.get(context);
+    final cartList = cartCubit.cartList;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
-          children: [Column(
-            children: [
-              CartBar(username: 'Cart'),
-              BlocBuilder<CartCubit, CartState>(
-                builder: (context, state) {
-                  return Padding(
-                    padding: EdgeInsets.only(left: 5,right: 10),
-                    child: ListView.separated(
-                      // Remove the fixed height
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(), // Let SingleChildScrollView handle scrolling
-                      itemCount: CartCubit.get(context).cartList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CartWidget(
-                          CartCubit.get(context).cartList[index],
-                          onremove: () {
-                            CartCubit.get(context).removeFromCart(
-                                CartCubit.get(context).cartList[index]);
-                          },
-                        );
-                      }, separatorBuilder: (BuildContext context, int index)
-                    {  return Column(children: [
-                    SizedBox(height: 10.h,),
-                      Divider(
-                        color: ColorsManager.LigGthGray,
-                        indent: 10,
-                        endIndent: 10,
-                        thickness: 0.5,
-                      ),
-                      SizedBox(height: 10.h,),
-
-
-                    ]);},
-                    ),
-                  );
-                },
-              ),
-              SizedBox(height: 18.h),
-              CartCubit.get(context).cartList.isNotEmpty?  Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Row(
-                  children: [
-                    Text(
-                      S.of(context).MoreLikThis,
-                      style: TextStyles.poppinsMedium18contantGray,
-                    ),
-
-                  ],
-                ),
-              ):SizedBox(),
-
-              SizedBox(height: 18.h),
-              CartCubit.get(context).cartList.isNotEmpty? Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: CartListView(),
-              ):Column(
+          children: [
+            SingleChildScrollView(
+              child: Column(
                 children: [
-                  Center(
-                    child: Lottie.asset('assets/img/Animation - 1732018992607.json'),
-                  ),
-                  SizedBox(height: 46.h,),
-                  GestureDetector(
-                    onTap: (){
-                      NavBarCubit.get(context).changeIndex(0);
-
+                  CartBar(username: 'Cart'),
+                  BlocBuilder<CartCubit, CartState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: cartList.isNotEmpty
+                            ? ListView.separated(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: cartList.length,
+                                itemBuilder: (context, index) {
+                                  if (index >= cartList.length) return const SizedBox();
+                                  return CartWidget(
+                                    cartList[index],
+                                    onremove: () => cartCubit.removeFromCart(cartList[index]),
+                                  );
+                                },
+                                separatorBuilder: (context, index) => Column(
+                                  children: [
+                                    SizedBox(height: 10.h),
+                                    const Divider(color: ColorsManager.LigGthGray, thickness: 0.5),
+                                    SizedBox(height: 10.h),
+                                  ],
+                                ),
+                              )
+                            : Column(
+                                children: [
+                                  Center(
+                                    child: Lottie.asset(
+                                      'assets/img/Animation.json',
+                                      height: 200, // Adjust to prevent overflow
+                                      width: 200,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, error, stackTrace) =>
+                                          const Icon(Icons.error, size: 50, color: Colors.red),
+                                    ),
+                                  ),
+                                  SizedBox(height: 30.h),
+                                  GestureDetector(
+                                    onTap: () => NavBarCubit.get(context).changeIndex(0),
+                                    child: Container(
+                                      height: 40,
+                                      width: 250,
+                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                      decoration: BoxDecoration(
+                                          color: ColorsManager.primaryColorLight,
+                                          borderRadius: BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(S.of(context).Checknewcourses,
+                                            style: TextStyles.poppinsMedium12white),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      );
                     },
-                    child: Container(
-                      height: 40.h,
-                      width: 250.h,
-                      padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
-                      decoration: BoxDecoration(
-                          color: ColorsManager.primaryColorLight,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                        child: Text(S.of(context).Checknewcourses,
-                            style: TextStyles.poppinsMedium12white),
-                      ),),
-                  )
+                  ),
+                  if (cartList.isNotEmpty) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        children: [
+                          Text(S.of(context).MoreLikThis, style: TextStyles.poppinsMedium18contantGray),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 18.h),
+                    const Padding(padding: EdgeInsets.only(left: 20), child: CartListView()),
+                  ],
+                  verticalSpace(40.h),
                 ],
               ),
-
-
-              verticalSpace(90.h)
-
-            ],
-          ),
-          Center(
-            child: Column(
-              children: [
-                Spacer(),
-                CartCubit.get(context).cartList.isNotEmpty?CustomTextButton(
-                  borderRadius: 10,
-                  buttonHeight: 50.h,
-                  buttonWidth: 260.w,
-                  buttonText: S.of(context).ProceedTocheckout,
-                  textStyle: TextStyles.poppinsMedium20white.copyWith(fontSize: 18.sp),
-                  onPressed: () {
-                    context.pushNamed(Routes.checkoutScreen);
-                  },
-                ):SizedBox(),
-
-                SizedBox(height: 10.h,)
-              ],
             ),
-          )
-             ] ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: cartList.isNotEmpty
+                    ? CustomTextButton(
+                        borderRadius: 10,
+                        buttonHeight: 50,
+                        buttonWidth: 260,
+                        buttonText: S.of(context).ProceedTocheckout,
+                        textStyle: TextStyles.poppinsMedium20white.copyWith(fontSize: 18),
+                        onPressed: () => context.pushNamed(Routes.checkoutScreen),
+                      )
+                    : const SizedBox(),
+              ),
+            ),
+          ],
+        ),
       ),
-
     );
   }
 }

@@ -36,7 +36,7 @@ class _NavigationBarAppState extends State<NavigationBarApp> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
               child: SizedBox(
-                height: 75, // Adjust height
+             //   height: 75, // Adjust height
                 child: BottomNavigationBar(
                   iconSize: 24.sp,
                   type: BottomNavigationBarType.shifting ,

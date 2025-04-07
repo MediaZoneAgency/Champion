@@ -20,116 +20,138 @@ class CourseWidget extends StatelessWidget {
       required this.onTap,
       this.addToFavourite});
   final ProductModel product;
-   final bool isFavorite;
+  final bool isFavorite;
   final Function() onTap;
   final Function()? addToFavourite;
+
   @override
   Widget build(BuildContext context) {
+    // دالة مساعدة لتحديد نص السعر
+    String getPriceDisplayString(String? price) {
+      if (price == null || price.isEmpty) {
+        return 'السعر غير متاح';
+      }
+      if (price == '0') {
+        return 'مجاني';
+      }
+      return price + " EGP";
+    }
+
+    // رابط صورة افتراضية أو صورة محلية
+    const String placeholderImageUrl = 'assets/img/placeholder_image.png'; // <-- استبدل بمسار صورة افتراضية لديك
+
     return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, Routes.DetailsScreen,
-            arguments: product);
+      onTap: () {
+        Navigator.pushNamed(context, Routes.DetailsScreen, arguments: product);
       },
       child: Container(
           width: 155.w,
-          height: 220.h,
-          decoration:  BoxDecoration(
-            borderRadius:  BorderRadius.all(
-               Radius.circular(9),
+          // قد تحتاج لتعديل الارتفاع إذا كان النص أو العناصر النائبة تأخذ مساحة مختلفة
+          // height: 235.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(9),
             ),
-           // border: Border.all(color:   Colors.transparent),
+            // يمكنك إضافة حدود أو ظل إذا أردت تمييز العناصر
+            // border: Border.all(color: Colors.grey.shade300),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Add your content here
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Stack(children: [
-
-                  AppCachedNetworkImage(
-                    width: 155.w,
-                    height: 111.h,
-                    image:  product.thumbnailUrl!,
-                    radius: 9,
-                  ),
-                       Positioned(
-                          top: 8,
-                          right: 8,
-                          child: GestureDetector(
-                              onTap: (){
-                                onTap();
-                              },
-                              child: SizedBox(
-                                width: 44,
-                                height: 44,
-                                child: isFavorite
-
-                                    ? SvgPicture.asset(
-                                        "assets/img/heart-circle (2).svg")
-                                    : SvgPicture.asset(
-                                        "assets/img/heart-circle (1).svg",
-                                      ),
-                              )))
-
-                ]),
+              Stack(children: [
+                // استخدام الصورة من الشبكة أو صورة افتراضية
+                AppCachedNetworkImage(
+                  width: 155.w,
+                  height: 94.h,
+                  // استخدام ?? للتعامل مع null، والتحقق من أنه ليس فارغًا أيضًا
+                  // إذا كانت AppCachedNetworkImage لا تتعامل مع null/empty، استخدم شرطًا
+                  image: (product.thumbnailUrl != null && product.thumbnailUrl!.isNotEmpty)
+                      ? product.thumbnailUrl!
+                      : placeholderImageUrl, // يمكنك وضع رابط URL هنا أيضاً
+                  radius: 9,
+                  // يمكنك إضافة خيار fit إذا لزم الأمر
+                  // fit: BoxFit.cover,
+                  // يمكنك إضافة معالج خطأ هنا أيضاً إذا كانت AppCachedNetworkImage تدعمه
+                  // errorWidget: (context, url, error) => Icon(Icons.error),
+                  // placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                ),
+                // زر المفضلة
+                Positioned(
+                    top: 8,
+                    right: 8,
+                    child: GestureDetector(
+                        onTap: () {
+                          onTap();
+                        },
+                        child: SizedBox(
+                          width: 44,
+                          height: 44,
+                          child: isFavorite
+                              ? SvgPicture.asset(
+                                  "assets/img/heart-circle (2).svg")
+                              : SvgPicture.asset(
+                                  "assets/img/heart-circle (1).svg",
+                                ),
+                        )))
               ]),
-              GestureDetector(
-                onTap: () {
-              //    Navigator.pushNamed(context, Routes.DetailsScreen, arguments: product);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 3),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 8.h,
+              Padding(
+                padding: const EdgeInsets.only(left: 3, right: 3, top: 8.0), // إضافة padding علوي ويمين
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      // استخدام ?? للتعامل مع العنوان الـ null
+                      product.title ?? 'عنوان غير متوفر',
+                      style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                          ? TextStyles.poppinsRegular16contantGray
+                          : TextStyles.poppinsRegular16contantGray
+                              .copyWith(color: Colors.white),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    // --- قسم التقييم والمبيعات (تم تبسيط السعر هنا) ---
+                    Row(children: [
+                      SvgPicture.asset(
+                        'assets/img/star.svg',
                       ),
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      // يمكنك عرض التقييم هنا إذا كان موجوداً في المودل
                       Text(
-                        product.title!,
-                        style:
-                        ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                        TextStyles.poppinsRegular16contantGray: TextStyles.poppinsRegular16contantGray.copyWith(color:Colors.white),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        "0.0", // استبدل بقيمة التقييم الفعلية إذا وجدت
+                        style: TextStyles.poppinsRegular14lightGray,
                       ),
                       SizedBox(
-                        height: 8.h,
+                        width: 4.w,
                       ),
-                      Row(children: [
-                        SvgPicture.asset(
-                          'assets/img/star.svg',
-                        ),
-                        Text(
-                          product.salePrice.toString(),
-                          style: TextStyles.poppinsRegular14lightGray,
-                        ),
-                        SizedBox(
-                          width: 4.w,
-                        ),
-                        SvgPicture.asset(
-                          'assets/img/Line 3.svg',
-                        ),
-                        SizedBox(
-                          width: 14.5.w,
-                        ),
-                        Text(
-                          '144',
-                          style: TextStyles.poppinsRegular14lightGray,
-                        ),
-                        SizedBox(
-                          width: 14.w,
-                        ),
-                      ]),
+                      SvgPicture.asset(
+                        'assets/img/Line 3.svg',
+                      ),
                       SizedBox(
-                        height: 8.h,
+                        width: 14.5.w,
                       ),
+                      // يمكنك عرض عدد المبيعات/المشتركين هنا إذا كان موجوداً
                       Text(
-                          product.salePrice.toString()+"EGP" ,
-                        style: TextStyles.poppinsRegular16blue,
+                        '0', // استبدل بعدد المبيعات الفعلي إذا وجد
+                        style: TextStyles.poppinsRegular14lightGray,
                       ),
-                    ],
-                  ),
+                    ]),
+                    SizedBox(
+                      height: 8.h,
+                    ),
+                    // --- عرض السعر بشكل آمن ---
+                    Text(
+                      // استخدام الدالة المساعدة لعرض السعر بشكل صحيح
+                      getPriceDisplayString(product.salePrice),
+                      style: TextStyles.poppinsRegular16blue,
+                      maxLines: 1, // ضمان عدم تجاوز سطر واحد
+                      overflow: TextOverflow.ellipsis, // قص النص الطويل
+                    ),
+                  ],
                 ),
               ),
             ],

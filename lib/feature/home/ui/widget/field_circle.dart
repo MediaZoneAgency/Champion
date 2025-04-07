@@ -5,6 +5,7 @@ import 'package:education/core/sharedWidgets/network_image.dart';
 import 'package:education/core/theming/colors.dart';
 import 'package:education/feature/home/logic/product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/styles.dart';
@@ -29,22 +30,20 @@ final int id;
             );
           },
           child: Container(
-            width: 60,
-            height: 60,
+            padding: EdgeInsets.all(15),
+            width: 60.w,
+            height: 60.h,
             decoration: BoxDecoration(
-              color: ColorsManager.BabyBlue, // لون الخلفية الدائري
+              color: Colors.white, // لون الخلفية الدائري
               shape: BoxShape.circle,
             ),
-            child: SizedBox(
-              width: 14,
-              height: 14,
-              child: AppCachedNetworkImage(
-                image: icon,
-                width: 14,
-                height: 14,
-                radius: 40,
-
-              ),
+            child: AppCachedNetworkImage(
+              fit: BoxFit.cover,
+              image: icon,
+              width: 5.w,
+              height: 5.h,
+              radius: 5.r,
+            
             ),
           ),
         ),

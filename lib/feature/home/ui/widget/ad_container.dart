@@ -59,7 +59,7 @@ class _AdCarouselState extends State<AdCarousel> {
                 effect: ExpandingDotsEffect(
                   dotHeight: 5.0,
                   dotWidth: 8.0,
-                  activeDotColor: Colors.white,
+                  activeDotColor: Color(0xffEE3139),
                   dotColor: Colors.grey,
                   expansionFactor: 2.5,
                   spacing: 4.0,

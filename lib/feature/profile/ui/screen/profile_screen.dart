@@ -1,10 +1,12 @@
 import 'package:education/core/helpers/extensions.dart';
+import 'package:education/feature/profile/ui/screen/progress_screen.dart';
 import 'package:education/feature/profile/ui/widget/ui_loading_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/sharedWidgets/network_image.dart';
@@ -118,26 +120,93 @@ SizedBox(height: 20.h,),
                     context.pushNamed(Routes.chatSupprot);
                   },
                 ),
-                ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/terms  conditionsnw.svg'),
-                  text:S.of(context).TermsConditions,
-                  onTap: () {},
-                ),
+                // ProfileMenuItem(
+                //   icon: SvgPicture.asset('assets/img/terms  conditionsnw.svg'),
+                //   text:S.of(context).TermsConditions,
+                //   onTap: () {},
+                // ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/provcynew.svg'),
                   text:S.of(context).PrivacyPolicy,
-                  onTap: () {},
+                 onTap: () async { // Make the callback async
+  // Replace 'https://www.example.com' with the actual website URL
+  final Uri websiteUri = Uri.parse('https://champion-edu.com/privacy-policy/');
+
+  // Check if the URL can be launched (optional but recommended)
+  if (await canLaunchUrl(websiteUri)) {
+    try {
+      // Attempt to launch the URL
+      await launchUrl(
+        websiteUri,
+        mode: LaunchMode.externalApplication, // Opens in default browser outside the app
+        // Other modes include:
+        // LaunchMode.inAppWebView (requires platform setup)
+        // LaunchMode.platformDefault
+      );
+    } catch (e) {
+       // Handle potential errors during launch (less common for http/https URLs)
+       print('Error launching URL: $e');
+       // Show an error message to the user if needed
+       ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not launch $websiteUri')),
+       );
+    }
+  } else {
+    // Handle the case where the URL cannot be launched
+    print('Could not launch $websiteUri');
+     ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch $websiteUri')),
+     );
+  }
+},
                 ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/progressnew.svg'),
                   text: S.of(context).AboutApp,
-                  onTap: () {},
+         // ... (Inside your Widget's build method or wherever the onTap is)
+
+onTap: () async { // Make the callback async
+  // Replace 'https://www.example.com' with the actual website URL
+  final Uri websiteUri = Uri.parse('https://info@clustersplatform.com/');
+
+  // Check if the URL can be launched (optional but recommended)
+  if (await canLaunchUrl(websiteUri)) {
+    try {
+      // Attempt to launch the URL
+      await launchUrl(
+        websiteUri,
+        mode: LaunchMode.externalApplication, // Opens in default browser outside the app
+        // Other modes include:
+        // LaunchMode.inAppWebView (requires platform setup)
+        // LaunchMode.platformDefault
+      );
+    } catch (e) {
+       // Handle potential errors during launch (less common for http/https URLs)
+       print('Error launching URL: $e');
+       // Show an error message to the user if needed
+       ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not launch $websiteUri')),
+       );
+    }
+  } else {
+    // Handle the case where the URL cannot be launched
+    print('Could not launch $websiteUri');
+     ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not launch $websiteUri')),
+     );
+  }
+},
+
+// ... (Rest of your widget code, e.g., the child of GestureDetector)
                 ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/procircle.svg'),
-                  text: S.of(context).AboutApp,
+                  text: S.of(context).Progress,
                   onTap: () {
-
+ Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProgressScreen()),
+        );
                   },
                 ),
                 ProfileMenuItem(

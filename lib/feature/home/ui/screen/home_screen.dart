@@ -35,10 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+     ProductCubit.get(context).getProducts();
     HomeCubit.get(context).getCategory();
-    ProductCubit.get(context).getProducts().then(
-        (e)=>
-        FavCubit.get(context).getWishList());
+    ProductCubit.get(context).getProducts();
+        FavCubit.get(context).getWishList();
     ProfileCubit.get(context).getProfile();
   }
 
@@ -93,41 +93,43 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
 
-                                Container(
-                                  height: 45.h,
-                                  width: 70.w,
-                                  decoration: BoxDecoration(
-                                    color: ThemeCubit.get(context).themeMode == ThemeMode.light
-                                        ? ColorsManager.mainGrray
-                                        : ColorsManager.mainGrray,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Row(
-                                     // Adjust alignment
-                                    children: [
-                                      Flexible( // Use Flexible to allow the Text to shrink if needed
-                                        child: Text(
-                                          "160",
-                                          style: ThemeCubit.get(context).themeMode == ThemeMode.light
-                                              ? TextStyles.poppinsRegular12ContantGray
-                                              : TextStyles.poppinsRegular12ContantGray,
-                                          //overflow: TextOverflow.ellipsis, // Handle text overflow
-                                        ),
-                                      ),
-                                      IconButton(
-                                        icon: SvgPicture.asset(
-                                          width: 20.w,
-                                          height: 20.h,
-                                          'assets/img/coin.svg',
-                                          fit: BoxFit.scaleDown,
-                                        ),
-                                        onPressed: () {
-                                          context.pushNamed(Routes.rewardGridViewScreen);
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // Container(
+                                //   height: 45.h,
+                                //   width: 70.w,
+                                //   decoration: BoxDecoration(
+                                //     color: ThemeCubit.get(context).themeMode == ThemeMode.light
+                                //         ? ColorsManager.mainGrray
+                                //         : ColorsManager.mainGrray,
+                                //     borderRadius: BorderRadius.circular(10),
+                                //   ),
+                                //   child: Row(
+                                //      // Adjust alignment
+                                //     children: [
+                                //       Flexible( // Use Flexible to allow the Text to shrink if needed
+                                //         child: Text(
+                                //           "160",
+                                //           style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                                //               ? TextStyles.poppinsRegular12ContantGray
+                                //               : TextStyles.poppinsRegular12ContantGray,
+                                //           //overflow: TextOverflow.ellipsis, // Handle text overflow
+                                //         ),
+                                //       ),
+                                //       // IconButton(
+                                //       //   icon: SvgPicture.asset(
+                                //       //     width: 20.w,
+                                //       //     height: 20.h,
+                                //       //     'assets/img/coin.svg',
+                                //       //     fit: BoxFit.scaleDown,
+                                //       //   ),
+                                //       //   onPressed: () {
+                                //       //     context.pushNamed(Routes.rewardGridViewScreen);
+                                //       //   },
+                                //       // ),
+                                //     ],
+                                //   ),
+                                // ),
+                            
+                            
                             IconButton(
                                               icon: SvgPicture.asset(
                                                 width: 30,
@@ -177,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (HomeCubit.get(context).categoryModel.isNotEmpty) {
                         log("thnx god");
 
-                        return CategoryListView();
+                        return  CategoryListView();
                       }else {
                         log("offfffff");
                         return Container();
@@ -219,6 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (state is FetchProductSuccess && ProductCubit.get(context).productModel.isNotEmpty) {
                           return CoursesListView();
                         }
+                         print("roductCubit.get(context).productModel");
                         return Center(child: Text("No courses available")); // عرض رسالة عند عدم وجود بيانات
                       },
                     ),

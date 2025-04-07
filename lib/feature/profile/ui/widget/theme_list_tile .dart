@@ -19,10 +19,15 @@ class ThemeListTile extends StatelessWidget {
           onTap: () async {
             await  ThemeCubit.get(context).toggleTheme();
           },
-          child: Row(
+          child: 
+          Padding(padding: const EdgeInsets.only(left: 20,right: 20),
+         child:  Row(
+
             children: [
               Text(S.of(context).Theme,
-                  style: TextStyles.poppinsMedium16BlackMeduim),
+                  style: 
+                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                  TextStyles.poppinsMedium16BlackMeduim: TextStyles.poppinsMedium16BlackMeduim.copyWith(color: Colors.white)),
               const Spacer(),
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -32,18 +37,20 @@ class ThemeListTile extends StatelessWidget {
                         ? S.of(context).Light
                         : S.of(context).Dark,
 
-                      style:  TextStyles. poppinsMedium16BlackDark.copyWith(color: ThemeCubit.get(context).themeMode== ThemeMode.light ? ColorsManager.lightGray : ColorsManager.mediumDarkGray,
+                      style:  TextStyles. poppinsMedium16BlackDark.copyWith(color: ThemeCubit.get(context).themeMode== ThemeMode.light ? ColorsManager.mediumDarkGray : 
+                       ColorsManager.lightGray
+                      ,
                       )),
                   horizontalSpace(10),
                   Icon(
                     Icons.arrow_forward_ios,
                     size: 20.sp,
-                    //color: ColorsManager.kPrimaryColor,
+                    color: ColorsManager.primaryColorLight,
                   ),
                 ],
               ),
             ],
-          ),
+          ),)
         );
 
       },

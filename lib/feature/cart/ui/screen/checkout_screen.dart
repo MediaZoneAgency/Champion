@@ -1,6 +1,8 @@
 import 'package:education/core/helpers/extensions.dart';
+import 'package:education/feature/cart/data/models/billing.dart';
 import 'package:education/feature/cart/ui/widget/cart_bar.dart';
 import 'package:education/feature/cart/ui/widget/promo_code.dart';
+import 'package:education/feature/payment/logic/payment_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,7 +62,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         height: 4.h,
                       ),
                       Text(
-                        '450 EGP',
+                        'Free',
                         style: TextStyles.poppinsMedium20NavyBlue,
                       ),
                     ],
@@ -96,7 +98,21 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         context.pushReplacementNamed(Routes.signUpScreen);
                       } else {
                         DioFactory.setTokenIntoHeaderAfterLogin(token);
+                      //  PaymentCubit.get(context).pay(450,Billing(
+                           
+                      //    lastName: "domy",
+                      //    firstName: "domy",
+                      //    address1: "domy",
+                      //    state: "domy",
+                      //    city: "domy",
+                      //    postcode: "domy",
+                      //    country: "domy",
+                      //    email: "domy",
+                      //    phone: "domy",
+                          
+                      //  ));
                         CartCubit.get(context).placeOrder();
+
                       }
                     },
                   ),

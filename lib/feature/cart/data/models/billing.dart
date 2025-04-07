@@ -10,7 +10,7 @@ class Billing {
   String? email;
   String? phone;
 
-  Billing(
+  Billing( 
       {this.firstName,
         this.lastName,
         this.address1,

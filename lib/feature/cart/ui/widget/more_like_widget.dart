@@ -30,9 +30,10 @@ class MoreLikeWidget extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(
-                product.thumbnailUrl!,
-              ),
+             image: (product.thumbnailUrl != null && product.thumbnailUrl!.isNotEmpty && product.thumbnailUrl != "false")
+    ? NetworkImage(product.thumbnailUrl!)
+    : const AssetImage('assets/img/placeholder_image.png') as ImageProvider,
+
             ),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(9),

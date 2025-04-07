@@ -2,6 +2,7 @@ import 'package:education/feature/home/logic/home_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/colors.dart';
@@ -20,11 +21,13 @@ class CategoryListView extends StatelessWidget {
           child: SingleChildScrollView(
             physics:  NeverScrollableScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            child: Row(
+            
+              child: Row(
               children: [
+                
                 // Dynamic List
                 SizedBox(
-                  width: MediaQuery.of(context).size.width - 100,
+                 width: MediaQuery.of(context).size.width,
                   height: 100,
                   child: HomeCubit.get(context).categoryModel.isNotEmpty
                       ? ListView.builder(
@@ -34,7 +37,7 @@ class CategoryListView extends StatelessWidget {
                     //HomeCubit.get(context).categoryModel.length, // استخدم الطول الفعلي
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
                         child: CategoryItem(
                           icon: HomeCubit.get(context).categoryModel[index].thumbnailUrl != null
                               ? HomeCubit.get(context).categoryModel[index].thumbnailUrl!
@@ -50,43 +53,45 @@ class CategoryListView extends StatelessWidget {
 
 
                 // Static More Button
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          Routes.categoriesScreen,
-                        );
-                      },
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: ColorsManager.BabyBlue,
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset(
-                          'assets/img/more-2.svg',
-                          width: 30,
-                          height: 30,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "More",
-                      style: ThemeCubit.get(context).themeMode == ThemeMode.light
-                          ?
-                      TextStyles.poppinsMedium12contantGray:TextStyles.poppinsMedium12contantGray.copyWith(color: Colors.white),
-                    ),
-                  ],
+                // Column(
+                //   children: [
+                //     GestureDetector(
+                //       onTap: () {
+                //         Navigator.pushNamed(
+                //           context,
+                //           Routes.categoriesScreen,
+                //         );
+                //       },
+                //       child: Container(
+                //         width: 60,
+                //         height: 60,
+                //         decoration: BoxDecoration(
+                //           color: ColorsManager.BabyBlue,
+                //           shape: BoxShape.circle,
+                //         ),
+                //         child: SvgPicture.asset(
+                //           'assets/img/more-2.svg',
+                //           width: 30,
+                //           height: 30,
+                //           fit: BoxFit.scaleDown,
+                //         ),
+                //       ),
+                //     ),
+                //     const SizedBox(height: 8),
+                //     Text(
+                //       "More",
+                //       style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                //           ?
+                //       TextStyles.poppinsMedium12contantGray:TextStyles.poppinsMedium12contantGray.copyWith(color: Colors.white),
+                //     ),
+                //   ],
 
-                 ),
+                //  ),
 
               ],
             ),
+         
+          
           ),
         );
       },

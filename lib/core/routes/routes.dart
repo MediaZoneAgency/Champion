@@ -31,4 +31,5 @@ static const String coursesGridViewScreen='/coursesGridViewScreen';
 static const String chatSupprot ='/chatSupport';
 static const String paymentScreen='/paymentScreen';
 static const String rewardGridViewScreen='/rewardGridViewScreen';
+static const String payment='/payment';
 }

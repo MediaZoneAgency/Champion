@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:sizer/sizer.dart';
 import 'core/di/dependency_inj.dart';
 import 'core/db/cash_helper.dart';
@@ -40,6 +41,12 @@ void main() async {
   runApp(EducationApp(
     appRouter: AppRouter(),
   ));
+   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  // Add the initialization code with your OneSignal App ID
+  OneSignal.initialize("3717f477-c3f2-4912-805e-2422f28933fa");
+  // Use this method to prompt for push notifications
+  // We recommend removing this method after testing and instead use In-App Messages to prompt for notification permission
+  OneSignal.Notifications.requestPermission(true);
 }
 
 class EducationApp extends StatelessWidget {

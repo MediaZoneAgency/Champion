@@ -42,6 +42,7 @@ class HomeRepo {
 
       for (var item in response.data) {
         products.add(ProductModel.fromMap(item));
+        print(products);
       }
       return right(products);
     } catch (e) {

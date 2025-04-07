@@ -64,11 +64,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        EnterYour(text: S.of(context).Email),
+                        EnterYour(text: S.of(context).Name),
                         verticalSpace(7),
                         AppTextFormField(
                           contentPadding: EdgeInsets.all(12.h),
-                          hintText: S.of(context).Email,
+                          hintText: S.of(context).Name,
                           controller: _emailController,),
                         verticalSpace(12),
                         EnterYour(
@@ -127,49 +127,51 @@ class _SignInScreenState extends State<SignInScreen> {
                           },
                         ),
 
-                        verticalSpace(24),
-                        Row(
-                          children: [
-                            Expanded(child: Divider(  color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text(S.of(context).Orsigninwith,
-                                  style:
-                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                  TextStyles.poppinsMedium16BlackMeduim:   TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white)),
-                            ),
-                            Expanded(child: Divider(color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
-                          ],
-                        ),
-                        verticalSpace(20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                'assets/img/apple.svg': 'assets/img/apple (1).svg',
-                              ),
-                              onPressed: () {},
-                            ),
-                            SizedBox(width: 20.w),
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                'assets/img/google.svg':'assets/img/google (1).svg',
-                              ),
-                              onPressed: () {},
-                            ),
-                            SizedBox(width: 20.w),
-                            IconButton(
-                              icon: SvgPicture.asset(
-                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                'assets/img/facebook.svg':'assets/img/facebook (1).svg',
-                              ),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
+                        // verticalSpace(24),
+                        // Row(
+                        //   children: [
+                        //     Expanded(child: Divider(  color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
+                        //     Padding(
+                        //       padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        //       child: Text(S.of(context).Orsigninwith,
+                        //           style:
+                        //           ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        //           TextStyles.poppinsMedium16BlackMeduim:   TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white)),
+                        //     ),
+                        //     Expanded(child: Divider(color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
+                        //   ],
+                        // ),
+                        // verticalSpace(20),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: [
+                        //     IconButton(
+                        //       icon: SvgPicture.asset(
+                        //         ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        //         'assets/img/apple.svg': 'assets/img/apple (1).svg',
+                        //       ),
+                        //       onPressed: () {},
+                        //     ),
+                        //     SizedBox(width: 20.w),
+                        //     IconButton(
+                        //       icon: SvgPicture.asset(
+                        //         ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        //         'assets/img/google.svg':'assets/img/google (1).svg',
+                        //       ),
+                        //       onPressed: () {},
+                        //     ),
+                        //     SizedBox(width: 20.w),
+                        //     IconButton(
+                        //       icon: SvgPicture.asset(
+                        //         ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                        //         'assets/img/facebook.svg':'assets/img/facebook (1).svg',
+                        //       ),
+                        //       onPressed: () {},
+                        //     ),
+                        //   ],
+                        // ),
+                       
+                       
                         SizedBox(height: 16),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

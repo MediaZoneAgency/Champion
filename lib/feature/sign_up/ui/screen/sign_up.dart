@@ -279,52 +279,52 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             },
                           ),
                           verticalSpace(24),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: Divider(
-                                      color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 25.0),
-                                child: Text(S.of(context).Orsignup,
-                                    style:
-                                    ThemeCubit.get(context).themeMode== ThemeMode.light ?   TextStyles.poppinsMedium16BlackMeduim :TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white)),
-                              ),
-                              Expanded(
-                                  child: Divider(
-                                      color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
-                            ],
-                          ),
-                          verticalSpace(20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: SvgPicture.asset(
-                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                  'assets/img/apple.svg': 'assets/img/apple (1).svg',
-                                ),
-                                onPressed: () {},
-                              ),
-                              SizedBox(width: 20.w),
-                              IconButton(
-                                icon: SvgPicture.asset(
-                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                  'assets/img/google.svg':'assets/img/google (1).svg',
-                                ),
-                                onPressed: () {},
-                              ),
-                              SizedBox(width: 20.w),
-                              IconButton(
-                                icon: SvgPicture.asset(
-                                  ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                  'assets/img/facebook.svg':'assets/img/facebook (1).svg',
-                                ),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   children: [
+                          //     Expanded(
+                          //         child: Divider(
+                          //             color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
+                          //     Padding(
+                          //       padding:
+                          //           const EdgeInsets.symmetric(horizontal: 25.0),
+                          //       child: Text(S.of(context).Orsignup,
+                          //           style:
+                          //           ThemeCubit.get(context).themeMode== ThemeMode.light ?   TextStyles.poppinsMedium16BlackMeduim :TextStyles.poppinsMedium16BlackMeduim.copyWith(color:Colors.white)),
+                          //     ),
+                          //     Expanded(
+                          //         child: Divider(
+                          //             color: ThemeCubit.get(context).themeMode== ThemeMode.light ?ColorsManager.Blackmeduim:Colors.white)),
+                          //   ],
+                          // ),
+                          // verticalSpace(20),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     IconButton(
+                          //       icon: SvgPicture.asset(
+                          //         ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                          //         'assets/img/apple.svg': 'assets/img/apple (1).svg',
+                          //       ),
+                          //       onPressed: () {},
+                          //     ),
+                          //     SizedBox(width: 20.w),
+                          //     IconButton(
+                          //       icon: SvgPicture.asset(
+                          //         ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                          //         'assets/img/google.svg':'assets/img/google (1).svg',
+                          //       ),
+                          //       onPressed: () {},
+                          //     ),
+                          //     SizedBox(width: 20.w),
+                          //     IconButton(
+                          //       icon: SvgPicture.asset(
+                          //         ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                          //         'assets/img/facebook.svg':'assets/img/facebook (1).svg',
+                          //       ),
+                          //       onPressed: () {},
+                          //     ),
+                          //   ],
+                          // ),
                           SizedBox(height: 16),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

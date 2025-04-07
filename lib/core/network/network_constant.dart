@@ -6,14 +6,14 @@ class NetworkConstant{
 
   static const register ="custom/v1/register";
   static const products ="custom-api/v1/courses";
-  static const categories ="wp/v2/course-category";
+  static const categories ="wp/v2/course-category?parent=0";
   static const profile="wp/v2/users/me";
 static const otpsend="email-otp-authenticator/v1/generate";
 static const otpResend="email-otp-authenticator/v1/resend";
 static const otpValidate="email-otp-authenticator/v1/validate";
 static const resetPassword="email-otp-authenticator/v1/reset-password";
 static const deleteAccount="custom/v1/delete-account";
-  static const String addToWishList = 'custom-api/v1/add-to-favorites';
+  static const String addToWishList = 'tutor/v1/wishlist/add';
   static const String getWishList = 'custom-api/v1/get-favorites';
   static const String removeFromWishList = 'custom-api/v1/remove-from-favorites';
   static const String consumerKey='ck_02177b0141641f93c75a9a5ee966a58193dd2785';
