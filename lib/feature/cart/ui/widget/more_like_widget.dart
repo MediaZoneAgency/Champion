@@ -32,7 +32,7 @@ class MoreLikeWidget extends StatelessWidget {
               fit: BoxFit.cover,
              image: (product.thumbnailUrl != null && product.thumbnailUrl!.isNotEmpty && product.thumbnailUrl != "false")
     ? NetworkImage(product.thumbnailUrl!)
-    : const AssetImage('assets/img/placeholder_image.png') as ImageProvider,
+    : const AssetImage('assets/img/WhatsApp Image 2024-11-17 at 10.11.25 AM.jpeg') as ImageProvider,
 
             ),
             borderRadius: BorderRadius.only(

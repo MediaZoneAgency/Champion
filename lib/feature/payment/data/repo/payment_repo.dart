@@ -14,6 +14,7 @@ class PaymentRepo {
         billing: billing,
           orderId: orderId.toString(), token: token, amount: (amount*100).toString());
       return right(paymentKey);
+     
     } catch (e) {
       print(e.toString());
       return left(e.toString());
@@ -28,6 +29,7 @@ class PaymentRepo {
             "ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmpiR0Z6Y3lJNklrMWxjbU5vWVc1MElpd2ljSEp2Wm1sc1pWOXdheUk2TVRBeU1qZzJNQ3dpYm1GdFpTSTZJbWx1YVhScFlXd2lmUS50TXdHSzc5VC1FQkUyN1VpcWd0NTNmYjJzeWxGVlBpT2VDYjRTd3FsVnhqaGgxNTVtVVlzYVNNWkFaOHlCM3gydlB3RDZUYXgtYlp0bUMtWEN1d2c5QQ=="
       });
       print('auth token${response.data['token']}');
+      
       return response.data['token'];
     } catch (e) {
       print(e.toString());
@@ -42,7 +44,7 @@ class PaymentRepo {
       Response response = await Dio().post(
           'https://accept.paymob.com/api/ecommerce/orders',
           data: {"auth_token": token, "amount_cents": amount});
-      print('au th token${response.data['id']}');
+      print('auth token${response.data['id']}');
       return response.data['id'];
     } catch (e) {
       print(e.toString());
@@ -64,7 +66,7 @@ class PaymentRepo {
         "order_id": orderId,
         "amount_cents": amount,
         "currency": "EGP",
-        "integration_id": 4940164,
+        "integration_id": 4949210,
         "billing_data": {
           "apartment": "dumy",
           "first_name": billing.firstName,

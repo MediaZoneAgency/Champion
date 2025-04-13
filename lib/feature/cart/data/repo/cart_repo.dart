@@ -30,7 +30,7 @@ class CartRepo {
     try {
       var data = await dio.post(
         NetworkConstant.order, data: orderModel.toMap(),
-        options: Options(headers: {  "authorization":  'Basic ${base64Encode(utf8.encode('ck_65f3c8c1444e58478083591b23622f44144e4cfe:cs_74925ff431ca8d29b7aa45d66d0aa7ebb334dbdc'))}'
+        options: Options(headers: {  "authorization":  'Basic ${base64Encode(utf8.encode('ck_d35e7c97a2fc04a934f3f6968da04205a370b33c:cs_4842ea888e0ebfae8a335a351d30bf13557de852'))}'
         }),
       );
       return right(data.toString());

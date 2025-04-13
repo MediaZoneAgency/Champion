@@ -62,5 +62,15 @@ void addToCart( BuildContext context,{required CartItemModel product}) async {
       },
     );
   }
+ double getTotalCartPrice() {
+  double total = 0;
+  for (var item in cartList) {
+    final price = double.tryParse(item.productModel.salePrice ?? '0') ?? 0;
+    total += price * item.quantity;
+  }
+  return total;
+}
+
+
 
 }

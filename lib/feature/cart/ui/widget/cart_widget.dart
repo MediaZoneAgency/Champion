@@ -5,7 +5,7 @@ import 'package:education/feature/cart/data/models/cart_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../logic/cart_cubit.dart';
 
 class CartWidget extends StatelessWidget {
@@ -13,12 +13,24 @@ class CartWidget extends StatelessWidget {
   final CartItemModel product;
   final Function()? onremove;
 
+  /// Helper method to remove HTML tags from a string
+  String removeHtmlTags(String htmlText) {
+    final RegExp exp = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: false);
+    return htmlText.replaceAll(exp, '');
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Prepare cleaned and trimmed description
+    String rawContent = product.productModel.content ?? '';
+    String cleanedContent = removeHtmlTags(rawContent);
+    String shortDescription =
+        cleanedContent.length > 60 ? '${cleanedContent.substring(0, 60)}...' : cleanedContent;
+
     return Container(
       width: 375.w,
       child: Padding(
-        padding: EdgeInsets.only(left: 15.w,right: 15.w),
+        padding: EdgeInsets.only(left: 15.w, right: 15.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,7 +47,6 @@ class CartWidget extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
                   Text(
                     product.productModel.title.toString(),
@@ -44,33 +55,20 @@ class CartWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 4.h),
-
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 220.w), // Limit text width
+                    constraints: BoxConstraints(maxWidth: 220.w),
                     child: RichText(
                       maxLines: 2,
-                      //overflow: TextOverflow.ellipsis,
                       text: TextSpan(
-
                         children: [
-                        TextSpan(
-                        text:
-                      "${product.productModel.content!.substring(0,60)}..." ?? "Description not available",
-                        style: TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12),),
                           TextSpan(
-                          text:
-                              ' See More',
-                              style: TextStyles.poppinsRegular14babyblue.copyWith(
-                                decoration: TextDecoration.underline,
-                                fontSize: 12,
-                              ),
-                            ),
-
+                            text: shortDescription,
+                            style: TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12),
+                          ),
                         ],
                       ),
                     ),
                   ),
-
                   SizedBox(height: 4.h),
                   Row(
                     children: [
@@ -88,7 +86,7 @@ class CartWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Spacer(), // Push trash icon to the right
+                      Spacer(),
                       BlocBuilder<CartCubit, CartState>(
                         builder: (context, state) {
                           return GestureDetector(

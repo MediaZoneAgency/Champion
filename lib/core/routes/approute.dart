@@ -5,10 +5,13 @@ import 'package:education/feature/category/ui/screen/field_type_screen.dart';
 import 'package:education/feature/category/ui/screen/popular_fields.dart';
 import 'package:education/feature/coursedetails/data/models/product_model.dart';
 import 'package:education/feature/home/logic/product_cubit.dart';
+import 'package:education/feature/payment/logic/payment_cubit.dart';
+import 'package:education/feature/payment/ui/screen/payment_screen.dart';
 import 'package:education/feature/profile/ui/screen/account_ifo.dart';
 import 'package:education/feature/profile/ui/screen/edit_account.dart';
 import 'package:education/feature/profile/ui/screen/profile_screen.dart';
 import 'package:education/feature/search/ui/screen/search_result_screen.dart';
+import 'package:education/feature/splash/logic/cubit/splash_cubit.dart';
 import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,11 +51,15 @@ class AppRouter {
     //final arguments = settings.arguments;
 
     switch (settings.name) {
-      case Routes.splashScreen:
-         return MaterialPageRoute(
-         builder: (_) => const SplashView(),
-        );
+      
       //
+         case Routes.splashScreen:
+        return MaterialPageRoute(
+          builder: (_) =>  BlocProvider(
+  create: (context) => getIt<SplashCubit>(),
+  child: const  SplashView(),
+),
+        );
       case Routes.signUpScreen:
      return MaterialPageRoute(
          builder: (_) =>
@@ -129,13 +136,38 @@ class AppRouter {
         );
       case Routes.checkoutScreen:
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider(
-                create: (context) => getIt<ProductCubit>(),
-                child: CheckoutScreen(),
-              ),
-        );
+            builder: (_) =>MultiBlocProvider(
+              providers: [
 
+                BlocProvider<ProductCubit>.value(
+                  value: getIt<ProductCubit>(),
+                ),
+                BlocProvider<CartCubit>.value(
+                  value: getIt<CartCubit>(),
+                ),
+                BlocProvider<PaymentCubit>.value(
+                  value: getIt<PaymentCubit>(),
+                ),
+              ],  child: CheckoutScreen(),),
+          // builder: (_) =>
+          //     BlocProvider(
+          //       create: (context) => getIt<ProductCubit>(),
+          //       child: CheckoutScreen(),
+          //     ),
+        );
+case Routes.paymentScreen:
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+  providers: [
+    BlocProvider.value(
+            value: getIt<PaymentCubit>(),
+),
+    BlocProvider.value(
+      value: getIt<CartCubit>(),
+    ),
+  ],
+  child: const PaymentScreen(),
+),    );
       case Routes.wishListScreen:
         return MaterialPageRoute(
 
@@ -340,4 +372,4 @@ class AppRouter {
     return null;
     }
   }
-}
+} 

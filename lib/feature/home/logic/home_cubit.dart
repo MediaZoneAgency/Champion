@@ -45,7 +45,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> getTopic() async {
+  Future<void> getTopic(int id) async {
     try {
       // Attempt to load cached topics
       final cachedTopics = CachedApp.getCachedData(CachedDataType.topics.name);
@@ -56,7 +56,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(FetchTopicLoading());
 
       // Call the repository method to fetch topics
-      final result = await _homeRepo.getTopic();
+      final result = await _homeRepo.getTopic(course_id: id);
 
       result.fold(
             (failure) {

@@ -2,9 +2,13 @@
 import 'package:dio/dio.dart';
 import 'package:education/feature/cart/data/repo/cart_repo.dart';
 import 'package:education/feature/cart/logic/cart_cubit.dart';
+import 'package:education/feature/payment/data/repo/payment_repo.dart';
+import 'package:education/feature/payment/logic/payment_cubit.dart';
 import 'package:education/feature/profile/data/repo/profile_repo.dart';
 import 'package:education/feature/search/logic/search_cubit.dart';
 import 'package:education/feature/sign_up/logic/sign_up_cubit.dart';
+import 'package:education/feature/splash/data/repo/splash_repo.dart';
+import 'package:education/feature/splash/logic/cubit/splash_cubit.dart';
 import 'package:education/feature/wishlist/data/repo/wish_list_repo.dart';
 import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -36,12 +40,14 @@ Future<void> setupGetIt() async
  getIt.registerLazySingleton<HomeCubit>(() => HomeCubit(getIt()));
 
  getIt.registerLazySingleton<NavBarCubit>(() => NavBarCubit());
-
+getIt.registerFactory<PaymentRepo>(()=>PaymentRepo());
+ getIt.registerLazySingleton<PaymentCubit>(() => PaymentCubit(getIt()));
  getIt.registerLazySingleton<ProductCubit>(() => ProductCubit(getIt()));
-
+ getIt.registerFactory<SplashRepo>(() => SplashRepo(dio));
+ getIt.registerLazySingleton<SplashCubit>(() => SplashCubit(getIt()));
  getIt.registerFactory<ProfileRepo>(() => ProfileRepo(dio));
  getIt.registerLazySingleton<ProfileCubit>(() => ProfileCubit(getIt()));
-
+ 
  getIt.registerFactory<CartRepo>(() => CartRepo(dio));
  getIt.registerLazySingleton<CartCubit>(() => CartCubit(getIt()));
 

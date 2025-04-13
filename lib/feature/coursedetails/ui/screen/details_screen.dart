@@ -52,7 +52,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ThemeCubit.get(context).themeMode== ThemeMode.light?
                           TextStyles.poppinsRegular14LightGray: TextStyles.poppinsRegular14white,),
                         SizedBox(height: 4.h,),
-                        Text('450 EGP',
+                        Text(widget.product.salePrice.toString(),
                           style:
                           ThemeCubit.get(context).themeMode== ThemeMode.light?
                           TextStyles.poppinsMedium20NavyBlue: TextStyles.poppinsMedium20white.copyWith(color: Colors.white),),
@@ -94,28 +94,29 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 children: [
                  // SizedBox(height: 50.h),
                   DetailsWidget(widget.product),
-                  CourseSections(),
+               
+                CourseSections(course_id: widget.product.id!),
                   SizedBox(height: 40.h),
-                  Text(
-                      "    Reviews(12)",
-                      style:
-                      ThemeCubit.get(context).themeMode== ThemeMode.light?
-                      TextStyles.poppinsMedium16DarkGray:TextStyles.poppinsMedium16DarkGray.copyWith(color: Colors.white)
-                  ),
-                  ReviewWidget(),
-                  SizedBox(height: 12.h),
-                  ReviewWidget(),
+                  // Text(
+                  //     "    Reviews(12)",
+                  //     style:
+                  //     ThemeCubit.get(context).themeMode== ThemeMode.light?
+                  //     TextStyles.poppinsMedium16DarkGray:TextStyles.poppinsMedium16DarkGray.copyWith(color: Colors.white)
+                  // ),
+                  // ReviewWidget(),
+                  // SizedBox(height: 12.h),
+                  // ReviewWidget(),
                   SizedBox(height: 20.h),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 10),
-                    child: Center(
-                      child: Text(
-                          "See All Reviews",
-                          style: TextStyles.poppinsRegular16blue
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 39.h),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 20, right: 10),
+                  //   child: Center(
+                  //     child: Text(
+                  //         "See All Reviews",
+                  //         style: TextStyles.poppinsRegular16blue
+                  //     ),
+                  //   ),
+                  // ),
+                 // SizedBox(height: 39.h),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Row(
@@ -136,7 +137,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 16.h,),
+               //   SizedBox(height: 16.h,),
                   CoursesListView(),
                   SizedBox(height: 24.h,),
 

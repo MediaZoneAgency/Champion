@@ -11,6 +11,9 @@ import '../../../home/logic/home_cubit.dart';
 import '../../data/topic_model.dart';
 
 class CourseSections extends StatefulWidget {
+ final int course_id;
+
+  const CourseSections({super.key, required this.course_id});
   @override
   State<CourseSections> createState() => _CourseSectionsState();
 }
@@ -21,7 +24,7 @@ class _CourseSectionsState extends State<CourseSections> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    HomeCubit.get(context).getTopic();
+    HomeCubit.get(context).getTopic(widget.course_id);
 
   }
 

@@ -225,7 +225,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   style:ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.poppinsRegular12LightGray:TextStyles.poppinsRegular12LightGray.copyWith(color:Colors.white)
                               ),GestureDetector(
                                 onTap: () async {
-                                  final Uri url = Uri.parse('https://clusters.mediazoneag.com/privacy-policy/');
+                                  final Uri url = Uri.parse('https://champion-edu.com/privacy-policy/');
                                   if (await launchUrl(url)) {
                                     await launchUrl(url, mode: LaunchMode.externalApplication); // يفتح الرابط في المتصفح
                                   } else {

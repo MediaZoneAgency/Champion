@@ -51,12 +51,12 @@ class HomeRepo {
     }
   }
 
-  Future<Either<ApiErrorModel, List<TopicModel>>> getTopic() async {
+  Future<Either<ApiErrorModel, List<TopicModel>>> getTopic( {required int course_id}) async {
     List<TopicModel> topics = [];
     try {
       final response = await _dio.get(
-        "https://clustersplatform.com/wp-json/tutor/v1/topics?course_id=16279",
-        queryParameters:{ 'course_id':16279 }
+        "https://champion-edu.com/wp-json/tutor/v1/topics?course_id=16279",
+        queryParameters:{ 'course_id':course_id }
 
 
       );
