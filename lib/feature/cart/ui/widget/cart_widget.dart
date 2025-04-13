@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:education/core/sharedWidgets/network_image.dart';
 import 'package:education/core/theming/styles.dart';
+import 'package:education/core/theming/theming_change/theme_cubit.dart';
 import 'package:education/feature/cart/data/models/cart_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../logic/cart_cubit.dart';
 
 class CartWidget extends StatelessWidget {
@@ -13,12 +14,24 @@ class CartWidget extends StatelessWidget {
   final CartItemModel product;
   final Function()? onremove;
 
+  /// Helper method to remove HTML tags from a string
+  String removeHtmlTags(String htmlText) {
+    final RegExp exp = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: false);
+    return htmlText.replaceAll(exp, '');
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Prepare cleaned and trimmed description
+    String rawContent = product.productModel.content ?? '';
+    String cleanedContent = removeHtmlTags(rawContent);
+    String shortDescription =
+        cleanedContent.length > 60 ? '${cleanedContent.substring(0, 60)}...' : cleanedContent;
+
     return Container(
       width: 375.w,
       child: Padding(
-        padding: EdgeInsets.only(left: 15.w,right: 15.w),
+        padding: EdgeInsets.only(left: 15.w, right: 15.w),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,48 +48,34 @@ class CartWidget extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
                   Text(
                     product.productModel.title.toString(),
-                    style: TextStyles.poppinsMedium18contantGray,
+                    style: ThemeCubit.get(context).themeMode== ThemeMode.light?TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 4.h),
-
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 220.w), // Limit text width
+                    constraints: BoxConstraints(maxWidth: 220.w),
                     child: RichText(
                       maxLines: 2,
-                      //overflow: TextOverflow.ellipsis,
                       text: TextSpan(
-
                         children: [
-                        TextSpan(
-                        text:
-                      "${product.productModel.content!.substring(0,60)}..." ?? "Description not available",
-                        style: TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12),),
                           TextSpan(
-                          text:
-                              ' See More',
-                              style: TextStyles.poppinsRegular14babyblue.copyWith(
-                                decoration: TextDecoration.underline,
-                                fontSize: 12,
-                              ),
-                            ),
-
+                            text: shortDescription,
+                            style:ThemeCubit.get(context).themeMode== ThemeMode.light? TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12):TextStyles.poppinsRegular20lightGray.copyWith(fontSize: 12,color: Colors.white),
+                          ),
                         ],
                       ),
                     ),
                   ),
-
                   SizedBox(height: 4.h),
                   Row(
                     children: [
                       Text(
                         product.productModel.salePrice.toString(),
-                        style: TextStyles.poppinsMedium20Blue.copyWith(fontSize: 18),
+                        style: ThemeCubit.get(context).themeMode== ThemeMode.light? TextStyles.poppinsMedium20Blue.copyWith(fontSize: 18): TextStyles.poppinsMedium20Blue.copyWith(fontSize: 18,color: Colors.white),
                       ),
                       SizedBox(width: 4.h),
                       Row(
@@ -84,11 +83,11 @@ class CartWidget extends StatelessWidget {
                           SvgPicture.asset('assets/img/star.svg'),
                           Text(
                             product.productModel.salePrice.toString(),
-                            style: TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16),
+                            style:ThemeCubit.get(context).themeMode== ThemeMode.light? TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16):TextStyles.poppinsRegular14lightGray.copyWith(fontSize: 16,color: Colors.white),
                           ),
                         ],
                       ),
-                      Spacer(), // Push trash icon to the right
+                      Spacer(),
                       BlocBuilder<CartCubit, CartState>(
                         builder: (context, state) {
                           return GestureDetector(

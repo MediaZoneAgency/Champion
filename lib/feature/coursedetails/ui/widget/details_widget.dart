@@ -33,6 +33,7 @@ class DetailsWidget extends StatelessWidget {
       padding: EdgeInsets.only(top:10.h,left: 18.w,right: 15.w),
       child: BlocBuilder<ThemeCubit ,ThemeState>(
   builder: (context, state) {
+    String placeholderImageUrl= 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7jXQjq1xMEMnB6Pirx0zJOHsi4DhYrhJ4txVuOzRw59k9PUSajaQCdmlGaDcqrarWxko&usqp=CAU'; 
     return Container(
 
           child: Column(
@@ -56,7 +57,9 @@ class DetailsWidget extends StatelessWidget {
                           image: DecorationImage(
 
                             image: NetworkImage(
-                                product.thumbnailUrl!
+                              (product.thumbnailUrl != null && product.thumbnailUrl!.isNotEmpty)
+                      ? product.thumbnailUrl!
+                      : placeholderImageUrl,
                             ),
                          //   fit: BoxFit.cover,
                           ),
@@ -69,23 +72,23 @@ class DetailsWidget extends StatelessWidget {
                                 left: 10,
                                 child:GestureDetector(
                                   onTap: () {
-                                    context.pushNamed(Routes.cartScreen);
+                                    context.pop();
                                   },
                                   child: SvgPicture.asset(
                                     'assets/img/arrow-left (1).svg',
                                   ),
                                 ),),
-                            Positioned(
-                            top:90.h,
-                             right: 110.w,
-                              child:GestureDetector(
-                                onTap: () {
-                                  context.pushNamed(Routes.cartScreen);
-                                },
-                                child: SvgPicture.asset(
-                                  'assets/img/play.svg',
-                                ),
-                              ),),
+                            // Positioned(
+                            // top:90.h,
+                            //  right: 110.w,
+                            //   child:GestureDetector(
+                            //     onTap: () {
+                            //       context.pushNamed(Routes.cartScreen);
+                            //     },
+                            //     child: SvgPicture.asset(
+                            //       'assets/img/play.svg',
+                            //     ),
+                            //   ),),
                             Positioned(top: 10,
                               right: 60,
                               child: GestureDetector(
@@ -171,24 +174,24 @@ class DetailsWidget extends StatelessWidget {
                                 fontSize: 18.sp,
                               ),
                             ),
-                            WidgetSpan(
-                              child: GestureDetector(
-                                onTap: () {
-                                  // Handle "See More" tap
-                                },
-                                child: Text(
-                                  ' See More',
-                                  style: ThemeCubit.get(context).themeMode == ThemeMode.light
-                                      ? TextStyles.poppinsRegular14babyblue.copyWith(
-                                    decoration: TextDecoration.underline,
-                                  )
-                                      : TextStyles.poppinsRegular14babyblue.copyWith(
-                                    color: Colors.white,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // WidgetSpan(
+                            //   child: GestureDetector(
+                            //     onTap: () {
+                            //       // Handle "See More" tap
+                            //     },
+                            //     child: Text(
+                            //       ' See More',
+                            //       style: ThemeCubit.get(context).themeMode == ThemeMode.light
+                            //           ? TextStyles.poppinsRegular14babyblue.copyWith(
+                            //         decoration: TextDecoration.underline,
+                            //       )
+                            //           : TextStyles.poppinsRegular14babyblue.copyWith(
+                            //         color: Colors.white,
+                            //         decoration: TextDecoration.underline,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -196,98 +199,99 @@ class DetailsWidget extends StatelessWidget {
 
                     Row(
                         children: [
-                          Text(product.salePrice.toString(),
-                            style:
-                            ThemeCubit.get(context).themeMode== ThemeMode.light?
-                            TextStyles.poppinsRegular14lightGray:TextStyles.poppinsRegular14lightGray.copyWith(color: Colors.white),),
-                          SizedBox(width: 4.w,),
-                          SvgPicture.asset(
-                            'assets/img/star2.svg',
-                          ),
-                          SvgPicture.asset(
-                            'assets/img/star2.svg',
-                          ),
-                          SvgPicture.asset(
-                            'assets/img/star2.svg',
-                          ),
-                          SvgPicture.asset(
-                            'assets/img/star2.svg',
-                          ),
+                          // Text('${product.salePrice.toString()}EGP',
+                          //   style:
+                          //   ThemeCubit.get(context).themeMode== ThemeMode.light?
+                          //   TextStyles.poppinsRegular14lightGray:TextStyles.poppinsRegular14lightGray.copyWith(color: Colors.white),),
 
-                          SizedBox(width: 16.w,),
-                          Text(product.salePrice.toString(),
-                            style:
-                            ThemeCubit.get(context).themeMode== ThemeMode.light?
-                            TextStyles.poppinsRegular14lightGray:TextStyles.poppinsRegular14lightGray.copyWith(color: Colors.white),),
-                          SizedBox(width: 14.w,),
+                          // SizedBox(width: 4.w,),
+                          // SvgPicture.asset(
+                          //   'assets/img/star2.svg',
+                          // ),
+                          // SvgPicture.asset(
+                          //   'assets/img/star2.svg',
+                          // ),
+                          // SvgPicture.asset(
+                          //   'assets/img/star2.svg',
+                          // ),
+                          // SvgPicture.asset(
+                          //   'assets/img/star2.svg',
+                          // ),
 
-                        ]
-                    ),
-                    Row(
-                      children: [
-                        Text('Created by',
-                          style:
-                          ThemeCubit.get(context).themeMode== ThemeMode.light?
-                          TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white),),
-                        SizedBox(width: 4.w,),
-                        Text('Mark Krov',
-                          style:
-                          TextStyles.poppinsMedium18Blue.copyWith(
-                              decoration: TextDecoration.underline
-                          ),
-                        ),
-                      ],
-                    ),
+                    //       SizedBox(width: 16.w,),
+                    //       Text('${product.salePrice.toString()}EGP',
+                    //         style:
+                    //         ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //         TextStyles.poppinsRegular14lightGray:TextStyles.poppinsRegular14lightGray.copyWith(color: Colors.white),),
+                    //       SizedBox(width: 14.w,),
+
+                    //     ]
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Text('Created by',
+                    //       style:
+                    //       ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //       TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white),),
+                    //     SizedBox(width: 4.w,),
+                    //     Text('Mark Krov',
+                    //       style:
+                    //       TextStyles.poppinsMedium18Blue.copyWith(
+                    //           decoration: TextDecoration.underline
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: 20.h,),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          ThemeCubit.get(context).themeMode== ThemeMode.light?
-                          'assets/img/calendar-2.svg':'assets/img/calendar-2dark.svg'
-                          ,
-                        ),
-                        SizedBox(width: 4.w,),
-                        Text('Last Update ${product.salePrice}',
-                            style:  ThemeCubit.get(context).themeMode== ThemeMode.light?
-                            TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     SvgPicture.asset(
+                    //       ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //       'assets/img/calendar-2.svg':'assets/img/calendar-2dark.svg'
+                    //       ,
+                    //     ),
+                    //     SizedBox(width: 4.w,),
+                    //     Text('Last Update ${product.salePrice}',
+                    //         style:  ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //         TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: 12.h,),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          ThemeCubit.get(context).themeMode== ThemeMode.light?
-                          'assets/img/Group (2).svg':'assets/img/langudark.svg',
-                        ),
-                        SizedBox(width: 4.w,),
-                        Text('English',
-                            style:
-                            ThemeCubit.get(context).themeMode== ThemeMode.light?
-                            TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 12.h,),
-                    Row(
-                      children: [
-                        SvgPicture.asset(
-                          ThemeCubit.get(context).themeMode== ThemeMode.light?
-                          'assets/img/cc.svg':'assets/img/dark33.svg',
-                        ),
-                        SizedBox(width: 4.w,),
-                        Text('English , Arabic ,Spanish',
-                            style:
-                            ThemeCubit.get(context).themeMode== ThemeMode.light?
-                            TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     SvgPicture.asset(
+                    //       ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //       'assets/img/Group (2).svg':'assets/img/langudark.svg',
+                    //     ),
+                    //     SizedBox(width: 4.w,),
+                    //     Text('English',
+                    //         style:
+                    //         ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //         TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white),
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(height: 12.h,),
+                    // Row(
+                    //   children: [
+                    //     SvgPicture.asset(
+                    //       ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //       'assets/img/cc.svg':'assets/img/dark33.svg',
+                    //     ),
+                    //     SizedBox(width: 4.w,),
+                    //     Text('English , Arabic ,Spanish',
+                    //         style:
+                    //         ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //         TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: 10,),
                     Row(
                       children: [
 
-                        Text(product.salePrice.toString(),
+                        Text('${product.salePrice.toString()}EGP',
                           style: TextStyles.poppinsRegular28blue,),
                         SizedBox(width: 16.w,),
                         Text(product.salePrice.toString(),
@@ -300,29 +304,29 @@ class DetailsWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 30.h,),
-                    Text('Course Details',
-                      style:
-                      ThemeCubit.get(context).themeMode== ThemeMode.light?
-                      TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white),),
-                    SizedBox(height: 8.h,),
-                    Row(
-                      children: [
+                    // SizedBox(height: 30.h,),
+                    // Text('Course Details',
+                    //   style:
+                    //   ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //   TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white),),
+                    // SizedBox(height: 8.h,),
+                    // Row(
+                    //   children: [
 
-                        SizedBox(width: 4.w,),
-                        SizedBox(
-                          width: 320.w,
-                          height: 60.h,
-                          child: Text(
-                              '4 sections . 55 lectures.6h 56m total length',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style:
-                              ThemeCubit.get(context).themeMode== ThemeMode.light?
-                              TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white)
-                          ),
-                        ),
-                      ],
+                    //     SizedBox(width: 4.w,),
+                    //     SizedBox(
+                    //       width: 320.w,
+                    //       height: 60.h,
+                    //       child: Text(
+                    //           '4 sections . 55 lectures.6h 56m total length',
+                    //           maxLines: 2,
+                    //           overflow: TextOverflow.ellipsis,
+                    //           style:
+                    //           ThemeCubit.get(context).themeMode== ThemeMode.light?
+                    //           TextStyles.poppinsMedium16BlackDark:TextStyles.poppinsMedium16BlackDark.copyWith(color: Colors.white)
+                    //       ),
+                    //     ),
+                     ],
                     ),
 
                   ],

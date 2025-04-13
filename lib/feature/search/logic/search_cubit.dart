@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:education/feature/search/data/models/search_result_model.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -12,7 +13,7 @@ class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this.searchRepo) : super(SearchInitial());
   static SearchCubit get(context) => BlocProvider.of(context);
   SearchRepo searchRepo;
-  List<ProductModel> searchResults = [];
+  List<SearchResult> searchResults = [];
   String currentCategoryId = "";
   double minPrice = 0;
   double maxPrice = 100000;

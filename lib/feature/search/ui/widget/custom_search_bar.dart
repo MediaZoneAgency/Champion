@@ -1,3 +1,4 @@
+import 'package:education/core/theming/theming_change/theme_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theming/colors.dart';
@@ -77,13 +78,13 @@ class SearchTextFormField extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          hintStyle: hintStyle ?? TextStyles.latoRegular14lightBlack,
+          hintStyle:ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.latoRegular14lightBlack:TextStyles.latoRegular14lightBlack.copyWith(color: Colors.white),
           hintText: hintText,
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
         ),
         obscureText: isObscureText ?? false,
-        style: TextStyles.latoMedium14DarkBlue,
+        style:ThemeCubit.get(context).themeMode== ThemeMode.light ? TextStyles.latoMedium14DarkBlue:TextStyles.latoMedium14DarkBlue.copyWith(color: Colors.white),
         validator: validator,
         onFieldSubmitted: onSubmit,
       ),

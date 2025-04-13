@@ -33,7 +33,7 @@ class CardItem extends StatelessWidget {
               style: TextStyles.poppinsMedium16BlackMeduim,
             ),
           ),
-          lastIcon,
+       //   lastIcon,
         ],
       ),
     );

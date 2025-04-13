@@ -142,18 +142,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 context.pushNamed(Routes.searchScreen);
                                               },
                                             ),
-                            IconButton(
-                                              icon: SvgPicture.asset(
-                                                width: 30,
-                                                height: 30,
-                                                ThemeCubit.get(context).themeMode== ThemeMode.light ?
-                                                 'assets/img/notification.svg':'assets/img/notificationdark.svg',
-                                                fit: BoxFit.scaleDown,
-                                              ),
-                                              onPressed: () {
-                                                // Notification button tapped
-                                              },
-                                            ),
+                            // IconButton(
+                            //                   icon: SvgPicture.asset(
+                            //                     width: 30,
+                            //                     height: 30,
+                            //                     ThemeCubit.get(context).themeMode== ThemeMode.light ?
+                            //                      'assets/img/notification.svg':'assets/img/notificationdark.svg',
+                            //                     fit: BoxFit.scaleDown,
+                            //                   ),
+                            //                   onPressed: () {
+                            //                     // Notification button tapped
+                            //                   },
+                            //                 ),
 
 
                               ],

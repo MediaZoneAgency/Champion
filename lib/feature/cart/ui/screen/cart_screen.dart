@@ -111,33 +111,33 @@ class _CartScreenState extends State<CartScreen> {
                       );
                     },
                   ),
-                  if (cartList.isNotEmpty) ...[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Row(
-                        children: [
-                          Text(S.of(context).MoreLikThis, style: TextStyles.poppinsMedium18contantGray),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 18.h),
-                    const Padding(padding: EdgeInsets.only(left: 20), child: CartListView()),
-                  ],
+                  // if (cartList.isNotEmpty) ...[
+                  //   Padding(
+                  //     padding: const EdgeInsets.only(left: 20),
+                  //     child: Row(
+                  //       children: [
+                  //         Text(S.of(context).MoreLikThis, style: TextStyles.poppinsMedium18contantGray),
+                  //       ],
+                  //     ),
+                  //   ),
+                  //   SizedBox(height: 18.h),
+                  //   const Padding(padding: EdgeInsets.only(left: 20), child: CartListView()),
+                  // ],
                   verticalSpace(40.h),
                 ],
               ),
-            ),
+            ), 
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: cartList.isNotEmpty
                     ? CustomTextButton(
-                        borderRadius: 10,
-                        buttonHeight: 50,
-                        buttonWidth: 260,
+                        borderRadius: 10.r,
+                        buttonHeight: 50.h,
+                        buttonWidth: 260.w,
                         buttonText: S.of(context).ProceedTocheckout,
-                        textStyle: TextStyles.poppinsMedium20white.copyWith(fontSize: 18),
+                        textStyle: TextStyles.poppinsMedium20white.copyWith(fontSize: 18.sp),
                         onPressed: () => context.pushNamed(Routes.checkoutScreen),
                       )
                     : const SizedBox(),
@@ -182,10 +182,10 @@ class CustomTextButton extends StatelessWidget {
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(borderRadius ?? 16.0),
-              topRight: Radius.circular(borderRadius ?? 16.0),
-              bottomRight: Radius.circular(borderRadius ?? 16.0),
-              bottomLeft: Radius.circular(borderRadius ?? 16.0),
+              topLeft: Radius.circular(borderRadius ?? 16.0.r),
+              topRight: Radius.circular(borderRadius ?? 16.0.r),
+              bottomRight: Radius.circular(borderRadius ?? 16.0.r),
+              bottomLeft: Radius.circular(borderRadius ?? 16.0.r),
             ),
 
           ),

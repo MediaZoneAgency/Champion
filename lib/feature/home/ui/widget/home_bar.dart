@@ -36,14 +36,13 @@ class HomeBar extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
     Row(
-    children: [
-    Image.asset(
-    "assets/img/avvvatar.png",
-    //profileUser.profilePicture ?? 'assets/img/default_avatar.png',
-    width: 38.w,
-    height: 40.h,
-    
-    ),
+    children: [ 
+   AppCachedNetworkImage(
+                        image:  profileUser.profilePicture,
+                        width: 54,
+                        height: 54,
+                        radius: 200,
+                      ),
     horizontalSpace(11.w),
     Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,19 +95,19 @@ class HomeBar extends StatelessWidget {
     context.pushNamed(Routes.searchScreen);
     },
     ),
-    IconButton(
-    icon: SvgPicture.asset(
-    width: 30,
-    height: 30,
-      ThemeCubit.get(context).themeMode== ThemeMode.light
-    ? 'assets/img/notification.svg'
-        : 'assets/img/notificationdark.svg',
-    fit: BoxFit.scaleDown,
-    ),
-    onPressed: () {
-    // Notification button tapped
-    },
-    ),
+    // IconButton(
+    // icon: SvgPicture.asset(
+    // width: 30,
+    // height: 30,
+    //   ThemeCubit.get(context).themeMode== ThemeMode.light
+    // ? 'assets/img/notification.svg'
+    //     : 'assets/img/notificationdark.svg',
+    // fit: BoxFit.scaleDown,
+    // ),
+    // onPressed: () {
+    // // Notification button tapped
+    // },
+    // ),
     ],
     ),
     ],

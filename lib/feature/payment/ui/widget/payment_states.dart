@@ -35,7 +35,7 @@ class PaymentStateUi extends StatelessWidget {
 
           if (Navigator.canPop(context)) {
             Navigator.of(context).pop();
-            context.pushNamed(Routes.paymentScreen);
+           context.pushNamed(Routes.paymentScreen);
           }
         }
 

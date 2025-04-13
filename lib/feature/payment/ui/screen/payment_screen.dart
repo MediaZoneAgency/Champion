@@ -1,7 +1,10 @@
 
 import 'package:education/core/helpers/extensions.dart';
+import 'package:education/core/theming/colors.dart';
+import 'package:education/feature/cart/logic/cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/routes/routes.dart';
 
@@ -17,13 +20,18 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   @override
+/*************  ✨ Windsurf Command ⭐  *************/
+  /// Called when the widget is inserted into the tree.
+  ///
+  /// This method is used to load the payment page.
+/*******  a707d423-d8ca-4bd8-bbaa-178549ed1af3  *******/
   void initState() {
     // TODO: implement initState
     super.initState();
     startPayment();
   }
   void startPayment(){
-    webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri.uri(Uri.parse('https://accept.paymob.com/api/acceptance/iframes/897437?payment_token=${PaymentCubit.get(context).paymentKey}'))));
+    webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri.uri(Uri.parse('https://accept.paymob.com/api/acceptance/iframes/899432?payment_token=${PaymentCubit.get(context).paymentKey}'))));
 
   }
   InAppWebViewController? webViewController ;
@@ -44,6 +52,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
               if (title.toLowerCase().contains("Paymob.accept")) {
                 print("Payment Success!");
+                
                 //Navigator.pop(context, true);
                // NavigationService.navigatorKey.currentContext!.pushReplacementNamed(Routes.trackOrder);// Return failure status
 
@@ -59,9 +68,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
               if (urlString.contains("confirmation")) {
                 print("Payment Success! URL: $urlString");
-context.pop();
-              //  context.pushReplacementNamed(Routes.trackOrder);
-                // Handle success: Close WebView or navigate
+   CartCubit.get(context).placeOrder();
+                    
+              
               }
             },
           onProgressChanged: (controller, progress) async {

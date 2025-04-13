@@ -32,4 +32,5 @@ static const String chatSupprot ='/chatSupport';
 static const String paymentScreen='/paymentScreen';
 static const String rewardGridViewScreen='/rewardGridViewScreen';
 static const String payment='/payment';
+//static const  String paymentScreen ='/pament';
 }

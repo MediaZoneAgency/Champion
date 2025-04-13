@@ -52,47 +52,47 @@ class _SearchScreenState extends State<SearchScreen> {
               
               ),
               SizedBox(height: 16.0),
-              Text(S.of(context).Lastestsearch,
-                style: TextStyles.poppinsRegular16ContantGray.copyWith(color: ColorsManager.primaryDarkGray),),
+              // Text(S.of(context).Lastestsearch,
+              //   style: TextStyles.poppinsRegular16ContantGray.copyWith(color: ColorsManager.primaryDarkGray),),
 
-              SizedBox(height: 20.0),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    "assets/img/clock.svg",
-                    fit: BoxFit.scaleDown,
-                  ),
-                  SizedBox(width: 10.w,),
+              // SizedBox(height: 20.0),
+              // Row(
+              //   children: [
+              //     SvgPicture.asset(
+              //       "assets/img/clock.svg",
+              //       fit: BoxFit.scaleDown,
+              //     ),
+              //     SizedBox(width: 10.w,),
 
-                  Text('Design',
-                    style: TextStyles.poppinsRegular14lightGray.copyWith(color: ColorsManager.primaryDarkGray),),
-                  SizedBox(width: 10.w,),
-                  SvgPicture.asset(
-                    "assets/img/x.svg",
-                    fit: BoxFit.scaleDown,
-                  ),
+              //     Text('Design',
+              //       style: TextStyles.poppinsRegular14lightGray.copyWith(color: ColorsManager.primaryDarkGray),),
+              //     SizedBox(width: 10.w,),
+              //     SvgPicture.asset(
+              //       "assets/img/x.svg",
+              //       fit: BoxFit.scaleDown,
+              //     ),
 
-                ],
-              ),
-              SizedBox(height: 25.h,),
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    "assets/img/clock.svg",
-                    fit: BoxFit.scaleDown,
-                  ),
-                  SizedBox(width: 10.w,),
+              //   ],
+              // ),
+              // SizedBox(height: 25.h,),
+              // Row(
+              //   children: [
+              //     SvgPicture.asset(
+              //       "assets/img/clock.svg",
+              //       fit: BoxFit.scaleDown,
+              //     ),
+              //     SizedBox(width: 10.w,),
 
-                  Text('Design',
-                    style: TextStyles.poppinsRegular14lightGray.copyWith(color: ColorsManager.primaryDarkGray),),
-                  SizedBox(width: 10.w,),
-                  SvgPicture.asset(
-                    "assets/img/x.svg",
-                    fit: BoxFit.scaleDown,
-                  ),
-
-                ],
-              ),
+              //     Text('Design',
+              //       style: TextStyles.poppinsRegular14lightGray.copyWith(color: ColorsManager.primaryDarkGray),),
+              //     SizedBox(width: 10.w,),
+              //     SvgPicture.asset(
+              //       "assets/img/x.svg",
+              //       fit: BoxFit.scaleDown,
+              //     ),
+//
+               // ],
+           //   ),
             ],
           ),
         ),

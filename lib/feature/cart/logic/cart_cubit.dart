@@ -1,9 +1,11 @@
 import 'package:education/core/helpers/extensions.dart';
+import 'package:education/core/theming/colors.dart';
 import 'package:education/feature/cart/data/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../../Utils/color_manager.dart';
 import '../../../core/error/error_model.dart';
 import '../../../core/routes/routes.dart';
@@ -55,12 +57,32 @@ void addToCart( BuildContext context,{required CartItemModel product}) async {
         emit(CartAllOrderError(failure));
       },
           (response) async {
-
-        emit(CartAllOrderSuccess());
+ 
         NavigationService.navigatorKey.currentContext!
             .pushNamedAndRemoveUntil(Routes.navBarScreen,predicate:  (route) => false);
+          cartList.clear();
+               Fluttertoast.showToast(
+                              msg: "We will contact you soon",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: ColorsManager.primaryColorLight,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+        emit(CartAllOrderSuccess());
+       
       },
     );
   }
+ double getTotalCartPrice() {
+  double total = 0;
+  for (var item in cartList) {
+    final price = double.tryParse(item.productModel.salePrice ?? '0') ?? 0;
+    total += price * item.quantity;
+  }
+  return total;
+}
+
+
 
 }

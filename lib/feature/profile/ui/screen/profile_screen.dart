@@ -100,11 +100,7 @@ SizedBox(height: 20.h,),
 
             child: ListView(
               children: [
-                ProfileCubit.get(context).token!=''?ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/notification (1).svg'),
-                  text:S.of(context).Notifications,
-                  onTap: () {},
-                ):SizedBox(),
+             
 
                 ProfileCubit.get(context).token!=''?ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/editnew.svg'),
@@ -199,16 +195,16 @@ onTap: () async { // Make the callback async
 
 // ... (Rest of your widget code, e.g., the child of GestureDetector)
                 ),
-                ProfileMenuItem(
-                  icon: SvgPicture.asset('assets/img/procircle.svg'),
-                  text: S.of(context).Progress,
-                  onTap: () {
- Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ProgressScreen()),
-        );
-                  },
-                ),
+//                 ProfileMenuItem(
+//                   icon: SvgPicture.asset('assets/img/procircle.svg'),
+//                   text: S.of(context).Progress,
+//                   onTap: () {
+//  Navigator.push(
+//           context,
+//           MaterialPageRoute(builder: (context) => ProgressScreen()),
+//         );
+//                   },
+//                 ),
                 ProfileMenuItem(
                   icon: SvgPicture.asset('assets/img/setting-2 (1).svg'),
                   text:S.of(context).Settings,

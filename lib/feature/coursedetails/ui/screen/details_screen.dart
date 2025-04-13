@@ -52,7 +52,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ThemeCubit.get(context).themeMode== ThemeMode.light?
                           TextStyles.poppinsRegular14LightGray: TextStyles.poppinsRegular14white,),
                         SizedBox(height: 4.h,),
-                        Text('450 EGP',
+                        Text(widget.product.salePrice.toString(),
                           style:
                           ThemeCubit.get(context).themeMode== ThemeMode.light?
                           TextStyles.poppinsMedium20NavyBlue: TextStyles.poppinsMedium20white.copyWith(color: Colors.white),),
@@ -63,8 +63,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     BlocBuilder<CartCubit, CartState>(
                       builder: (context, state) {
                         return AppTextButton(
-                          horizontalPadding: 5.w,
-                          verticalPadding:5.w,
+                          horizontalPadding: 2.w,
+                          verticalPadding:2.w,
                           borderRadius: 10,
                           buttonHeight: 48.h,
                           buttonWidth: 170.w,
@@ -94,28 +94,29 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 children: [
                  // SizedBox(height: 50.h),
                   DetailsWidget(widget.product),
-                  CourseSections(),
+               
+            //    CourseSections(course_id: widget.product.id!),
                   SizedBox(height: 40.h),
-                  Text(
-                      "    Reviews(12)",
-                      style:
-                      ThemeCubit.get(context).themeMode== ThemeMode.light?
-                      TextStyles.poppinsMedium16DarkGray:TextStyles.poppinsMedium16DarkGray.copyWith(color: Colors.white)
-                  ),
-                  ReviewWidget(),
-                  SizedBox(height: 12.h),
-                  ReviewWidget(),
+                  // Text(
+                  //     "    Reviews(12)",
+                  //     style:
+                  //     ThemeCubit.get(context).themeMode== ThemeMode.light?
+                  //     TextStyles.poppinsMedium16DarkGray:TextStyles.poppinsMedium16DarkGray.copyWith(color: Colors.white)
+                  // ),
+                  // ReviewWidget(),
+                  // SizedBox(height: 12.h),
+                  // ReviewWidget(),
                   SizedBox(height: 20.h),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 10),
-                    child: Center(
-                      child: Text(
-                          "See All Reviews",
-                          style: TextStyles.poppinsRegular16blue
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 39.h),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 20, right: 10),
+                  //   child: Center(
+                  //     child: Text(
+                  //         "See All Reviews",
+                  //         style: TextStyles.poppinsRegular16blue
+                  //     ),
+                  //   ),
+                  // ),
+                 // SizedBox(height: 39.h),
                   Padding(
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     child: Row(
@@ -126,17 +127,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             TextStyles.poppinsMedium18contantGray:TextStyles.poppinsMedium18contantGray.copyWith(color: Colors.white)
                         ),
                         SizedBox(width: 200.w,),
-                        Text(
-                            S
-                                .of(context)
-                                .Seeall,
-                            style: TextStyles.poppinsRegular14babyblue
-                        ),
+                        // Text(
+                        //     S
+                        //         .of(context)
+                        //         .Seeall,
+                        //     style: TextStyles.poppinsRegular14babyblue
+                        // ),
             
                       ],
                     ),
                   ),
-                  SizedBox(height: 16.h,),
+               //   SizedBox(height: 16.h,),
                   CoursesListView(),
                   SizedBox(height: 24.h,),
 

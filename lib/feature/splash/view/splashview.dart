@@ -1,7 +1,6 @@
 import 'package:education/core/helpers/extensions.dart';
 import 'package:education/core/theming/colors.dart';
 import 'package:education/feature/splash/logic/splash_cubit.dart';
-
 import 'package:flutter/material.dart';
 
 
@@ -53,7 +52,6 @@ Future.delayed(const Duration(seconds: 5), () async {
       if(await SplashCubit.get(context).checkToken(token)){
         print(await SplashCubit.get(context).checkToken(token));
           await CashHelper.clear();
-        
         context.pushReplacementNamed(Routes.signUpScreen);
       }else{
         DioFactory.setTokenIntoHeaderAfterLogin(token);
