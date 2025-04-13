@@ -38,7 +38,7 @@ class CourseWidget extends StatelessWidget {
     }
 
     // رابط صورة افتراضية أو صورة محلية
-    const String placeholderImageUrl = 'assets/img/placeholder_image.png'; // <-- استبدل بمسار صورة افتراضية لديك
+    const String placeholderImageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7jXQjq1xMEMnB6Pirx0zJOHsi4DhYrhJ4txVuOzRw59k9PUSajaQCdmlGaDcqrarWxko&usqp=CAU'; // <-- استبدل بمسار صورة افتراضية لديك
 
     return GestureDetector(
       onTap: () {

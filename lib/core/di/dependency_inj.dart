@@ -5,6 +5,8 @@ import 'package:education/feature/cart/logic/cart_cubit.dart';
 import 'package:education/feature/profile/data/repo/profile_repo.dart';
 import 'package:education/feature/search/logic/search_cubit.dart';
 import 'package:education/feature/sign_up/logic/sign_up_cubit.dart';
+import 'package:education/feature/splash/data/repo/splash_repo.dart';
+import 'package:education/feature/splash/logic/splash_cubit.dart';
 import 'package:education/feature/wishlist/data/repo/wish_list_repo.dart';
 import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -51,5 +53,6 @@ Future<void> setupGetIt() async
  getIt.registerLazySingleton<FavRepo>(()=>FavRepo(dio));
  getIt.registerLazySingleton<FavCubit>(()=>FavCubit(getIt()));
  getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
-
+getIt.registerFactory<SplashRepo>(() => SplashRepo(dio));
+ getIt.registerLazySingleton<SplashCubit>(() => SplashCubit(getIt()));
 }

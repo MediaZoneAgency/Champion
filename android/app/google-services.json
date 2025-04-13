@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:669095559063:android:064b8149de5a86fd1eced2",
+        "mobilesdk_app_id": "1:669095559063:android:2593329a5c51e1761eced2",
         "android_client_info": {
-          "package_name": "com.educationmz.education"
+          "package_name": "com.championmz.educationapp"
         }
       },
       "oauth_client": [],

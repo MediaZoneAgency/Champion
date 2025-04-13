@@ -73,13 +73,13 @@ SizedBox(height: 20.h,),
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-              ProfileCubit.get(context).profileUser!.name!,
+              ProfileCubit.get(context).profileUser!.name!??" ay haga",
                             style: ThemeCubit.get(context).themeMode == ThemeMode.light
                                 ? TextStyles.poppinsRegular16contantGray
                                 : TextStyles.poppinsRegular16contantGray.copyWith(color: Colors.white),
                           ),
                           Text(
-                            ProfileCubit.get(context).profileUser!.email!,
+                            ProfileCubit.get(context).profileUser!.email!??"null",
                             style: ThemeCubit.get(context).themeMode == ThemeMode.light
                                 ? TextStyles.poppinsRegular16LightGray
                                 : TextStyles.poppinsRegular16LightGray.copyWith(color: Colors.white),

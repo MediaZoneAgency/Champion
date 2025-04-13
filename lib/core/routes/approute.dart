@@ -9,6 +9,7 @@ import 'package:education/feature/profile/ui/screen/account_ifo.dart';
 import 'package:education/feature/profile/ui/screen/edit_account.dart';
 import 'package:education/feature/profile/ui/screen/profile_screen.dart';
 import 'package:education/feature/search/ui/screen/search_result_screen.dart';
+import 'package:education/feature/splash/logic/splash_cubit.dart';
 import 'package:education/feature/wishlist/logic/cubit/fav_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,9 +49,12 @@ class AppRouter {
     //final arguments = settings.arguments;
 
     switch (settings.name) {
-      case Routes.splashScreen:
-         return MaterialPageRoute(
-         builder: (_) => const SplashView(),
+   case Routes.splashScreen:
+        return MaterialPageRoute(
+          builder: (_) =>  BlocProvider(
+  create: (context) => getIt<SplashCubit>(),
+  child: const  SplashView(),
+),
         );
       //
       case Routes.signUpScreen:

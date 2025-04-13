@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDaRJn9DbN2YNveQpo12F5BjuCMPp0_AKY',
-    appId: '1:669095559063:android:064b8149de5a86fd1eced2',
+    appId: '1:669095559063:android:2593329a5c51e1761eced2',
     messagingSenderId: '669095559063',
     projectId: 'champion-6c444',
     storageBucket: 'champion-6c444.firebasestorage.app',
@@ -60,11 +60,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBQI47x33DCfQ47yDXYXkreQiRqh23M7vw',
-    appId: '1:669095559063:ios:b1ef1c91c6a665f01eced2',
+    appId: '1:669095559063:ios:bf9c8d90c55b7f571eced2',
     messagingSenderId: '669095559063',
     projectId: 'champion-6c444',
     storageBucket: 'champion-6c444.firebasestorage.app',
-    iosBundleId: 'com.educationmz.education',
+    iosBundleId: 'com.educationmz.champion.OneSignalNotificationServiceExtension',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'champion-6c444.firebasestorage.app',
     measurementId: 'G-5BNC93N8B7',
   );
+
 }

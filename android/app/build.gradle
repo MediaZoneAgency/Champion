@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.educationmz.education"
+    namespace = "com.championmz.educationapp"
     compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
@@ -23,22 +23,23 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.educationmz.education"
+        applicationId = "com.championmz.educationapp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.4"
+        versionCode = 7
+        versionName = "1.7"
     }
-    signingConfigs {
-        release {
-            keyAlias 'keyAlias' // Replace with your keystore alias
-            keyPassword 'Sara12345' // Replace with your key password
-            storeFile file('release-key.jks') // Replace with the path to your keystore file
-            storePassword 'Sara12345' // Replace with your keystore password
-        }
+ signingConfigs {
+    release {
+        keyAlias 'keyAlias' // Use your keystore alias
+        keyPassword 'champion12345' // Use your key password
+        storeFile file('C:/Users/Muhammad/flutterprojects/champion/Champion/android/app/release-key.jks') // Path to your keystore file
+        storePassword 'champion12345' // Use your keystore password
     }
+}
+
 
     buildTypes {
         release {
