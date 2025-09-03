@@ -33,10 +33,11 @@ android {
     }
  signingConfigs {
     release {
-        keyAlias 'keyAlias' // Use your keystore alias
-        keyPassword 'champion12345' // Use your key password
-        storeFile file('C:/Users/Muhammad/flutterprojects/champion/Champion/android/app/release-key.jks') // Path to your keystore file
-        storePassword 'champion12345' // Use your keystore password
+        keyAlias      System.getenv("ANDROID_KEY_ALIAS")
+        keyPassword   System.getenv("ANDROID_KEY_PASSWORD")
+        def ksPath = System.getenv("ANDROID_KEYSTORE_PATH")
+            if (ksPath) storeFile = file(ksPath)
+        storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
     }
 }
 
