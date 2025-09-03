@@ -33,6 +33,11 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
 
+/*************  ✨ Windsurf Command ⭐  *************/
+/// Toggles the visibility of the text for the first input field by
+/// inverting the `isObscureText1` boolean and emits an `ObscureText1` state.
+
+/*******  bcfa653e-82de-430f-ab5c-ceedf12831df  *******/
   void obscureText1() {
     isObscureText1 = !isObscureText1;
     emit(ObscureText1());

@@ -67,7 +67,7 @@ class Tools {
             onSurface: ColorManager.primaryColor, //color header and day text
             background: ColorManager.white,
           ),
-          dialogTheme: const DialogTheme(
+          dialogTheme:  DialogTheme(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15)))),
           textButtonTheme: TextButtonThemeData(

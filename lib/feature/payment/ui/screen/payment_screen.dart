@@ -31,7 +31,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     startPayment();
   }
   void startPayment(){
-    webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri.uri(Uri.parse('https://accept.paymob.com/api/acceptance/iframes/899432?payment_token=${PaymentCubit.get(context).paymentKey}'))));
+    //webViewController?.loadUrl(urlRequest: URLRequest(url: WebUri.uri(Uri.parse('https://accept.paymob.com/api/acceptance/iframes/899432?payment_token=${PaymentCubit.get(context).paymentKey}'))));
 
   }
   InAppWebViewController? webViewController ;

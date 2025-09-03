@@ -63,7 +63,7 @@ SizedBox(height: 20.h,),
                   child: Row(
                     children: [
                       AppCachedNetworkImage(
-                        image: ProfileCubit.get(context).profileUser!.profilePicture,
+                        image: ProfileCubit.get(context).profileUser?.profilePicture,
                         width: 54,
                         height: 54,
                         radius: 200,
@@ -73,13 +73,13 @@ SizedBox(height: 20.h,),
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-              ProfileCubit.get(context).profileUser!.name!??" ay haga",
+              ProfileCubit.get(context).profileUser?.name??" ay haga",
                             style: ThemeCubit.get(context).themeMode == ThemeMode.light
                                 ? TextStyles.poppinsRegular16contantGray
                                 : TextStyles.poppinsRegular16contantGray.copyWith(color: Colors.white),
                           ),
                           Text(
-                            ProfileCubit.get(context).profileUser!.email!??"null",
+                            ProfileCubit.get(context).profileUser?.email??"null",
                             style: ThemeCubit.get(context).themeMode == ThemeMode.light
                                 ? TextStyles.poppinsRegular16LightGray
                                 : TextStyles.poppinsRegular16LightGray.copyWith(color: Colors.white),
@@ -163,7 +163,7 @@ SizedBox(height: 20.h,),
 
 onTap: () async { // Make the callback async
   // Replace 'https://www.example.com' with the actual website URL
-  final Uri websiteUri = Uri.parse('https://info@clustersplatform.com/');
+  final Uri websiteUri = Uri.parse('https://champion-edu.com/');
 
   // Check if the URL can be launched (optional but recommended)
   if (await canLaunchUrl(websiteUri)) {

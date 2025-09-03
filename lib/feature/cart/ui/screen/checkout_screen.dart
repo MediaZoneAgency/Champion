@@ -106,19 +106,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           } else {
                             DioFactory.setTokenIntoHeaderAfterLogin(token);
 
-                            PaymentCubit.get(context).pay(
-                                CartCubit.get(context).getTotalCartPrice(),
-                                Billing(
-                                  lastName: "domy",
-                                  firstName: "domy",
-                                  address1: "domy",
-                                  state: "domy",
-                                  city: "domy",
-                                  postcode: "domy",
-                                  country: "domy",
-                                  email: "domy",
-                                  phone: "domy",
-                                ));
+                      
+                             PaymentCubit.get(context).buyProduct(context,'com.ChampionPlatform.courses.full_access');
                            
                           }
                                                   
